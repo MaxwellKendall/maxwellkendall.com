@@ -1,25 +1,25 @@
 import React from 'react'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
+import Header from '../components/header'
 
 class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
     const [author] = get(this, 'props.data.allContentfulPerson.edges')
-
     return (
       <div style={{ background: '#fff' }}>
+        <Header logo={this.props.data.allContentfulAsset} />
         <Helmet title={siteTitle} />
         <div className="wrapper">
-          <h2 className="section-headline">Recent articles</h2>
           <ul className="article-list">
             {posts.map(({ node }) => {
               return (
                 <li key={node.slug}>
                   <ArticlePreview article={node} />
+                  <hr className="preview-hr"/>
                 </li>
               )
             })}
@@ -71,6 +71,22 @@ export const pageQuery = graphql`
             ) {
               ...GatsbyContentfulSizes_withWebp
             }
+          }
+        }
+      }
+    }
+    allContentfulAsset(filter: { id: { eq: "c5qFKZIiWEEAewqC4AyqcWC" } }) {
+      edges {
+        node {
+          sizes {
+            base64
+            tracedSVG
+            aspectRatio
+            src
+            srcSet
+            srcWebp
+            srcSetWebp
+            sizes
           }
         }
       }
