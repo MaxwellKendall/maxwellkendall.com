@@ -1,23 +1,22 @@
-import React from 'react'
-import Link from 'gatsby-link'
-import base from './base.css'
+import React, { Component } from 'react'
 import Container from '../components/container'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 
-class Template extends React.Component {
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faCopyright } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faCopyright, fab);
+
+require('./base.css');
+class Template extends Component {
   render() {
-    const { location, children } = this.props
-    let header
-
-    let rootPath = `/`
-    if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
-      rootPath = __PATH_PREFIX__ + `/`
-    }
-
     return (
       <Container>
         <Header />
-        {children()}
+        {this.props.children()}
+        <Footer />
       </Container>
     )
   }
