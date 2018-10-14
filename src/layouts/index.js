@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Container from '../components/container'
 import Footer from '../components/Footer'
-import Header from '../components/header'
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
