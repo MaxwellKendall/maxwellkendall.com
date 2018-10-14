@@ -2,7 +2,7 @@ import React from 'react'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import ArticlePreview from '../components/article-preview'
-import Header from '../components/header'
+import Header from '../components/Header'
 
 class RootIndex extends React.Component {
   render() {
