@@ -41,11 +41,6 @@ export const pageQuery = graphql`
           slug
           publishDate(formatString: "MMMM Do, YYYY")
           tags
-          heroImage {
-            sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-             ...GatsbyContentfulSizes_withWebp
-            }
-          }
           description {
             childMarkdownRemark {
               html
@@ -62,32 +57,15 @@ export const pageQuery = graphql`
             shortBio
           }
           title
-          heroImage: image {
-            sizes(
-              maxWidth: 1180
-              maxHeight: 480
-              resizingBehavior: PAD
-              background: "rgb:000000"
-            ) {
-              ...GatsbyContentfulSizes_withWebp
-            }
-          }
         }
       }
     }
     allContentfulAsset(filter: { id: { eq: "c5qFKZIiWEEAewqC4AyqcWC" } }) {
       edges {
         node {
-          sizes {
-            base64
-            tracedSVG
-            aspectRatio
-            src
-            srcSet
-            srcWebp
-            srcSetWebp
-            sizes
-          }
+          sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
+            ...GatsbyContentfulSizes_withWebp
+            }
         }
       }
     }
