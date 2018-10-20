@@ -1,6 +1,6 @@
 .header {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
 }
 
 .logo {

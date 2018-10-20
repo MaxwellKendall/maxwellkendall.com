@@ -5,6 +5,19 @@
   src: url("/avenir-400.woff2") format("woff2");
   font-display: swap;
 }
+.container {
+  display: grid;
+  height: 100vh;
+  -ms-grid-columns: auto;
+  grid-template-columns: 100%;
+  -ms-grid-rows: 1fr 10fr 1fr;
+  grid-template-rows: 100px 75% 100px;
+  grid-gap: 1rem;
+}
+
+.footer {
+  grid-row: 3;
+}
 
 body {
   font-family: "Avenir", Tahoma, Arial, Helvetica, sans-serif;
