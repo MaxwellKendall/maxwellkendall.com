@@ -4,6 +4,14 @@
   "private": true,
   "version": "0.0.1",
   "author": "Contentful <opensource@contentful.com>",
+  "scripts": {
+    "start": "gatsby develop",
+    "clean-links": "contentful-link-cleaner --space 'b9r33i3rvu3z' --delivery-token '49a3414a8051e52cb8a5334bb3e8532472dedc591982eebd9134d48ae43ea279' --management-token 'CFPAT-aa8027ac11a7e58bf050768a6f94f11fad9aeb823ad3618cc4b5a9d996881719'",
+    "build": "gatsby build",
+    "deploy": "netlifyctl login && netlifyctl deploy -b public",
+    "serve": "gatsby serve",
+    "setup": "npm install --no-save contentful-import yargs-parser axios chalk && node ./setup.js"
+  },
   "bugs": {
     "url": "https://github.com/contentful/starter-gatsby-blog/issues"
   },
@@ -34,13 +42,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/contentful/starter-gatsby-blog.git"
-  },
-  "scripts": {
-    "dev": "gatsby develop",
-    "clean-links": "contentful-link-cleaner --space 'b9r33i3rvu3z' --delivery-token '49a3414a8051e52cb8a5334bb3e8532472dedc591982eebd9134d48ae43ea279' --management-token 'CFPAT-aa8027ac11a7e58bf050768a6f94f11fad9aeb823ad3618cc4b5a9d996881719'",
-    "build": "gatsby build",
-    "deploy": "netlifyctl login && netlifyctl deploy -b public",
-    "serve": "gatsby serve",
-    "setup": "npm install --no-save contentful-import yargs-parser axios chalk && node ./setup.js"
   }
 }
