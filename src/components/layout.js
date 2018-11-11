@@ -13,7 +13,7 @@ class Template extends Component {
   render() {
     return (
       <Container>
-        {this.props.children()}
+        {this.props.children}
         <Footer />
       </Container>
     )
