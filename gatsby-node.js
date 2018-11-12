@@ -26,6 +26,8 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors)
         }
 
+        console.log("RESULT : **** ", result);
+
         const posts = result.data.allContentfulBlogPost.edges
         posts.forEach((post, index) => {
           createPage({
@@ -36,6 +38,9 @@ exports.createPages = ({ graphql, actions }) => {
             },
           })
         })
+      })
+      .catch((err) => {
+        console.log('error from ya boi: ', err)
       })
     )
   })

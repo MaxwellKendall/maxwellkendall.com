@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Container from '../components/container'
-import Footer from '../components/Footer'
+import Container from './container'
+import Footer from './Footer'
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -9,7 +9,7 @@ import { faCopyright } from "@fortawesome/free-solid-svg-icons";
 library.add(faCopyright, fab);
 
 require('./base.css');
-class Template extends Component {
+class Layout extends Component {
   render() {
     return (
       <Container>
@@ -20,4 +20,4 @@ class Template extends Component {
   }
 }
 
-export default Template
+export default Layout

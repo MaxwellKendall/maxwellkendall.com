@@ -1,76 +1,78 @@
 import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import ArticlePreview from '../components/article-preview'
+import Layout from '../components/layout'
 import Header from '../components/Header'
 
 class RootIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-    const [author] = get(this, 'props.data.allContentfulPerson.edges')
+    const { allContentfulAsset, allContentfulBlogPost, contentfulPerson }
     return (
-      <StaticQuery
-        query={graphql`
-        query HomeQuery {
-          allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-            edges {
-              node {
-                title
-                slug
-                publishDate(formatString: "MMMM Do, YYYY")
-                tags
-                description {
-                  childMarkdownRemark {
-                    html
-                  }
-                }
-              }
-            }
-          }
-          allContentfulPerson(filter: { id: { eq: "c15jwOBqpxqSAOy2eOO4S0m" } }) {
-            edges {
-              node {
-                name
-                shortBio {
-                  shortBio
-                }
-                title
-              }
-            }
-          }
-          allContentfulAsset(filter: { id: { eq: "c5qFKZIiWEEAewqC4AyqcWC" } }) {
-            edges {
-              node {
-                sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-                  ...GatsbyContentfulSizes_withWebp
-                  }
-              }
-            }
-          }
-        }
-      `}
-        render={() => {
-          <div style={{ background: '#fff' }}>
-            <Header logo={this.props.data.allContentfulAsset} />
-            <Helmet title={siteTitle} />
-            <div className="wrapper">
-              <ul className="article-list">
-                {posts.map(({ node }) => {
-                  return (
-                    <li key={node.slug}>
-                      <ArticlePreview article={node} />
-                      <hr className="preview-hr"/>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          </div>
-        }}/>
-    );
+      <Layout>
+        <Header logo={this.props.data.allContentfulAsset} />
+        <Helmet title={siteTitle} />
+        <div className="wrapper">
+          <ul className="article-list">
+            {posts.map(({ node }) => {
+              return (
+                <li key={node.slug}>
+                  <ArticlePreview article={node} />
+                  <hr className="preview-hr"/>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </Layout>
+    )
   }
 }
 
 export default RootIndex
+
+export const pageQuery = graphql`
+  query {
+    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+      edges {
+        node {
+          title
+          slug
+          publishDate(formatString: "MMMM Do, YYYY")
+          tags
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
+      }
+    }
+    contentfulPerson(name: { eq: "Maxwell Kendall" }) {
+      name
+      shortBio {
+        shortBio
+      }
+    }
+    allContentfulAsset(filter: { file: { fileName: { eq: "Logo.png" } } }) {
+      edges {
+        node {
+          resize {
+            base64
+            tracedSVG
+            src
+            width
+            height
+            aspectRatio
+          }
+          file {
+            url
+            fileName
+            contentType
+          }     
+        }
+      }
+    }
+  }
+`
