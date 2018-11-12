@@ -4,6 +4,18 @@
   "private": true,
   "version": "0.0.1",
   "author": "Contentful <opensource@contentful.com>",
+  "homepage": "https://github.com/contentful/starter-gatsby-blog#readme",
+  "keywords": [
+    "gatsby",
+    "contentful",
+    "starter"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/contentful/starter-gatsby-blog.git"
+  },
   "scripts": {
     "start": "gatsby develop",
     "clean-links": "contentful-link-cleaner --space 'b9r33i3rvu3z' --delivery-token '49a3414a8051e52cb8a5334bb3e8532472dedc591982eebd9134d48ae43ea279' --management-token 'CFPAT-aa8027ac11a7e58bf050768a6f94f11fad9aeb823ad3618cc4b5a9d996881719'",
@@ -21,28 +33,16 @@
     "@fortawesome/free-solid-svg-icons": "^5.5.0",
     "@fortawesome/react-fontawesome": "^0.1.3",
     "gatsby": "^2.0.0",
-    "gatsby-image": "^1.0.55",
-    "gatsby-link": "^1.6.46",
-    "gatsby-plugin-react-helmet": "^1.0.8",
-    "gatsby-plugin-sharp": "^1.6.48",
-    "gatsby-source-contentful": "^1.3.54",
-    "gatsby-transformer-remark": "^1.7.44",
+    "gatsby-image": "^2.0.20",
+    "gatsby-plugin-react-helmet": "^3.0.1",
+    "gatsby-plugin-sharp": "^2.0.12",
+    "gatsby-source-contentful": "^2.0.13",
+    "gatsby-transformer-remark": "^2.1.12",
     "i": "^0.3.6",
     "lodash": "^4.17.10",
     "npm": "^6.4.1",
     "react": "^16.6.1",
-    "react-dom": "^16.6.1"
-  },
-  "homepage": "https://github.com/contentful/starter-gatsby-blog#readme",
-  "keywords": [
-    "gatsby",
-    "contentful",
-    "starter"
-  ],
-  "license": "MIT",
-  "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/contentful/starter-gatsby-blog.git"
+    "react-dom": "^16.6.1",
+    "react-helmet": "^5.2.0"
   }
 }
