@@ -8,10 +8,11 @@ import Header from '../components/Header'
 
 class RootIndex extends React.Component {
   render() {
-    const { allContentfulAsset, allContentfulBlogPost, contentfulPerson }
+    const { allContentfulAsset, allContentfulBlogPost, siteTitle } = this.props.data;
+    const posts = allContentfulBlogPost.edges;
     return (
       <Layout>
-        <Header logo={this.props.data.allContentfulAsset} />
+        <Header logo={allContentfulAsset} />
         <Helmet title={siteTitle} />
         <div className="wrapper">
           <ul className="article-list">
@@ -35,44 +36,46 @@ export default RootIndex
 export const pageQuery = graphql`
   query {
     allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      edges {
-        node {
-          title
-          slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          description {
-            childMarkdownRemark {
-              html
+          edges {
+            node {
+              title
+              slug
+              publishDate(formatString: "MMMM Do, YYYY")
+              tags
+              description {
+                childMarkdownRemark {
+                  html
+                }
+              }
             }
           }
         }
-      }
-    }
-    contentfulPerson(name: { eq: "Maxwell Kendall" }) {
-      name
-      shortBio {
-        shortBio
-      }
-    }
-    allContentfulAsset(filter: { file: { fileName: { eq: "Logo.png" } } }) {
-      edges {
-        node {
-          resize {
-            base64
-            tracedSVG
-            src
-            width
-            height
-            aspectRatio
+        contentfulPerson(name: { eq: "Maxwell Kendall" }) {
+          name
+          shortBio {
+            shortBio
           }
-          file {
-            url
-            fileName
-            contentType
-          }     
         }
-      }
+        allContentfulAsset(filter:{ file: { fileName: { eq:"Logo.png"}} }) {
+          edges{
+            node {
+              file {
+                url
+                fileName
+                contentType
+              }
+              fluid {
+                base64
+                tracedSVG
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+              }
+            }
+          }
+        }
     }
-  }
 `
