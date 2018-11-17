@@ -1,17 +1,18 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import ArticlePreview from '../components/article-preview'
+import Layout from '../components/layout'
 import Header from '../components/Header'
 
 class RootIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-    const [author] = get(this, 'props.data.allContentfulPerson.edges')
+    const { allContentfulAsset, allContentfulBlogPost, siteTitle } = this.props.data;
+    const posts = allContentfulBlogPost.edges;
     return (
-      <div style={{ background: '#fff' }}>
-        <Header logo={this.props.data.allContentfulAsset} />
+      <Layout>
+        <Header logo={allContentfulAsset} />
         <Helmet title={siteTitle} />
         <div className="wrapper">
           <ul className="article-list">
@@ -25,7 +26,7 @@ class RootIndex extends React.Component {
             })}
           </ul>
         </div>
-      </div>
+      </Layout>
     )
   }
 }
@@ -33,41 +34,48 @@ class RootIndex extends React.Component {
 export default RootIndex
 
 export const pageQuery = graphql`
-  query HomeQuery {
+  query {
     allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      edges {
-        node {
-          title
-          slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          description {
-            childMarkdownRemark {
-              html
+          edges {
+            node {
+              title
+              slug
+              publishDate(formatString: "MMMM Do, YYYY")
+              tags
+              description {
+                childMarkdownRemark {
+                  html
+                }
+              }
             }
           }
         }
-      }
-    }
-    allContentfulPerson(filter: { id: { eq: "c15jwOBqpxqSAOy2eOO4S0m" } }) {
-      edges {
-        node {
+        contentfulPerson(name: { eq: "Maxwell Kendall" }) {
           name
           shortBio {
             shortBio
           }
-          title
         }
-      }
-    }
-    allContentfulAsset(filter: { id: { eq: "c5qFKZIiWEEAewqC4AyqcWC" } }) {
-      edges {
-        node {
-          sizes(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-            ...GatsbyContentfulSizes_withWebp
+        allContentfulAsset(filter:{ file: { fileName: { eq:"Logo.png"}} }) {
+          edges{
+            node {
+              file {
+                url
+                fileName
+                contentType
+              }
+              fluid {
+                base64
+                tracedSVG
+                aspectRatio
+                src
+                srcSet
+                srcWebp
+                srcSetWebp
+                sizes
+              }
             }
+          }
         }
-      }
     }
-  }
 `

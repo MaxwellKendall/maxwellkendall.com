@@ -22,9 +22,10 @@ if (!spaceId || !accessToken) {
 module.exports = {
   pathPrefix: '/gatsby-contentful-starter',
   plugins: [
-    'gatsby-transformer-remark',
+    'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
+    'gatsby-transformer-remark',
     {
       resolve: 'gatsby-source-contentful',
       options: contentfulConfig,

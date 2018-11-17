@@ -1,8 +1,10 @@
+
 import React from 'react'
-import Link from 'gatsby-link'
+import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import styles from './blog.module.css'
+import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
 
 class BlogIndex extends React.Component {
@@ -11,7 +13,7 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
 
     return (
-      <div style={{ background: '#fff' }}>
+      <Layout>
         <Helmet title={siteTitle} />
         <div className={styles.hero}>
           Blog
@@ -28,7 +30,7 @@ class BlogIndex extends React.Component {
             })}
           </ul>
         </div>
-      </div>
+      </Layout>
     )
   }
 }
@@ -36,7 +38,7 @@ class BlogIndex extends React.Component {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query BlogIndexQuery {
+  {
     allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
       edges {
         node {

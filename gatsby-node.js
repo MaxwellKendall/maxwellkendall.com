@@ -1,8 +1,8 @@
 const Promise = require('bluebird')
 const path = require('path')
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
@@ -26,6 +26,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           reject(result.errors)
         }
 
+        console.log("RESULT : **** ", result);
+
         const posts = result.data.allContentfulBlogPost.edges
         posts.forEach((post, index) => {
           createPage({
@@ -36,6 +38,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             },
           })
         })
+      })
+      .catch((err) => {
+        console.log('error from ya boi: ', err)
       })
     )
   })
