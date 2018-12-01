@@ -5,6 +5,7 @@ import Helmet from 'react-helmet'
 import ArticlePreview from '../components/article-preview'
 import Layout from '../components/layout'
 import Header from '../components/Header'
+import { Search } from '../components/Search'
 
 class RootIndex extends React.Component {
   state = {
@@ -33,8 +34,10 @@ class RootIndex extends React.Component {
       <Layout>
         <Header logo={allContentfulAsset} />
         <Helmet title={siteTitle} />
-        <input type="text" id="search" value={this.state.searchTerm} onChange={(e) => this.setState({ searchTerm: e.target.value })} placeholder="Search for post" />
-        <button type="submit" onClick={this.filterPosts}>Search</button>
+        <Search
+          searchTerm={this.state.searchTerm}
+          updateSearchTerm={(e) => this.setState({ searchTerm: e.target.value })}
+          onSubmit={this.filterPosts} />
         <div className="wrapper">
           <ul className="article-list">
             {this.state.posts.map(({ node }) => {
@@ -55,7 +58,7 @@ class RootIndex extends React.Component {
 export default RootIndex
 
 export const pageQuery = graphql`
-  query {
+  query index {
     allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
           edges {
             node {
