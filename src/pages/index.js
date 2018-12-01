@@ -4,7 +4,7 @@ import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import ArticlePreview from '../components/article-preview'
 import Layout from '../components/layout'
-import Header from '../components/Header'
+import { Header } from '../components/Header'
 import { Search } from '../components/Search'
 
 class RootIndex extends React.Component {
