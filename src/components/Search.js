@@ -19,7 +19,7 @@ export const Search = ({
     <div className={styles.search}>
       <input className={styles.search__input} type="text" id="search" value={searchTerm} onChange={updateSearchTerm} placeholder="Search for post" />
       <button className={styles.search__button} type="submit" onClick={onSubmit}>Search</button>
-      <select name="auto-complete" id="">
+      <select name="auto-complete">
         {renderAutoCompleteOptions()}
       </select>
     </div>

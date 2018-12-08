@@ -29,15 +29,14 @@ class RootIndex extends React.Component {
   };
 
   renderAutoCompleteOptions = () => {
-    const autoCompleteMarkUp = [];
-    this.props.data.allContentfulBlogPost.edges.map((post) => {
-      if (post.node.tags) {
-        
-        return (
-          <option value=""></option>
-        )
-      }
-    })
+    const tags = this.props.data.allContentfulBlogPost.edges.map((post) => {
+        const tagsForCurrentPost = post.node.tags
+          .filter(tag => tag.includes(this.state.searchTerm))
+          .join(',')
+          return tagsForCurrentPost;
+      })
+    return Array.from(new Set(tags))
+      .map(tag => <option value={tag}>{tag}</option>)
   }
 
   render() {
