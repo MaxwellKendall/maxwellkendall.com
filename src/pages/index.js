@@ -28,6 +28,18 @@ class RootIndex extends React.Component {
     this.setState({ posts });
   };
 
+  renderAutoCompleteOptions = () => {
+    const autoCompleteMarkUp = [];
+    this.props.data.allContentfulBlogPost.edges.map((post) => {
+      if (post.node.tags) {
+        
+        return (
+          <option value=""></option>
+        )
+      }
+    })
+  }
+
   render() {
     const { allContentfulAsset, siteTitle } = this.props.data;
     return (
@@ -35,6 +47,7 @@ class RootIndex extends React.Component {
         <Header logo={allContentfulAsset} />
         <Helmet title={siteTitle} />
         <Search
+          renderAutoCompleteOptions={this.renderAutoCompleteOptions}
           searchTerm={this.state.searchTerm}
           updateSearchTerm={(e) => this.setState({ searchTerm: e.target.value })}
           onSubmit={this.filterPosts} />
