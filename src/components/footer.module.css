@@ -1,5 +1,6 @@
 .footer {
   margin: auto;
+  grid-area: footer
 }
 
 .svgs {

@@ -1,6 +1,8 @@
 .header {
+  grid-area: header;
+  grid-auto-flow: row;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 6rem 100px;
 }
 
 .logo {
