@@ -16,7 +16,7 @@
   display: grid;
     height: 100vh;
     -ms-grid-columns: auto;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
     grid-gap: 1rem;
     grid-template-areas: 

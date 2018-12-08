@@ -1,14 +1,13 @@
 import React from 'react'
+import { Link, graphql, StaticQuery } from 'gatsby'
 import Img from 'gatsby-image';
 import styles from './header.module.css'
 
-export const Header = (props) => {
-  return (
+export default () => (
     <div className={styles.header}>
-      <Img className={styles.logo} sizes={props.logo.edges[0].node.fluid}/>
-      <h1>MAXWELL<strong>KENDALL.COM</strong></h1>
+      {/* <Img className={styles.logo} sizes={data.allContentfulAsset.edges[0].node.fluid}/> */}
+      <h1>
+        <Link to="/">MAXWELL<strong>KENDALL.COM</strong></Link>
+      </h1>
     </div>
-  );
-}
-
-export default Header;
+);

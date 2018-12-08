@@ -8,3 +8,17 @@
   margin: -1em -2.5em 1em;
   font-size: 2em
 }
+
+.blogpost__wrapper {
+  grid-area: main;
+  margin: 0 2em;
+  padding: 0 4em;
+}
+
+.blogpost__postheader {
+  border-bottom: 2px solid black;
+  text-align: center;
+}
+
+.blogpost__post {
+}

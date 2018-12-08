@@ -21,6 +21,12 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   pathPrefix: '/gatsby-contentful-starter',
+  siteMetadata: {
+    menuLinks: [{
+      name: 'home',
+      link: '/'
+    }],
+  },
   plugins: [
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',

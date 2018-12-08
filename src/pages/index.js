@@ -18,10 +18,11 @@ class RootIndex extends React.Component {
   }
 
   filterPosts = () => {
+    const searchTerm = this.state.searchTerm.toLowerCase();
     const posts = this.props.data.allContentfulBlogPost.edges.filter((post) => {
       return (
-        post.node.tags ? post.node.tags.some((tag) => tag.includes(this.state.searchTerm)) : false ||
-        post.node.title.includes(this.state.searchTerm)
+        post.node.tags.some((tag) => tag.toLowerCase().includes(searchTerm)) ||
+        post.node.title.toLowerCase().includes(searchTerm)
       );
     });
 
@@ -40,10 +41,9 @@ class RootIndex extends React.Component {
   }
 
   render() {
-    const { allContentfulAsset, siteTitle } = this.props.data;
+    const { siteTitle } = this.props.data;
     return (
       <Layout>
-        <Header logo={allContentfulAsset} />
         <Helmet title={siteTitle} />
         <Search
           renderAutoCompleteOptions={this.renderAutoCompleteOptions}
@@ -90,27 +90,6 @@ export const pageQuery = graphql`
           name
           shortBio {
             shortBio
-          }
-        }
-        allContentfulAsset(filter:{ file: { fileName: { eq:"Logo.png"}} }) {
-          edges{
-            node {
-              file {
-                url
-                fileName
-                contentType
-              }
-              fluid {
-                base64
-                tracedSVG
-                aspectRatio
-                src
-                srcSet
-                srcWebp
-                srcSetWebp
-                sizes
-              }
-            }
           }
         }
     }

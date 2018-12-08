@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { Footer } from './Footer'
-
+import React, { Component } from 'react';
+import { Footer } from './Footer';
+import Header from './Header'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faCopyright } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +13,7 @@ class Layout extends Component {
   render() {
     return (
       <div className="layout">
+        <Header />
         {this.props.children}
         <Footer />
       </div>

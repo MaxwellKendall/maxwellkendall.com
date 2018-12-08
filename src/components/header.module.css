@@ -1,8 +1,10 @@
 .header {
   grid-area: header;
-  grid-auto-flow: row;
-  display: grid;
-  grid-template-columns: 6rem 100px;
+  justify-self: center
+}
+
+.header h1 {
+  font-size: 1.75rem;
 }
 
 .logo {

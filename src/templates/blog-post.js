@@ -1,40 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
+import Layout from '../components/layout'
+import styles from './blog-post.module.css'
 
-import heroStyles from '../components/hero.module.css'
-
-class BlogPostTemplate extends React.Component {
+class BlogPostTemplate extends Component {
   render() {
     const post = get(this.props, 'data.contentfulBlogPost')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-
     return (
-      <div style={{ background: '#fff' }}>
-        <Helmet title={`${post.title} | ${siteTitle}`} />
-        {post.heroImage &&
-          <div className={heroStyles.hero}>
-            <Img className={heroStyles.heroImage} alt={post.title} sizes={post.heroImage.sizes} />
+      <Layout>
+        <div className={styles.blogpost__wrapper} style={{ background: '#fff' }}>
+          <Helmet title={`${post.title} | ${siteTitle}`} />
+          {post.heroImage &&
+            <div className={styles.hero}>
+              <Img className={styles.heroImage} alt={post.title} sizes={post.heroImage.sizes} />
+            </div>
+          }
+          <div className={styles.blogpost__postheader}>
+            <h1>{post.title}</h1>
+            <p>{post.publishDate}</p>
           </div>
-        }
-        <div className="wrapper">
-          <h1 className="section-headline">{post.title}</h1>
-          <p
-            style={{
-              display: 'block',
-            }}
-          >
-            {post.publishDate}
-          </p>
           <div
+            className={styles.blogpost__post}
             dangerouslySetInnerHTML={{
               __html: post.body.childMarkdownRemark.html,
             }}
           />
         </div>
-      </div>
+      </Layout>
     )
   }
 }
