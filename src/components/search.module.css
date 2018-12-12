@@ -16,15 +16,6 @@
   display: none;
 }
 
-.search__button {
-  grid-area: search;
-  padding: .75rem;
-  border: none;
-  border-radius: .25rem;
-  color: black;
-  text-transform: capitalize;
-}
-
 .search__options {
   grid-area: options;
   grid-column-end: 4;

@@ -17,6 +17,10 @@ class RootIndex extends React.Component {
     this.setState({ posts: get(this, 'props.data.allContentfulBlogPost.edges') });
   }
 
+  updateSearchTerm = (e) => {
+    this.setState({ searchTerm: e.target.value });
+  }
+
   filterPosts = () => {
     const searchTerm = this.state.searchTerm.toLowerCase();
     const posts = this.props.data.allContentfulBlogPost.edges.filter((post) => {
@@ -48,8 +52,8 @@ class RootIndex extends React.Component {
         <Search
           renderAutoCompleteOptions={this.renderAutoCompleteOptions}
           searchTerm={this.state.searchTerm}
-          updateSearchTerm={(e) => this.setState({ searchTerm: e.target.value })}
-          onSubmit={this.filterPosts} />
+          updateSearchTerm={this.updateSearchTerm}
+          submit={this.filterPosts} />
         <div className="wrapper">
           <ul className="article-list">
             {this.state.posts.map(({ node }) => {

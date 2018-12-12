@@ -12,13 +12,17 @@ const propTypes = {
 export const Search = ({
   searchTerm,
   updateSearchTerm,
-  onSubmit,
+  submit,
   renderAutoCompleteOptions
 }) => {
+  const keyPress = (e) => {
+    if (e.key === 'Enter') {
+      submit();
+    }
+  }
   return (
     <div className={styles.search}>
-      <input className={styles.search__input} list="tags" type="text" id="search" value={searchTerm} onChange={updateSearchTerm} placeholder="Search for post" />
-      <button className={styles.search__button} type="submit" onClick={onSubmit}>Search</button>
+      <input onKeyDown={keyPress} className={styles.search__input} list="tags" type="text" id="search" value={searchTerm} onChange={updateSearchTerm} placeholder="Search for post" />
       <datalist className={styles.search__options} id="tags">
         {renderAutoCompleteOptions()}
       </datalist>
