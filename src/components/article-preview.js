@@ -16,8 +16,10 @@ export default ({ article }) => {
       <h3 className={styles.previewTitle}>
         <Link to={`/blog/${article.slug}`}>{article.title}</Link>
       </h3>
-      <small>{article.publishDate} </small>
-      <small>Tags: {renderTags()}</small>
+      <div className={styles.previewTagsDate}>
+        <small>{article.publishDate} </small>
+        <small>Tags: {renderTags()}</small>
+      </div>
       <p
         dangerouslySetInnerHTML={{
           __html: article.description.childMarkdownRemark.html
