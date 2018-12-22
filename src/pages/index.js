@@ -55,6 +55,7 @@ class RootIndex extends React.Component {
           updateSearchTerm={this.updateSearchTerm}
           submit={this.filterPosts} />
         <div className="wrapper">
+          {this.state.posts.length === 0 && <p>No posts available, please enter new search term!</p>}
           <ul className="article-list">
             {this.state.posts.map(({ node }) => {
               return (
