@@ -1,11 +1,10 @@
-.tags {
+.wrapper {
+  display: none;
+}
+.header {
   background: red;
 }
 
 .tag {
   background: green;
-}
-
-.wrapper {
-  display: flex;
 }

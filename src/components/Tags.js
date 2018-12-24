@@ -7,7 +7,7 @@ export default ({
 }) => {
   return (
     <div className={styles.wrapper}>
-      <h4 className={styles.tags}>Tags: </h4>
+      <h4 className={styles.header}>Tags: </h4>
       {tags.map((tag) => <span className={styles.tag}><a onClick={updateSearch}>{tag}</a></span>)}
     </div>
   )
