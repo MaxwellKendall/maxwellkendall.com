@@ -1,10 +1,36 @@
 .wrapper {
-  display: none;
+  grid-area: tags;
+  display: flex;
+  max-width: 44em;
+  justify-self: center;
 }
+
 .header {
-  background: red;
+
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .tag {
-  background: green;
+  list-style: none;
+  padding: .5em;
+  background: white;
+  margin: .1em .25em;
+  border-radius: 0.25em;
+}
+
+.tag a {
+  padding: .5em;
+}
+
+.activeTag {
+  background: black;
+  color: white;
+}
+
+.tag:hover {
+  cursor: pointer;
 }
