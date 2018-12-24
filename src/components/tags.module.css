@@ -44,4 +44,7 @@
     margin: 0;
     text-align: center;
   }
+  .tags {
+    margin: 0 1em;
+  }
 }

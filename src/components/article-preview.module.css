@@ -29,4 +29,7 @@
   .preview {
     height: 25em;
   }
+  .wrapper {
+    margin: 0 1em;
+  }
 }
