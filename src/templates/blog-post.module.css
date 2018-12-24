@@ -28,4 +28,15 @@
 }
 
 .blogpost__post {
+  padding-bottom: 2em;
+}
+
+@media screen and (max-width: 780px) {
+  .blogpost__postheader {
+    margin: 0 1em;
+  }
+
+  .blogpost__wrapper {
+    margin: 0 .25em;
+  }
 }
