@@ -24,3 +24,9 @@
 .preview {
   height: 15em;
 }
+
+@media screen and (max-width: 780px) {
+  .preview {
+    height: 25em;
+  }
+}

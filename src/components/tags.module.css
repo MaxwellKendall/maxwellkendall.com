@@ -6,11 +6,12 @@
 }
 
 .header {
-
+  margin-right: .5em;
 }
 
 .tags {
   display: flex;
+  padding: 0;
   flex-wrap: wrap;
 }
 
@@ -33,4 +34,14 @@
 
 .tag:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 780px) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .header {
+    margin: 0;
+    text-align: center;
+  }
 }

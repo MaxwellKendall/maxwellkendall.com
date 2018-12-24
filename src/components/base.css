@@ -6,12 +6,6 @@
   font-display: swap;
 }
 
-/* html {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
-} */
-
 .layout {
   display: grid;
     height: 100vh;
@@ -93,3 +87,15 @@ a {
   .list-inline li {
     display: inline-block;
   }
+
+@media screen and (max-width: 780px) {
+  .layout {
+    grid-template-areas: 
+      "header header header header"
+      ". search search ."
+      "tags tags tags tags"
+      "main main main main"
+      "footer footer footer footer";
+    margin: 0 1em;
+  }
+}
