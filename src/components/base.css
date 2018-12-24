@@ -22,6 +22,7 @@
     grid-template-areas: 
       "header header header header"
       ". search search ."
+      ". tags tags ."
       "main main main main"
       "footer footer footer footer";
 }
