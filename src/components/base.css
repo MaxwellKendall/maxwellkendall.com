@@ -22,7 +22,7 @@
     grid-template-areas: 
       "header header header header"
       ". search search ."
-      "main main main main"
+      ". main main ."
       "footer footer footer footer";
 }
 
@@ -67,7 +67,6 @@ a {
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 5vmin; 
 }
 

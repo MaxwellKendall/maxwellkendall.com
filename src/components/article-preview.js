@@ -9,7 +9,7 @@ export default ({ article }) => {
     return article.tags.map(tag => tag).join(', ')
   }
   return (
-    <div className={styles.preview}>
+    <div className={styles.articlePreview}>
       {article.heroImage && (
         <Img alt="" sizes={article.heroImage.sizes} />
       )}
