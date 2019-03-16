@@ -6,11 +6,13 @@ import ArticlePreview from '../components/article-preview'
 import Layout from '../components/layout'
 import { Header } from '../components/Header'
 import { Search } from '../components/Search'
+import Tags from '../components/Tags';
 
 class RootIndex extends React.Component {
   state = {
     searchTerm: '',
-    posts: []
+    posts: [],
+    activeTag: ''
   };
 
   componentDidMount() {
@@ -44,6 +46,18 @@ class RootIndex extends React.Component {
       .map(tag => <option value={tag}>{tag}</option>)
   }
 
+  getUniqueTags = (limit = 4) => {
+    return this.props.data.allContentfulBlogPost.edges.reduce((acc, edge) => {
+      edge.node.tags.forEach((tag) => {
+        if (acc.includes(tag)) {
+          return null
+        }
+        acc.push(tag)
+      })
+      return acc;
+    }, [])
+  }
+
   render() {
     const { siteTitle } = this.props.data;
     return (
@@ -54,7 +68,9 @@ class RootIndex extends React.Component {
           searchTerm={this.state.searchTerm}
           updateSearchTerm={this.updateSearchTerm}
           submit={this.filterPosts} />
+        <Tags activeTag={this.state.activeTag} tags={this.getUniqueTags()} updateSearch={(tag) => { this.setState({ searchTerm: tag, activeTag: tag }, this.filterPosts)}} />
         <div className="wrapper">
+          {this.state.posts.length === 0 && <p>No posts available, please enter new search term!</p>}
           <ul className="article-list">
             {this.state.posts.map(({ node }) => {
               return (

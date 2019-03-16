@@ -15,10 +15,28 @@
   padding: 0 4em;
 }
 
+@media screen and (max-width: 780px) {
+  .blogpost__wrapper {
+    margin: 0 1em;
+    padding: 0 .5em;
+  }
+}
+
 .blogpost__postheader {
   border-bottom: 2px solid black;
   text-align: center;
 }
 
 .blogpost__post {
+  padding-bottom: 2em;
+}
+
+@media screen and (max-width: 780px) {
+  .blogpost__postheader {
+    margin: 0 1em;
+  }
+
+  .blogpost__wrapper {
+    margin: 0 .25em;
+  }
 }

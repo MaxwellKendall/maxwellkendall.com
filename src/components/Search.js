@@ -26,6 +26,7 @@ export const Search = ({
       <datalist className={styles.search__options} id="tags">
         {renderAutoCompleteOptions()}
       </datalist>
+
     </div>
   );
 }

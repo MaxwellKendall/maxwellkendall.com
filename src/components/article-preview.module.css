@@ -4,6 +4,14 @@
 
 .previewTitle {
   font-size: 1.5em;
+  text-align: center;
+}
+
+.previewTagsDate {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .tag {
@@ -15,4 +23,17 @@
   border-radius: 2px;
   border: 1px solid #A0A0A0;
   margin-right: .5em;
+}
+
+.preview {
+  height: 15em;
+}
+
+@media screen and (max-width: 780px) {
+  .preview {
+    height: 25em;
+  }
+  .wrapper {
+    margin: 0 1em;
+  }
 }
