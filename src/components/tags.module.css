@@ -3,6 +3,7 @@
   display: flex;
   max-width: 44em;
   justify-self: center;
+  align-items: center;
 }
 
 .header {
