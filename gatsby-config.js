@@ -26,6 +26,7 @@ module.exports = {
       name: 'home',
       link: '/'
     }],
+    title: "MaxwellKendall.com"
   },
   plugins: [
     'gatsby-plugin-postcss',

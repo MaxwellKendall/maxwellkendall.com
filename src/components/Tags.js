@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import styles from './tags.module.css';
 
-export default ({
+export const Tags = ({
   tags,
   updateSearch,
   activeTag,

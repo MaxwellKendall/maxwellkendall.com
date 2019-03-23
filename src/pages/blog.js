@@ -3,18 +3,21 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
+
+import { Header } from '../components/Header';
 import styles from './blog.module.css'
-import Layout from '../components/layout'
+import { Layout } from '../components/layout'
 import ArticlePreview from '../components/article-preview'
 
 class BlogIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-
+    console.log(this.props)
     return (
       <Layout>
         <Helmet title={siteTitle} />
+        <Header />
         <div className={styles.hero}>
           Blog
         </div>
@@ -52,6 +55,11 @@ export const pageQuery = graphql`
             }
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        title
       }
     }
   }

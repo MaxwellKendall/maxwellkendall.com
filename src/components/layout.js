@@ -1,24 +1,21 @@
-import React, { Component } from 'react';
-import { Footer } from './Footer';
-import Header from './Header'
+import React from 'react';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faCopyright } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faCopyright, fab);
+import { Header } from './Header';
+import { Footer } from './Footer';
 
+library.add(faCopyright, fab);
 require('./base.css');
 
-class Layout extends Component {
-  render() {
-    return (
-      <div className="layout">
-        <Header />
-        {this.props.children}
-        <Footer />
-      </div>
-    )
-  }
-}
-
-export default Layout
+export const Layout = ({
+  includeHeader = false,
+  children
+}) => (
+  <div className="layout">
+    {includeHeader && <Header />}
+    {children}
+    <Footer />
+  </div>  
+);

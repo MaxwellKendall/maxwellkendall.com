@@ -3,15 +3,17 @@ import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
-import Layout from '../components/layout'
+
+import { Layout } from '../components/layout'
 import styles from './blog-post.module.css'
 
 class BlogPostTemplate extends Component {
   render() {
     const post = get(this.props, 'data.contentfulBlogPost')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
+    console.log("props", this.props)
     return (
-      <Layout>
+      <Layout includeHeader>
         <div className={styles.blogpost__wrapper} style={{ background: '#fff' }}>
           <Helmet title={`${post.title} | ${siteTitle}`} />
           {post.heroImage &&
@@ -46,6 +48,11 @@ export const pageQuery = graphql`
         childMarkdownRemark {
           html
         }
+      }
+    }
+    site {
+      siteMetadata {
+        title
       }
     }
   }

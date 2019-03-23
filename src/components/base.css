@@ -11,12 +11,10 @@
     height: 100vh;
     -ms-grid-columns: auto;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
+    grid-template-rows: max-content(11rem) auto 5rem;
     grid-gap: 1rem;
     grid-template-areas: 
       "header header header header"
-      ". search search ."
-      ". tags tags ."
       ". main main ."
       "footer footer footer footer";
 }
@@ -91,9 +89,7 @@ a {
   .layout {
     grid-template-areas: 
       "header header header header"
-      ". search search ."
-      "tags tags tags tags"
-      "main main main main"
+      ". main main main"
       "footer footer footer footer";
   }
 }

@@ -3,10 +3,10 @@ import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import ArticlePreview from '../components/article-preview'
-import Layout from '../components/layout'
+import { Layout } from '../components/layout'
 import { Header } from '../components/Header'
 import { Search } from '../components/Search'
-import Tags from '../components/Tags';
+import { Tags } from '../components/Tags';
 
 class RootIndex extends React.Component {
   state = {
@@ -63,12 +63,14 @@ class RootIndex extends React.Component {
     return (
       <Layout>
         <Helmet title={siteTitle} />
-        <Search
-          renderAutoCompleteOptions={this.renderAutoCompleteOptions}
-          searchTerm={this.state.searchTerm}
-          updateSearchTerm={this.updateSearchTerm}
-          submit={this.filterPosts} />
-        <Tags activeTag={this.state.activeTag} tags={this.getUniqueTags()} updateSearch={(tag) => { this.setState({ searchTerm: tag, activeTag: tag }, this.filterPosts)}} />
+        <Header>
+          <Search
+            renderAutoCompleteOptions={this.renderAutoCompleteOptions}
+            searchTerm={this.state.searchTerm}
+            updateSearchTerm={this.updateSearchTerm}
+            submit={this.filterPosts} />
+          <Tags activeTag={this.state.activeTag} tags={this.getUniqueTags()} updateSearch={(tag) => { this.setState({ searchTerm: tag, activeTag: tag }, this.filterPosts)}} />
+        </Header>
         <div className="wrapper">
           {this.state.posts.length === 0 && <p>No posts available, please enter new search term!</p>}
           <ul className="article-list">

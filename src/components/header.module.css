@@ -1,9 +1,16 @@
 .header {
   grid-area: header;
-  justify-self: center
+  display: grid;
+  grid-template-areas:
+    ". title title ."
+    ". search search ."
+    ". tags tags .";
+  justify-self: center;
+  grid-row-gap: .5em;
 }
 
 .header h1 {
+  grid-area: title;
   font-size: 1.75rem;
   margin: 1em 0 0 .25em;
 }
