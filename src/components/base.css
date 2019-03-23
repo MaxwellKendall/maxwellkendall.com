@@ -93,3 +93,7 @@ a {
       "footer footer footer footer";
   }
 }
+
+pre {
+  white-space: pre-wrap;
+}
