@@ -1,6 +1,5 @@
 import React from 'react';
 import cx from 'classnames';
-import styles from './tags.module.css';
 
 export const Tags = ({
   tags,
@@ -8,11 +7,11 @@ export const Tags = ({
   activeTag,
 }) => {
   return (
-    <div className={styles.wrapper}>
-      <h4 className={styles.header}>Tags: </h4>
-      <ul className={styles.tags}>
+    <div className="tags-wrapper">
+      <h4 className="header">Tags: </h4>
+      <ul className="tags">
         {tags.map((tag) => (
-          <li className={cx(`${styles.tag}`, { [styles.activeTag]: (tag === activeTag)})}>
+          <li className={cx("tag", { activeTag: (tag === activeTag)})}>
             <a onClick={() => updateSearch(tag)}>
               {tag}
             </a>

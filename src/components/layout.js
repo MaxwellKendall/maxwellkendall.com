@@ -7,7 +7,6 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 
 library.add(faCopyright, fab);
-require('./base.css');
 
 export const Layout = ({
   includeHeader = false,

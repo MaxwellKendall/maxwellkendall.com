@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './search.module.css';
 
 const propTypes = {
   searchTerm: PropTypes.string,
@@ -21,9 +20,9 @@ export const Search = ({
     }
   }
   return (
-    <div className={styles.search}>
-      <input onKeyDown={keyPress} className={styles.search__input} list="tags" type="text" id="search" value={searchTerm} onChange={updateSearchTerm} placeholder="Search for post" />
-      <datalist className={styles.search__options} id="tags">
+    <div className="search">
+      <input onKeyDown={keyPress} className="search__input" list="tags" type="text" id="search" value={searchTerm} onChange={updateSearchTerm} placeholder="Search for post" />
+      <datalist className="search__options" id="tags">
         {renderAutoCompleteOptions()}
       </datalist>
 

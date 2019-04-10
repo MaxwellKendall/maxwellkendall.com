@@ -31,7 +31,7 @@ module.exports = {
     title: "MaxwellKendall.com"
   },
   plugins: [
-    "gatsby-plugin-postcss",
+    // "gatsby-plugin-postcss",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sharp",
     "gatsby-transformer-remark",
@@ -46,6 +46,11 @@ module.exports = {
         head: false
       }
     },
-    `gatsby-plugin-sass`
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        includePaths: ["src/styles"]
+      }
+    }
   ]
 };

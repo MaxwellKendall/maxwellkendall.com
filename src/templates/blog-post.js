@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 
 import { Layout } from '../components/Layout'
-import styles from './blog-post.module.css'
+require("../styles/index.scss");
 
 class BlogPostTemplate extends Component {
   render() {
@@ -13,19 +13,19 @@ class BlogPostTemplate extends Component {
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     return (
       <Layout includeHeader>
-        <div className={styles.blogpost__wrapper} style={{ background: '#fff' }}>
+        <div className="blogpost__wrapper" style={{ background: '#fff' }}>
           <Helmet title={`${post.title} | ${siteTitle}`} />
           {post.heroImage &&
-            <div className={styles.hero}>
-              <Img className={styles.heroImage} alt={post.title} sizes={post.heroImage.sizes} />
+            <div className="hero">
+              <Img className="heroImage" alt={post.title} sizes={post.heroImage.sizes} />
             </div>
           }
-          <div className={styles.blogpost__postheader}>
+          <div className="blogpost__postheader">
             <h1>{post.title}</h1>
             <p>{post.publishDate}</p>
           </div>
           <div
-            className={styles.blogpost__post}
+            className="blogpost__post"
             dangerouslySetInnerHTML={{
               __html: post.body.childMarkdownRemark.html,
             }}
