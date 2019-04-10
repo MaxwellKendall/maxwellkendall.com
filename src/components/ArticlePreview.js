@@ -7,14 +7,14 @@ export default ({ article }) => {
     return article.tags.map(tag => tag).join(', ')
   }
   return (
-    <div className="articlePreview">
+    <div className="article-preview">
       {article.heroImage && (
         <Img alt="" sizes={article.heroImage.sizes} />
       )}
-      <h3 className="previewTitle">
+      <h3 className="preview-title">
         <Link to={`/blog/${article.slug}`}>{article.title}</Link>
       </h3>
-      <div className="previewTagsDate">
+      <div className="preview-tags-date">
         <small>{article.publishDate} </small>
         <small>Tags: {renderTags()}</small>
       </div>

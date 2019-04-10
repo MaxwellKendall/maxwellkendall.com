@@ -6,6 +6,8 @@
   align-items: center;
   .header {
     margin-right: .5em;
+    align-self: center;
+    display: flex;
   }
 
   .tags {
