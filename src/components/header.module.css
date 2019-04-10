@@ -13,6 +13,11 @@
   grid-area: title;
   font-size: 1.75rem;
   margin: 1em 0 0 .25em;
+  font-family: 'Permanent Marker';
+}
+
+.header h1 a {
+  text-decoration: none;
 }
 
 .logo {
