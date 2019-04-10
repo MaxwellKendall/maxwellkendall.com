@@ -1,14 +1,6 @@
 @import "https://fonts.googleapis.com/css?family=Permanent+Marker";
 @import "https://fonts.googleapis.com/css?family=Varela+Round";
 
-/* @font-face {
-  font-family: "Avenir";
-  font-weight: 400;
-  font-style: normal;
-  src: url("/avenir-400.woff2") format("woff2");
-  font-display: swap;
-} */
-
 .layout {
   display: grid;
     height: 100vh;
@@ -75,9 +67,6 @@ a {
   border-bottom: 1px solid #ddd;
 }
 
-/**
- *
- */
 .list-inline {
   margin: 0;
   padding: 0;
