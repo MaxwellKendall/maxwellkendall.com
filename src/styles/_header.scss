@@ -1,0 +1,31 @@
+.header {
+  grid-area: header;
+  display: grid;
+  grid-template-areas:
+    ". title title ."
+    ". search search ."
+    ". tags tags .";
+  justify-self: center;
+  grid-row-gap: .5em;
+}
+
+.header h1 {
+  grid-area: title;
+  font-size: 1.75rem;
+  margin: 1em 0 0 .25em;
+  font-family: 'Permanent Marker';
+}
+
+.header h1 a {
+  text-decoration: none;
+}
+
+.logo {
+  width: 100px;
+}
+
+@media screen and (max-width: 780px) {
+  .header h1 {
+    font-size: 1.25rem;
+  }
+}

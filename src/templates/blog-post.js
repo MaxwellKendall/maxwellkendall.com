@@ -11,7 +11,6 @@ class BlogPostTemplate extends Component {
   render() {
     const post = get(this.props, 'data.contentfulBlogPost')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-    console.log("props", this.props)
     return (
       <Layout includeHeader>
         <div className={styles.blogpost__wrapper} style={{ background: '#fff' }}>

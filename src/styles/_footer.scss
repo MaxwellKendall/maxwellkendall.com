@@ -1,0 +1,15 @@
+.footer {
+  margin: auto;
+  grid-area: footer
+}
+
+.svgs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svgs svg {
+  font-size: 50px;
+  padding: 0 .5rem;
+}

@@ -20,29 +20,32 @@ if (!spaceId || !accessToken) {
 }
 
 module.exports = {
-  pathPrefix: '/gatsby-contentful-starter',
+  pathPrefix: "/gatsby-contentful-starter",
   siteMetadata: {
-    menuLinks: [{
-      name: 'home',
-      link: '/'
-    }],
+    menuLinks: [
+      {
+        name: "home",
+        link: "/"
+      }
+    ],
     title: "MaxwellKendall.com"
   },
   plugins: [
-    'gatsby-plugin-postcss',
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-remark',
+    "gatsby-plugin-postcss",
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-remark",
     {
-      resolve: 'gatsby-source-contentful',
-      options: contentfulConfig,
+      resolve: "gatsby-source-contentful",
+      options: contentfulConfig
     },
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: 'UA-131464926-1',
+        trackingId: "UA-131464926-1",
         head: false
-      },
+      }
     },
-  ],
-}
+    `gatsby-plugin-sass`
+  ]
+};
