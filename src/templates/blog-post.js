@@ -4,7 +4,7 @@ import get from 'lodash/get'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 
-import { Layout } from '../components/Layout'
+import { Layout } from '../components/blog/Layout'
 require("../styles/index.scss");
 
 class BlogPostTemplate extends Component {

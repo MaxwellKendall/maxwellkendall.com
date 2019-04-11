@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class RootIndex extends Component {
+class Portfolio extends Component {
     render() {
         return (
             <div>
-                Home
+                Portfolio
             </div>
         );
     }
 }
 
-export default RootIndex;
+export default Portfolio;

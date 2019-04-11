@@ -26,12 +26,19 @@ module.exports = {
       {
         name: "home",
         link: "/"
+      },
+      {
+        name: "portfolio",
+        link: "/portfolio"
+      },
+      {
+        name: "blog",
+        link: "/blog"
       }
     ],
     title: "MaxwellKendall.com"
   },
   plugins: [
-    // "gatsby-plugin-postcss",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sharp",
     "gatsby-transformer-remark",
