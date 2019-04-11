@@ -8,7 +8,7 @@ export const Tags = ({
 }) => {
   return (
     <div className="tags-wrapper">
-      <h4 className="header">Tags: </h4>
+      <p className="header">Tags: </p>
       <ul className="tags">
         {tags.map((tag) => (
           <li className="tag">
