@@ -11,8 +11,8 @@ export const Tags = ({
       <h4 className="header">Tags: </h4>
       <ul className="tags">
         {tags.map((tag) => (
-          <li className={cx("tag", { activeTag: (tag === activeTag)})}>
-            <a onClick={() => updateSearch(tag)}>
+          <li className="tag">
+            <a className={cx({ "active-tag": (tag === activeTag) })} onClick={() => updateSearch(tag)}>
               {tag}
             </a>
           </li>
