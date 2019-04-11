@@ -8,7 +8,7 @@ import { Header } from '../components/Header'
 import { Search } from '../components/Search'
 import { Tags } from '../components/Tags';
 
-require("../styles/index.scss");
+require('../styles/index.scss');
 
 class RootIndex extends React.Component {
   state = {
