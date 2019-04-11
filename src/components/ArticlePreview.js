@@ -8,21 +8,19 @@ export default ({ article }) => {
   }
   return (
     <div className="article-preview">
-      {article.heroImage && (
-        <Img alt="" sizes={article.heroImage.sizes} />
-      )}
-      <h3 className="preview-title">
-        <Link to={`/blog/${article.slug}`}>{article.title}</Link>
-      </h3>
-      <div className="preview-tags-date">
-        <small>{article.publishDate} </small>
-        <small>Tags: {renderTags()}</small>
-      </div>
-      <p
-        dangerouslySetInnerHTML={{
-          __html: article.description.childMarkdownRemark.html
-        }}
-      />
+      <Link to={`/blog/${article.slug}`}>
+        {article.heroImage && <Img alt="" sizes={article.heroImage.sizes} />}
+        <h3 className="preview-title">{article.title}</h3>
+        <div className="preview-tags-date">
+          <small>{article.publishDate} </small>
+          <small>Tags: {renderTags()}</small>
+        </div>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: article.description.childMarkdownRemark.html
+          }}
+        />
+      </Link>
     </div>
   );
 }

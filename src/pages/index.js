@@ -80,7 +80,6 @@ class RootIndex extends React.Component {
               return (
                 <li key={node.slug}>
                   <ArticlePreview article={node} />
-                  <hr className="preview-hr"/>
                 </li>
               )
             })}
