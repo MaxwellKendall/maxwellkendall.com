@@ -7,21 +7,17 @@
     ". tags tags .";
   justify-self: center;
   grid-row-gap: .5em;
-}
+  h1 {
+    grid-area: title;
+    font-size: 1.75rem;
+    margin: 1em 0 .5em .25em;
+    font-family: 'Permanent Marker';
+    text-align: center;
+  }
 
-.header h1 {
-  grid-area: title;
-  font-size: 1.75rem;
-  margin: 1em 0 .5em .25em;
-  font-family: 'Permanent Marker';
-}
-
-.header h1 a {
-  text-decoration: none;
-}
-
-.logo {
-  width: 100px;
+  a {
+    text-decoration: none;
+  }
 }
 
 @media screen and (max-width: 780px) {
