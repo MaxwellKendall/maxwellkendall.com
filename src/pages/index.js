@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-
+import Nav from "../components/shared/Nav";
 class RootIndex extends Component {
     render() {
         return (
             <div>
-                Home
+                <Nav />
             </div>
         );
     }
