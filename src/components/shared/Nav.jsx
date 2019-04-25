@@ -1,25 +1,27 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import Image from 'gatsby-image';
 
-const links = ["Home", "Portfolio", "Blog"];
-
-const Nav = () => {
-    const createLinks = (link) => (
+const Nav = ({
+    imageProps,
+    links
+}) => {
+    const createLinks = (linkObj) => (
         <li className="nav__item">
-            <Link to={`/${link.toLowerCase()}`}>{link}</Link>
-            {/* {link} */}
+            <Link to={`/${linkObj.link}`}>{linkObj.name}</Link>
         </li>
     );
 
     return (
         <div className="nav">
-            <div className="nav__header">
-                <h1>Maxwell Kendall</h1>
-            </div>
+            {Object.keys(imageProps).map((imageNo) => (
+                <Image className={`nav__img nav__img-${imageNo}`} fluid={imageProps[imageNo]} />
+            ))}
+            <h1>Maxwell Kendall</h1>
             <ul className="nav__links">
                 {links.map((link) => createLinks(link))}
             </ul>
-    </div>
+        </div>
     );
 }
 

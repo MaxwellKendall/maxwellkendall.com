@@ -40,6 +40,7 @@
     "gatsby-plugin-sharp": "^2.0.12",
     "gatsby-source-contentful": "^2.0.13",
     "gatsby-transformer-remark": "^2.1.12",
+    "gatsby-transformer-sharp": "^2.1.18",
     "i": "^0.3.6",
     "lodash": "^4.17.10",
     "npm": "^6.4.1",

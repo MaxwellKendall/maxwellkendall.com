@@ -1,10 +1,4 @@
-
-@import "variables";
-@import "base";
-@import "header";
-@import "footer";
-@import "hero";
-@import "search";
-@import "article-preview";
-@import "tags";
-@import "blog-post";
+@import "./core/index";
+@import "./home/index";
+@import "./blog/index";
+@import "./portfolio/index";
