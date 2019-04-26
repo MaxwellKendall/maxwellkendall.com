@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import Image from 'gatsby-image';
+import cx from 'classnames';
 
 const Nav = ({
     imageProps,
@@ -12,11 +13,22 @@ const Nav = ({
         </li>
     );
 
+    const renderImages = () => {
+        return Object.keys(imageProps).map((imageNo) => {
+            const position = (imageNo === "1") ? 'absolute' : 'relative'; // image no 1 should be absolute positioned
+            console.log('image no ', imageNo, position);
+            return (
+                <Image className={`nav__img nav__img-${imageNo}`} fluid={imageProps[imageNo]} style={{ position }} />
+            );
+        }
+        );
+    }
+
+    const images = renderImages();
+
     return (
         <div className="nav">
-            {Object.keys(imageProps).map((imageNo) => (
-                <Image className={`nav__img nav__img-${imageNo}`} fluid={imageProps[imageNo]} />
-            ))}
+            {renderImages()}
             <h1>Maxwell Kendall</h1>
             <ul className="nav__links">
                 {links.map((link) => createLinks(link))}

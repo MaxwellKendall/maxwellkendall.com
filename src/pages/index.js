@@ -7,7 +7,7 @@ class RootIndex extends Component {
         const imageProps = this.props.data.allContentfulAsset.edges.reduce(
           (node, item, index) => ({
             ...node,
-            [index + 1]: item.fluid
+            [index + 1]: item.node.fluid
           }),
           {}
         );
