@@ -16,9 +16,9 @@ const Nav = ({
     const renderImages = () => {
         return Object.keys(imageProps).map((imageNo) => {
             const position = (imageNo === "1") ? 'absolute' : 'relative'; // image no 1 should be absolute positioned
-            console.log('image no ', imageNo, position);
+            const objectPosition = (imageNo === "1") ? '85% 0px' : 'center center'; // image no 1 should be absolute positioned
             return (
-                <Image className={`nav__img nav__img-${imageNo}`} fluid={imageProps[imageNo]} style={{ position }} />
+                <Image className={`nav__img nav__img-${imageNo}`} fluid={imageProps[imageNo]} style={{ position }} imgStyle={{ objectPosition }} />
             );
         }
         );
