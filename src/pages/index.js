@@ -15,6 +15,9 @@ class RootIndex extends Component {
         return (
             <div id="app">
                 <Nav imageProps={imageProps} links={menuLinks}/>
+                <div className="home__container">
+                  <h1>Hi, I'm Max.</h1>
+                </div>
             </div>
         );
     }

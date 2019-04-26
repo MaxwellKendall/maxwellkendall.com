@@ -2,3 +2,13 @@
 @import "base";
 @import "header";
 @import "footer";
+
+#app {
+  // doing this b/c side nav is fixed
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
