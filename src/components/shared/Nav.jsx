@@ -7,7 +7,8 @@ const Nav = ({
     imageProps,
     links
 }) => {
-    const createLinks = (linkObj) => (
+
+    const createNavLinks = (linkObj) => (
         <li className="nav__item">
             <Link to={`/${linkObj.link}`}>{linkObj.name}</Link>
         </li>
@@ -24,14 +25,41 @@ const Nav = ({
         );
     }
 
+    const createLinksToExperience = () => {
+        return (
+            <li>
+                <a href="">Some Project I've worked on</a>
+            </li>
+        );
+    }
+
+    const createLinksToCompetencies = () => {
+        return (
+            <li>
+                <a href="">Some thing I'm good at</a>
+            </li>
+        );
+    }
+
     const images = renderImages();
+    const navLinks = links.map((link) => createNavLinks(link));
+    const competencyLinks = createLinksToCompetencies();
+    const experienceLinks = createLinksToExperience();
 
     return (
         <div className="nav">
-            {renderImages()}
+            {images}
             <h1>Maxwell Kendall</h1>
             <ul className="nav__links">
-                {links.map((link) => createLinks(link))}
+                {navLinks}
+            </ul>
+            <h2>Skills</h2>
+            <ul className="competencies__links">
+                {competencyLinks}
+            </ul>
+            <h2>Experience</h2>
+            <ul className="experience__links">
+                {experienceLinks}
             </ul>
         </div>
     );
