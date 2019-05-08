@@ -15,7 +15,6 @@ const Nav = ({
     );
 
     const renderImages = () => {
-        console.log("image props: ", imageProps);
         return Object.keys(imageProps).map((imageTitle, index) => {
             const position = (imageTitle === "chs") ? 'absolute' : 'relative'; // image no 1 should be absolute positioned
             const objectPosition = (imageTitle === "chs") ? '85% 0px' : 'center center'; // image no 1 should be absolute positioned

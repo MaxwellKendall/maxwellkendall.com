@@ -6,41 +6,40 @@ import 'react-vertical-timeline-component/style.min.css';
 import Image from "gatsby-image";
 
 class RootIndex extends Component {
-    render() {
-        console.log('props: ', this.props.data)
-        const getIcon = (icon) => {
-          return this.props.data.allContentfulAsset.edges.reduce((acc, item) => {
-            if (item.node.title === icon) {
-              return {
-                ...item.node.fluid
-              }
-            }
-            return acc;
-          }, {});
-        }
-        const imageProps = this.props.data.allContentfulAsset.edges
-          .filter((item) => item.node.title !== "logo-bah")
-          .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
-        const { menuLinks } = this.props.data.site.siteMetadata;
-        const bahIconProps = getIcon("logo-bah");
-        
-        return (
-            <div id="app">
-                <Nav imageProps={imageProps} links={menuLinks}/>
-                <div className="home__container">
-                  <VerticalTimeline layout="2-columns">
-                  <VerticalTimelineElement
-                    date="2015 - present"
-                    icon={<Image className="BAH-Icon" fluid={bahIconProps} />}>
-                    <h3>YOYOYOYO</h3>
-                    <h4>YO</h4>
-                    <p>BLABLBALBABL</p>
-                  </VerticalTimelineElement>
-                  </VerticalTimeline>
-                </div>
+  renderTimeline = () => {
+    return this.props.data.allContentfulExperience.edges.map((item) => {
+      const experience = item.node;
+      return (
+        <VerticalTimelineElement
+          date={`${experience.startDate} through ${experience.endDate}`}
+          icon={<Image className="BAH-Icon" fluid={experience.image.fluid} />}>
+          <div
+            className="timeline-element__body"
+            dangerouslySetInnerHTML={{
+              __html: experience.description.childMarkdownRemark.html,
+            }}
+          />
+        </VerticalTimelineElement>
+    );
+  })};
+
+  render() {
+    const { menuLinks } = this.props.data.site.siteMetadata;
+
+    const imageProps = this.props.data.allContentfulAsset.edges
+      .filter((item) => item.node.title !== "logo-bah")
+      .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});        
+    return (
+        <div id="app">
+            <Nav imageProps={imageProps} links={menuLinks}/>
+            <div className="home__container">
+              <VerticalTimeline layout="2-columns">
+                {this.renderTimeline()}
+              </VerticalTimeline>
             </div>
-        );
-    }
+        </div>
+    );
+  }
 }
 
 export default RootIndex;
@@ -48,7 +47,7 @@ export default RootIndex;
 export const pageQuery = graphql`
   query homePageData {
     allContentfulAsset(
-      filter: { title: { in: ["headshot", "chs", "logo-bah"] } }
+      filter: { title: { in: ["headshot", "chs", "BAH"] } }
     ) {
       edges {
         node {
@@ -76,6 +75,34 @@ export const pageQuery = graphql`
         body {
           childMarkdownRemark {
             html
+          }
+        }
+      }
+    }
+  }
+  allContentfulExperience {
+    edges {
+      node {
+        startDate
+        endDate
+        description {
+          id
+          childMarkdownRemark {
+            id
+            html
+          }
+        }
+        
+        image {
+          fluid {
+            base64
+            tracedSVG
+            aspectRatio
+            src
+            srcSet
+            srcWebp
+            srcSetWebp
+            sizes
           }
         }
       }
