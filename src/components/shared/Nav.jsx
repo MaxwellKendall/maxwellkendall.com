@@ -43,8 +43,8 @@ const Nav = ({
 
     const images = renderImages();
     const navLinks = links.map((link) => createNavLinks(link));
-    const competencyLinks = createLinksToCompetencies();
-    const experienceLinks = createLinksToExperience();
+    // const competencyLinks = createLinksToCompetencies();
+    // const experienceLinks = createLinksToExperience();
 
     return (
         <div className="nav">
@@ -53,14 +53,14 @@ const Nav = ({
             <ul className="nav__links">
                 {navLinks}
             </ul>
-            <h2>Skills</h2>
+            {/* <h2>Skills</h2>
             <ul className="competencies__links">
                 {competencyLinks}
             </ul>
             <h2>Experience</h2>
             <ul className="experience__links">
                 {experienceLinks}
-            </ul>
+            </ul> */}
         </div>
     );
 }

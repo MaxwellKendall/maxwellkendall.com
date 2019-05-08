@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
+import Image from "gatsby-image";
+import moment from 'moment';
+
 import Nav from "../components/shared/Nav";
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import Image from "gatsby-image";
+
 
 class RootIndex extends Component {
   renderTimeline = () => {
-    return this.props.data.allContentfulExperience.edges.map((item) => {
-      const experience = item.node;
-      return (
-        <VerticalTimelineElement
-          date={`${experience.startDate} through ${experience.endDate}`}
-          icon={<Image className="BAH-Icon" fluid={experience.image.fluid} />}>
-          <div
-            className="timeline-element__body"
-            dangerouslySetInnerHTML={{
-              __html: experience.description.childMarkdownRemark.html,
-            }}
-          />
-        </VerticalTimelineElement>
-    );
+    return this.props.data.allContentfulExperience.edges
+      .sort((a, b) => (moment(a.node.startDate) > moment(b.node.startDate)) ? -1 : 1)
+      .map((item) => {
+        const experience = item.node;
+        const start = moment(experience.startDate).format("MM/YYYY");
+        const end = experience.endDate ? moment(experience.endDate).format("MM/YYYY") : "present";
+        return (
+          <VerticalTimelineElement
+            date={`${start} through ${end}`}
+            icon={<Image className="BAH-Icon" fluid={experience.image.fluid} />}>
+            <div
+              className="timeline-element__body"
+              dangerouslySetInnerHTML={{
+                __html: experience.description.childMarkdownRemark.html,
+              }}
+            />
+          </VerticalTimelineElement>
+      );
   })};
 
   render() {
@@ -33,7 +40,7 @@ class RootIndex extends Component {
         <div id="app">
             <Nav imageProps={imageProps} links={menuLinks}/>
             <div className="home__container">
-              <VerticalTimeline layout="2-columns">
+              <VerticalTimeline layout="1-column">
                 {this.renderTimeline()}
               </VerticalTimeline>
             </div>
