@@ -15,11 +15,12 @@ const Nav = ({
     );
 
     const renderImages = () => {
-        return Object.keys(imageProps).map((imageNo) => {
-            const position = (imageNo === "1") ? 'absolute' : 'relative'; // image no 1 should be absolute positioned
-            const objectPosition = (imageNo === "1") ? '85% 0px' : 'center center'; // image no 1 should be absolute positioned
+        console.log("image props: ", imageProps);
+        return Object.keys(imageProps).map((imageTitle, index) => {
+            const position = (imageTitle === "chs") ? 'absolute' : 'relative'; // image no 1 should be absolute positioned
+            const objectPosition = (imageTitle === "chs") ? '85% 0px' : 'center center'; // image no 1 should be absolute positioned
             return (
-                <Image className={`nav__img nav__img-${imageNo}`} fluid={imageProps[imageNo]} style={{ position }} imgStyle={{ objectPosition }} />
+                <Image className={`nav__img nav__img-${imageTitle}`} fluid={imageProps[imageTitle]} style={{ position }} imgStyle={{ objectPosition }} />
             );
         }
         );

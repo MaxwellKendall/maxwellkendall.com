@@ -18,13 +18,9 @@ class RootIndex extends Component {
             return acc;
           }, {});
         }
-        const imageProps = this.props.data.allContentfulAsset.edges.reduce(
-          (node, item, index) => ({
-            ...node,
-            [index + 1]: item.node.fluid
-          }),
-          {}
-        );
+        const imageProps = this.props.data.allContentfulAsset.edges
+          .filter((item) => item.node.title !== "logo-bah")
+          .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
         const { menuLinks } = this.props.data.site.siteMetadata;
         const bahIconProps = getIcon("logo-bah");
         
@@ -52,7 +48,7 @@ export default RootIndex;
 export const pageQuery = graphql`
   query homePageData {
     allContentfulAsset(
-      filter: { title: { in: ["header_1", "header_2", "logo-bah"] } }
+      filter: { title: { in: ["headshot", "chs", "logo-bah"] } }
     ) {
       edges {
         node {
