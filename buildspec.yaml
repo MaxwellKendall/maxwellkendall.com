@@ -7,4 +7,6 @@ phases:
 artifacts:
   files:
     public/*
-    public/*/*
+    public/blog/*
+    public/static/*
+    public/portfolio/*
