@@ -6,7 +6,4 @@ phases:
       - npm run build
 artifacts:
   files:
-    public/*
-    public/blog/*
-    public/static/*
-    public/portfolio/*
+    - '**/*'
