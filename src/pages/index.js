@@ -32,7 +32,7 @@ class RootIndex extends Component {
 
   render() {
     const { menuLinks } = this.props.data.site.siteMetadata;
-
+    const homePageIntro = this.props.data.contentfulBlogPost.body.childMarkdownRemark.html;
     const imageProps = this.props.data.allContentfulAsset.edges
       .filter((item) => item.node.title !== "logo-bah")
       .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});        
@@ -40,6 +40,9 @@ class RootIndex extends Component {
         <div id="app">
             <Nav imageProps={imageProps} links={menuLinks}/>
             <div className="home__container">
+              <div
+                className="home__intro"
+                dangerouslySetInnerHTML={{ __html: homePageIntro }}/>
               <VerticalTimeline layout="1-column">
                 {this.renderTimeline()}
               </VerticalTimeline>
@@ -73,17 +76,10 @@ export const pageQuery = graphql`
         }
       }
     }
-  allContentfulBlogPost(
-    filter: { title: { eq: "Home Page Introduction" }}
-  ){
-    edges {
-      node {
-        title
-        body {
-          childMarkdownRemark {
-            html
-          }
-        }
+  contentfulBlogPost( title: { eq: "Home Page Introduction" }) {
+    body {
+      childMarkdownRemark {
+        html 
       }
     }
   }
