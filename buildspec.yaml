@@ -1,0 +1,11 @@
+version: 0.1
+phases:
+  build:
+    commands:
+      - npm install
+      - npm run build
+artifacts:
+  files:
+    - 'public/*'
+    - 'public/**/*'
+    - 'public/**/**/*'
