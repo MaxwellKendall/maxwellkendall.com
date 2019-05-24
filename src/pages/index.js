@@ -6,6 +6,7 @@ import moment from 'moment';
 import Nav from "../components/shared/Nav";
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
+import { SkillDropdown } from '../components/home/SkillDropdown';
 
 
 class RootIndex extends Component {
@@ -30,9 +31,12 @@ class RootIndex extends Component {
       );
   })};
 
+  renderSkills = () => {
+    return <SkillDropdown skill="Back End Engineering" />;
+  }
+
   render() {
     const { menuLinks } = this.props.data.site.siteMetadata;
-    const homePageIntro = this.props.data.contentfulBlogPost.body.childMarkdownRemark.html;
     const imageProps = this.props.data.allContentfulAsset.edges
       .filter((item) => item.node.title !== "logo-bah")
       .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});        
@@ -40,12 +44,7 @@ class RootIndex extends Component {
         <div id="app">
             <Nav imageProps={imageProps} links={menuLinks}/>
             <div className="home__container">
-              <div
-                className="home__intro"
-                dangerouslySetInnerHTML={{ __html: homePageIntro }}/>
-              <VerticalTimeline layout="1-column">
-                {this.renderTimeline()}
-              </VerticalTimeline>
+              {dropdownSkillAndTimeline}
             </div>
         </div>
     );
@@ -56,9 +55,7 @@ export default RootIndex;
 
 export const pageQuery = graphql`
   query homePageData {
-    allContentfulAsset(
-      filter: { title: { in: ["headshot", "chs", "BAH"] } }
-    ) {
+    allContentfulAsset(filter: { title: { in: ["headshot", "chs", "BAH"] } }) {
       edges {
         node {
           title
@@ -76,40 +73,5 @@ export const pageQuery = graphql`
         }
       }
     }
-  contentfulBlogPost( title: { eq: "Home Page Introduction" }) {
-    body {
-      childMarkdownRemark {
-        html 
-      }
-    }
-  }
-  allContentfulExperience {
-    edges {
-      node {
-        startDate
-        endDate
-        description {
-          id
-          childMarkdownRemark {
-            id
-            html
-          }
-        }
-        
-        image {
-          fluid {
-            base64
-            tracedSVG
-            aspectRatio
-            src
-            srcSet
-            srcWebp
-            srcSetWebp
-            sizes
-          }
-        }
-      }
-    }
-  }
 }
 `;
