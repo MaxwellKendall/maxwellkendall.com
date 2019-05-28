@@ -1,75 +1,32 @@
 import React  from 'react';
-import { useStaticQuery, graphql } from "gatsby";
+import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
+import Image from "gatsby-image";
 
-export const getSkill = (title) => {
-    const skills = useStaticQuery(
-        graphql`
-            query getAllSkillz {
-                allContentfulSkill {
-                    nodes {
-                        title
-                        logo {
-                            fluid {
-                                base64
-                                tracedSVG
-                                aspectRatio
-                                src
-                                srcSet
-                                srcWebp
-                                srcSetWebp
-                                sizes
-                            }
-                        }
-                    }
-                }
-            }
-        `
-    );
+import moment from 'moment';
 
-    return skills.allContentfulSkill.nodes.find((node) => node.title === title);
-};
+import { getSkilledExperience } from "../../graphql/index";
 
-export const getSkilledExperience = (skill) => {
-    const { allContentfulExperience } = useStaticQuery(
-        graphql`
-            query getAllExperience {
-                allContentfulExperience {
-                    edges {
-                        node {
-                            startDate
-                            endDate
-                            description {
-                                id
-                                childMarkdownRemark {
-                                    id
-                                    html
-                                }
-                            }
-                            image {
-                                fluid {
-                                    base64
-                                    tracedSVG
-                                    aspectRatio
-                                    src
-                                    srcSet
-                                    srcWebp
-                                    srcSetWebp
-                                    sizes
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        `
-    );
-    return allContentfulExperience.edges.find((edge) => edge.node.skill === skill);
-}
+export const SkillDropdown = ({ title, startDate, img }) => {
+    const renderTimeline = () => {
+        const { node } = getSkilledExperience(title);
+        const experience = node;
+        const start = moment(experience.startDate).format("MM/YYYY");
+        const end = experience.endDate ? moment(experience.endDate).format("MM/YYYY") : "present";
+        return (
+            <VerticalTimelineElement
+                date={`${start} through ${end}`}
+                icon={<Image className="BAH-Icon" fluid={experience.image.fluid} />}>
+                <div
+                className="timeline-element__body"
+                dangerouslySetInnerHTML={{
+                    __html: experience.description.childMarkdownRemark.html,
+                }}
+                />
+            </VerticalTimelineElement>
+        );
+    }
 
-export const SkillDropdown = ({ skill }) => {
-    const { title, logo } = getSkill(skill);
-    const { node } = getSkilledExperience(skill);
-    console.log("node", node);
+    console.log("title ", title);
     return (
         <h1>{title}</h1>
     );
