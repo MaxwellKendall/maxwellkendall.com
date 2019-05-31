@@ -6,7 +6,7 @@ import moment from 'moment';
 
 import { getSkilledExperience } from "../../graphql/index";
 
-export const SkillDropdown = ({ title, startDate, img }) => {
+export const SkillDropdown = ({ title, startDate, imgs }) => {
     const renderTimeline = () => {
         const { node } = getSkilledExperience(title);
         const experience = node;
@@ -26,8 +26,10 @@ export const SkillDropdown = ({ title, startDate, img }) => {
         );
     }
 
-    console.log("title ", title);
     return (
-        <h1>{title}</h1>
+        <div>
+            <h1>{title}</h1>
+            {imgs.map((img) => <img src={img.url} alt={img.description} />)}
+        </div>
     );
 };

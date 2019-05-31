@@ -8,9 +8,9 @@ import { SkillDropdown } from '../components/home/SkillDropdown';
 
 
 class RootIndex extends Component {
-  renderSkills = (node) => {
-    console.log("node", node)
-    return <SkillDropdown title={node.title} startDate={node.startDate} img={node.logo.fluid} />;
+  renderSkills = (skill) => {
+    const imgs = skill.logos.map((img) => ({ url: img.file.url, description: img.description }));
+    return <SkillDropdown title={skill.title} startDate={skill.startDate} imgs={imgs} />;
   }
 
   render() {
@@ -19,15 +19,14 @@ class RootIndex extends Component {
       .filter((item) => item.node.title !== "logo-bah")
       .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
     const skills = this.props.data.allContentfulSkill.edges;
-    console.log(this.props);
     return (
         <div id="app">
             <Nav imageProps={imageProps} links={menuLinks}/>
             <div className="home__container">
               <ul>
                 {skills
-                  .sort((a, b) => (moment(a.node.startDate) > moment(b.node.startDate)) ? -1 : 1)
-                  .map((edge) => this.renderSkills(edge.node))}
+                  .sort((skillA, skillB) => (moment(skillA.node.startDate) > moment(skillB.node.startDate)) ? -1 : 1)
+                  .map((skill) => this.renderSkills(skill.node))}
               </ul>
             </div>
         </div>
@@ -52,11 +51,13 @@ export const pageQuery = graphql`
     allContentfulSkill {
       edges {
         node {
-          startDate
           title
-          logo {
-            fluid {
-              ...GatsbyContentfulFluid
+          startDate
+          logos {
+            id
+            description
+            file {
+              url
             }
           }
         }
