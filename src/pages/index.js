@@ -9,7 +9,7 @@ import 'react-vertical-timeline-component/style.min.css';
 import { SkillDropdown } from '../components/home/SkillDropdown';
 
 const test_data = {
-  "name": "root",
+  "title": "root",
   "children": [
     {
       "title": "Front End Engineering",
@@ -122,6 +122,8 @@ const test_data = {
 };
 
 const RootIndex = (props) => {
+  const [ selectedBranch, setSelectedBranch ] = useState("root");
+
   const getTreemapData = () => {
     const treemapData = hierarchy(test_data, (d) => d.children) // second param defines where the node's descendants live, must return an array
       .sum((skill) => {
@@ -159,6 +161,16 @@ const RootIndex = (props) => {
     return <SkillDropdown title={skill.title} startDate={skill.startDate} imgs={imgs} />;
   }
 
+  const getDisplayMessage = (totalProfessionalHours, skill) => {
+    if (selectedBranch === 'root') { // show a percentage of total professional hours
+      const hoursForSkill = Math.round(skill.value);
+      const percentOfTotalSkillset = (hoursForSkill / totalProfessionalHours) * 100;
+      return `${Math.round(percentOfTotalSkillset)}%`;
+    }
+    const skillDuration = moment.duration(skill.end.diff(skill.start));
+    return `${skillDuration.get('years')} years, ${skillDuration.get('months')}, months`;
+  }
+
   const imageProps = props.data.allContentfulAsset.edges
     .filter((item) => item.node.title !== "logo-bah")
     .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
@@ -173,13 +185,11 @@ const RootIndex = (props) => {
           <div className="home__container">
             <svg width={treemapData.x1} height={treemapData.y1} className="skillz-treemap">
               {treemapData.children.map((skill) => {
-                const hoursForSkill = Math.round(skill.value);
-                const percentOfTotalSkillset = (hoursForSkill / totalProfessionalHours) * 100;
-                const displayMessage = `${Math.round(percentOfTotalSkillset)}%`;
+                const displayMessage = getDisplayMessage(totalProfessionalHours, skill);
                 const width = skill.x1 - skill.x0;
                 const height = skill.y1 - skill.y0;
                 return (
-                  <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={() => console.log("YOU CLICKED", skill.data.name)}>
+                  <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={() => console.log("YOU CLICKED", skill.data.title)}>
                     <rect x={0} y={0} fill={getColorByValue(treemapData)(skill.value)} width={width} height={height} />
                     <text textAnchor="middle" x={width / 2} y={(height / 2) - 5} fill="white">{skill.data.title}</text>
                     <text textAnchor="middle" x={width / 2} y={(height / 2) + 15} fill="white">{displayMessage}</text>
