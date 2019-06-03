@@ -9,36 +9,115 @@ import 'react-vertical-timeline-component/style.min.css';
 import { SkillDropdown } from '../components/home/SkillDropdown';
 
 const test_data = {
-  "name": "Eve",
-  "offspring": [
+  "name": "root",
+  "children": [
     {
-      "name": "Cain"
-    },
-    {
-      "name": "Seth",
-      "offspring": [
+      "title": "Front End Engineering",
+      "children": [
         {
-          "name": "Enos"
+          "title": "Sass/CSS",
+          "start": moment('2017-03-01'),
+          "end": moment()
         },
         {
-          "name": "Noam"
-        }
-      ]
-    },
-    {
-      "name": "Abel"
-    },
-    {
-      "name": "Awan",
-      "offspring": [
+          "title": "WebPack 2+",
+          "start": moment('2017-07-01'),
+          "end": moment()
+        },
         {
-          "name": "Enoch"
+          "title": "Javascript",
+          "children": [
+            {
+              "title": "React",
+              "start": moment('2017-07-01'),
+              "end": moment()
+            },
+            {
+              "title": "Redux",
+              "start": moment('2017-07-01'),
+              "end": moment()
+            },
+            {
+              "title": "ES6",
+              "start": moment('2017-07-01'),
+              "end": moment()
+            }
+          ]
         }
       ]
     },
     {
-      "name": "Azura"
-    }
+      "title": "Back End Engineering",
+      "children": [
+        {
+          "title": "Golang",
+          "start": moment('2018-03-01'),
+          "end": moment('2019-03-01')
+        },
+        {
+          "title": "Python",
+          "start": moment('2019-03-01'),
+          "end": moment()
+        },
+        {
+          "title": "NodeJS",
+          "start": moment('2017-07-01'),
+          "end": moment()
+         }
+      ]
+    },
+    {
+      "title": "Cloud Engineering",
+      "children": [
+        {
+          "title": "AWS",
+          "start": moment('2018-03-01'),
+          "end": moment(),
+          "children": [
+            {
+              "title": "DynamoDB"
+            },
+            {
+              "title": "S3"
+            },
+            {
+              "title": "Code Pipeline"
+            },
+            {
+              "title": "Code Build"
+            },
+            {
+              "title": "Simple Notification Service"
+            }
+          ]
+        },
+        {
+          "title": "Docker",
+          "start": moment('2018-03-01'),
+          "end": moment()
+        },
+        {
+          "title": "Jenkins",
+          "start": moment('2018-03-01'),
+          "end":moment()
+         }
+      ]
+    },
+    {
+      "title": "Janitorial Work",
+      "start": moment('2010-07-01'),
+      "end": moment('2013-01-01')
+    },
+    {
+      "title": "Construction",
+      "start": moment('2012-06-01'),
+      "end": moment('2013-01-01')
+    },
+    {
+      "title": "FOH/BOH Restaurant",
+      "start": moment('2013-01-01'),
+      "end": moment('2014-06-01')
+     }
   ]
 };
 
@@ -49,11 +128,16 @@ class RootIndex extends Component {
   }
 
   render() {
-    const treemapData = hierarchy(test_data, (d) => d.offspring) // second param defines where the node's descendants live, must return an array
-      .sum((d) => {
-        let value = 1;
-        if (d.hasOwnProperty('offspring')) value += d.offspring.length;
-        return value;
+    const treemapData = hierarchy(test_data, (d) => d.children) // second param defines where the node's descendants live, must return an array
+      .sum((skill) => {
+        const { start, end } = skill;
+        console.log(skill.title, "start is moment", moment.isMoment(start), "end is moment", moment.isMoment(end))
+        console.log("SKILLZ", skill);
+        if (start && end) {
+          const lengthOfExperience = moment.duration(end.diff(start));
+          return lengthOfExperience.as("hours");
+        }
+        return 0;
       }) // defines value of property "value" for each node
       .sort((a, b) => {
         if (a.height > b.height) return -1;
@@ -72,7 +156,7 @@ class RootIndex extends Component {
       .domain([
         treemapData.children[treemapData.children.length - 1].value,
         treemapData.children[0].value])
-      .range([interpolateGreens(0.33), interpolateGreens(0.75)]);
+      .range([interpolateGreens(0.25), interpolateGreens(0.99)]);
     const { menuLinks } = this.props.data.site.siteMetadata;
     const imageProps = this.props.data.allContentfulAsset.edges
       .filter((item) => item.node.title !== "logo-bah")
@@ -84,13 +168,16 @@ class RootIndex extends Component {
             <div className="home__container">
               <svg width={treemapData.x1} height={treemapData.y1} className="skillz-treemap">
                 {treemapData.children.map((skill) => {
+                  console.log('yizo', skill);
+                  const lengthOfExperience = moment.duration(skill.value, 'hours');
+                  const displayMessage = `${lengthOfExperience.get("years")} years, ${lengthOfExperience.get("months")} months`;
                   const width = skill.x1 - skill.x0;
                   const height = skill.y1 - skill.y0;
                   return (
                     <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={() => console.log("YOU CLICKED", skill.data.name)}>
                       <rect x={0} y={0} fill={getColorByValue(skill.value)} width={width} height={height} />
-                      <text textAnchor="middle" x={width / 2} y={(height / 2) - 5} fill="white">{skill.data.name}</text>
-                      <text textAnchor="middle" x={width / 2} y={(height / 2) + 15} fill="white">{`${skill.value} kids`}</text>
+                      <text textAnchor="middle" x={width / 2} y={(height / 2) - 5} fill="white">{skill.data.title}</text>
+                      <text textAnchor="middle" x={width / 2} y={(height / 2) + 15} fill="white">{displayMessage}</text>
                     </g> 
                   );
                 })}
