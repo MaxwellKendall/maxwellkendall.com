@@ -99,7 +99,7 @@ const test_data = {
         {
           "title": "Jenkins",
           "start": moment('2018-03-01'),
-          "end":moment()
+          "end": moment()
          }
       ]
     },
@@ -131,8 +131,6 @@ class RootIndex extends Component {
     const treemapData = hierarchy(test_data, (d) => d.children) // second param defines where the node's descendants live, must return an array
       .sum((skill) => {
         const { start, end } = skill;
-        console.log(skill.title, "start is moment", moment.isMoment(start), "end is moment", moment.isMoment(end))
-        console.log("SKILLZ", skill);
         if (start && end) {
           const lengthOfExperience = moment.duration(end.diff(start));
           return lengthOfExperience.as("hours");
@@ -162,15 +160,17 @@ class RootIndex extends Component {
       .filter((item) => item.node.title !== "logo-bah")
       .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
     const skills = this.props.data.allContentfulSkill.edges;
+    const totalHrs = Math.round(treemapData.value);
     return (
         <div id="app">
             <Nav imageProps={imageProps} links={menuLinks}/>
             <div className="home__container">
               <svg width={treemapData.x1} height={treemapData.y1} className="skillz-treemap">
                 {treemapData.children.map((skill) => {
-                  console.log('yizo', skill);
-                  const lengthOfExperience = moment.duration(skill.value, 'hours');
-                  const displayMessage = `${lengthOfExperience.get("years")} years, ${lengthOfExperience.get("months")} months`;
+                  const skillHrs = Math.round(skill.value);
+                  const percentOfTotalSkillset = (skillHrs / totalHrs) * 100;
+                  console.log(skill.data.title, skillHrs, percentOfTotalSkillset);
+                  const displayMessage = `${Math.round(percentOfTotalSkillset)}%`;
                   const width = skill.x1 - skill.x0;
                   const height = skill.y1 - skill.y0;
                   return (
