@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql } from "gatsby";
 import moment from 'moment';
 import { hierarchy, treemap, treemapBinary } from 'd3-hierarchy';
@@ -122,10 +122,16 @@ const test_data = {
 };
 
 const RootIndex = (props) => {
-  const [ selectedBranch, setSelectedBranch ] = useState("root");
+  const [ selectedBranch, setSelectedBranch ] = useState({ depth: 0, data: { title: "root" } });
+  const [ treemapShape, setTreemapShape ] = useState(null);
 
-  const getTreemapData = () => {
-    const treemapData = hierarchy(test_data, (d) => d.children) // second param defines where the node's descendants live, must return an array
+  useEffect(() => {
+    updateTreemapShape();
+  }, [selectedBranch.data.title])
+
+  const updateTreemapShape = () => {
+    console.log("updateTreemapShape selectedBranch, ", selectedBranch);
+    const data = hierarchy(selectedBranch, (d) => d.children) // second param defines where the node's descendants live, must return an array
       .sum((skill) => {
         const { start, end } = skill;
         if (start && end) {
@@ -145,15 +151,16 @@ const RootIndex = (props) => {
       .tile(treemapBinary)
       .size([800, 600]);
 
-    tree(treemapData);
+    tree(data);
 
-    return treemapData;
+    setTreemapShape(data);
+    return data;
   }
 
-  const getColorByValue = (treemapData) => scaleLinear()
+  const getColorByValue = (data) => scaleLinear()
       .domain([
-        treemapData.children[treemapData.children.length - 1].value,
-        treemapData.children[0].value])
+        data.children[data.children.length - 1].value,
+        data.children[0].value])
       .range([interpolateGreens(0.45), interpolateGreens(0.99)]);
 
   const renderSkills = (skill) => {
@@ -162,12 +169,13 @@ const RootIndex = (props) => {
   }
 
   const getDisplayMessage = (totalProfessionalHours, skill) => {
-    if (selectedBranch === 'root') { // show a percentage of total professional hours
-      const hoursForSkill = Math.round(skill.value);
+    const hoursForSkill = Math.round(skill.value);
+    if (selectedBranch.data.title === 'root') { // show a percentage of total professional hours
       const percentOfTotalSkillset = (hoursForSkill / totalProfessionalHours) * 100;
       return `${Math.round(percentOfTotalSkillset)}%`;
     }
-    const skillDuration = moment.duration(skill.end.diff(skill.start));
+    console.log("display message", skill);
+    const skillDuration = moment.duration(hoursForSkill);
     return `${skillDuration.get('years')} years, ${skillDuration.get('months')}, months`;
   }
 
@@ -176,27 +184,28 @@ const RootIndex = (props) => {
     .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
   const { menuLinks } = props.data.site.siteMetadata;
   const skills = props.data.allContentfulSkill.edges;
-  const treemapData = getTreemapData();
-  const totalProfessionalHours = Math.round(treemapData.value);
-
+  const totalProfessionalHours = treemapShape ? Math.round(treemapShape.value) : 0;
   return (
       <div id="app">
           <Nav imageProps={imageProps} links={menuLinks}/>
           <div className="home__container">
-            <svg width={treemapData.x1} height={treemapData.y1} className="skillz-treemap">
-              {treemapData.children.map((skill) => {
-                const displayMessage = getDisplayMessage(totalProfessionalHours, skill);
-                const width = skill.x1 - skill.x0;
-                const height = skill.y1 - skill.y0;
-                return (
-                  <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={() => console.log("YOU CLICKED", skill.data.title)}>
-                    <rect x={0} y={0} fill={getColorByValue(treemapData)(skill.value)} width={width} height={height} />
-                    <text textAnchor="middle" x={width / 2} y={(height / 2) - 5} fill="white">{skill.data.title}</text>
-                    <text textAnchor="middle" x={width / 2} y={(height / 2) + 15} fill="white">{displayMessage}</text>
-                  </g> 
-                );
-              })}
+            {treemapShape &&
+              <svg width={treemapShape.x1} height={treemapShape.y1} className="skillz-treemap">
+                {treemapShape.children.map((skill) => {
+                  const displayMessage = getDisplayMessage(totalProfessionalHours, skill);
+                  const width = skill.x1 - skill.x0;
+                  const height = skill.y1 - skill.y0;
+                  const handleClick = setSelectedBranch.bind(null, skill);
+                  return (
+                    <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={handleClick}>
+                      <rect x={0} y={0} fill={getColorByValue(treemapShape)(skill.value)} width={width} height={height} />
+                      <text textAnchor="middle" x={width / 2} y={(height / 2) - 5} fill="white">{skill.data.title}</text>
+                      <text textAnchor="middle" x={width / 2} y={(height / 2) + 15} fill="white">{displayMessage}</text>
+                    </g> 
+                  );
+                })}
             </svg>
+            }
             <ul>
               {skills
                 .sort((skillA, skillB) => (moment(skillA.node.startDate) > moment(skillB.node.startDate)) ? -1 : 1)
