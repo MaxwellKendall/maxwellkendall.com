@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { graphql } from "gatsby";
 import moment from 'moment';
 import { hierarchy, treemap, treemapBinary } from 'd3-hierarchy';
@@ -121,13 +121,8 @@ const test_data = {
   ]
 };
 
-class RootIndex extends Component {
-  renderSkills = (skill) => {
-    const imgs = skill.logos.map((img) => ({ url: img.file.url, description: img.description }));
-    return <SkillDropdown title={skill.title} startDate={skill.startDate} imgs={imgs} />;
-  }
-
-  render() {
+const RootIndex = (props) => {
+  const getTreemapData = () => {
     const treemapData = hierarchy(test_data, (d) => d.children) // second param defines where the node's descendants live, must return an array
       .sum((skill) => {
         const { start, end } = skill;
@@ -141,7 +136,7 @@ class RootIndex extends Component {
         if (a.height > b.height) return -1;
         return 1;
       });
-    
+  
     const tree = treemap()
       .round(true)
       .padding(2)
@@ -150,47 +145,56 @@ class RootIndex extends Component {
 
     tree(treemapData);
 
-    const getColorByValue = scaleLinear()
+    return treemapData;
+  }
+
+  const getColorByValue = (treemapData) => scaleLinear()
       .domain([
         treemapData.children[treemapData.children.length - 1].value,
         treemapData.children[0].value])
-      .range([interpolateGreens(0.25), interpolateGreens(0.99)]);
-    const { menuLinks } = this.props.data.site.siteMetadata;
-    const imageProps = this.props.data.allContentfulAsset.edges
-      .filter((item) => item.node.title !== "logo-bah")
-      .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
-    const skills = this.props.data.allContentfulSkill.edges;
-    const totalHrs = Math.round(treemapData.value);
-    return (
-        <div id="app">
-            <Nav imageProps={imageProps} links={menuLinks}/>
-            <div className="home__container">
-              <svg width={treemapData.x1} height={treemapData.y1} className="skillz-treemap">
-                {treemapData.children.map((skill) => {
-                  const skillHrs = Math.round(skill.value);
-                  const percentOfTotalSkillset = (skillHrs / totalHrs) * 100;
-                  console.log(skill.data.title, skillHrs, percentOfTotalSkillset);
-                  const displayMessage = `${Math.round(percentOfTotalSkillset)}%`;
-                  const width = skill.x1 - skill.x0;
-                  const height = skill.y1 - skill.y0;
-                  return (
-                    <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={() => console.log("YOU CLICKED", skill.data.name)}>
-                      <rect x={0} y={0} fill={getColorByValue(skill.value)} width={width} height={height} />
-                      <text textAnchor="middle" x={width / 2} y={(height / 2) - 5} fill="white">{skill.data.title}</text>
-                      <text textAnchor="middle" x={width / 2} y={(height / 2) + 15} fill="white">{displayMessage}</text>
-                    </g> 
-                  );
-                })}
-              </svg>
-              <ul>
-                {skills
-                  .sort((skillA, skillB) => (moment(skillA.node.startDate) > moment(skillB.node.startDate)) ? -1 : 1)
-                  .map((skill) => this.renderSkills(skill.node))}
-              </ul>
-            </div>
-        </div>
-    );
+      .range([interpolateGreens(0.45), interpolateGreens(0.99)]);
+
+  const renderSkills = (skill) => {
+    const imgs = skill.logos.map((img) => ({ url: img.file.url, description: img.description }));
+    return <SkillDropdown title={skill.title} startDate={skill.startDate} imgs={imgs} />;
   }
+
+  const imageProps = props.data.allContentfulAsset.edges
+    .filter((item) => item.node.title !== "logo-bah")
+    .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
+  const { menuLinks } = props.data.site.siteMetadata;
+  const skills = props.data.allContentfulSkill.edges;
+  const treemapData = getTreemapData();
+  const totalProfessionalHours = Math.round(treemapData.value);
+
+  return (
+      <div id="app">
+          <Nav imageProps={imageProps} links={menuLinks}/>
+          <div className="home__container">
+            <svg width={treemapData.x1} height={treemapData.y1} className="skillz-treemap">
+              {treemapData.children.map((skill) => {
+                const hoursForSkill = Math.round(skill.value);
+                const percentOfTotalSkillset = (hoursForSkill / totalProfessionalHours) * 100;
+                const displayMessage = `${Math.round(percentOfTotalSkillset)}%`;
+                const width = skill.x1 - skill.x0;
+                const height = skill.y1 - skill.y0;
+                return (
+                  <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={() => console.log("YOU CLICKED", skill.data.name)}>
+                    <rect x={0} y={0} fill={getColorByValue(treemapData)(skill.value)} width={width} height={height} />
+                    <text textAnchor="middle" x={width / 2} y={(height / 2) - 5} fill="white">{skill.data.title}</text>
+                    <text textAnchor="middle" x={width / 2} y={(height / 2) + 15} fill="white">{displayMessage}</text>
+                  </g> 
+                );
+              })}
+            </svg>
+            <ul>
+              {skills
+                .sort((skillA, skillB) => (moment(skillA.node.startDate) > moment(skillB.node.startDate)) ? -1 : 1)
+                .map((skill) => renderSkills(skill.node))}
+            </ul>
+          </div>
+      </div>
+  );
 }
 
 export default RootIndex;
