@@ -4,4 +4,10 @@
   .vertical-timeline-element-icon {
     overflow: hidden;
   }
+  .experience__explorer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }

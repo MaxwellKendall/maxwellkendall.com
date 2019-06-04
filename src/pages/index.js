@@ -2,14 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { graphql } from "gatsby";
 import moment from 'moment';
 import { hierarchy, treemap, treemapBinary } from 'd3-hierarchy';
-import { interpolateGreens, interpolateYlGn } from "d3-scale-chromatic"
+import { interpolateGreens } from "d3-scale-chromatic"
 import { scaleLinear } from "d3-scale";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faStepBackward, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+
 import Nav from "../components/shared/Nav";
 import 'react-vertical-timeline-component/style.min.css';
 import { SkillDropdown } from '../components/home/SkillDropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+library.add(faStepBackward, faChevronLeft)
 
 const test_data = {
-  "title": "root",
+  "title": "All Experience",
   "children": [
     {
       "title": "Front End Engineering",
@@ -171,7 +177,7 @@ const RootIndex = (props) => {
 
   const getDisplayMessage = (totalProfessionalHours, skill) => {
     const hoursForSkill = Math.round(skill.value);
-    if (selectedNode.title === 'root') { // show a percentage of total professional hours
+    if (selectedNode.title === 'All Experience') { // show a percentage of total professional hours
       const percentOfTotalSkillset = (hoursForSkill / totalProfessionalHours) * 100;
       return `${Math.round(percentOfTotalSkillset)}%`;
     }
@@ -192,22 +198,25 @@ const RootIndex = (props) => {
           <Nav imageProps={imageProps} links={menuLinks}/>
           <div className="home__container">
             {treemapObject && treemapObject.children &&
-              <svg width={treemapObject.x1} height={treemapObject.y1} className="skillz-treemap">
-                {treemapObject.children.map((skill) => {
-                  const displayMessage = getDisplayMessage(totalProfessionalHours, skill);
-                  const width = skill.x1 - skill.x0;
-                  const height = skill.y1 - skill.y0;
-                  const handleClick = setSelectedNode.bind(null, skill.data);
-                  const color = getColorByValue(treemapObject)(skill.value);
-                  return (
-                    <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={handleClick}>
-                      <rect x={0} y={0} fill={color} width={width} height={height} />
-                      <text textAnchor="middle" x={width / 2} y={(height / 2) - 5} fill="white">{skill.data.title}</text>
-                      <text textAnchor="middle" x={width / 2} y={(height / 2) + 15} fill="white">{displayMessage}</text>
-                    </g> 
-                  );
-                })}
-            </svg>}
+              <div className="experience__explorer">
+                <h1>{selectedNode.title}</h1>
+                <svg width={treemapObject.x1} height={treemapObject.y1} className="skillz-treemap">
+                  {treemapObject.children.map((skill) => {
+                    const displayMessage = getDisplayMessage(totalProfessionalHours, skill);
+                    const width = skill.x1 - skill.x0;
+                    const height = skill.y1 - skill.y0;
+                    const handleClick = skill.children ? setSelectedNode.bind(null, skill.data) : null;
+                    const color = getColorByValue(treemapObject)(skill.value);
+                    return (
+                      <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={handleClick}>
+                        <rect x={0} y={0} fill={color} width={width} height={height} />
+                        <text textAnchor="middle" x={width / 2} y={(height / 2) - 5} fill="white">{skill.data.title}</text>
+                        <text textAnchor="middle" x={width / 2} y={(height / 2) + 15} fill="white">{displayMessage}</text>
+                      </g> 
+                    );
+                  })}
+                </svg>
+              </div>}
             <ul>
               {skills
                 .sort((skillA, skillB) => (moment(skillA.node.startDate) > moment(skillB.node.startDate)) ? -1 : 1)
