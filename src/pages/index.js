@@ -5,14 +5,14 @@ import { hierarchy, treemap, treemapBinary } from 'd3-hierarchy';
 import { interpolateGreens } from "d3-scale-chromatic"
 import { scaleLinear } from "d3-scale";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faStepBackward, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 import Nav from "../components/shared/Nav";
 import 'react-vertical-timeline-component/style.min.css';
 import { SkillDropdown } from '../components/home/SkillDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-library.add(faStepBackward, faChevronLeft)
+library.add(faChevronLeft)
 
 const test_data = {
   "title": "All Experience",
@@ -75,7 +75,7 @@ const test_data = {
           "children": [
             {
               "title": "DynamoDB",
-              "start": moment('2019-07-01'),
+              "start": moment('2019-03-01'),
               "end": moment()
             },
             {
@@ -85,17 +85,17 @@ const test_data = {
             },
             {
               "title": "Code Pipeline",
-              "start": moment('2019-07-01'),
+              "start": moment('2019-05-01'),
               "end": moment()
             },
             {
               "title": "Code Build",
-              "start": moment('2019-07-01'),
+              "start": moment('2019-05-01'),
               "end": moment()
             },
             {
               "title": "Simple Notification Service",
-              "start": moment('2019-07-01'),
+              "start": moment('2019-03-01'),
               "end": moment()
             }
           ]
@@ -131,11 +131,11 @@ const test_data = {
 };
 
 const RootIndex = (props) => {
-  const [ selectedNode, setSelectedNode ] = useState(test_data);
+  const [ selectedNode, setSelectedNode ] = useState({ data: test_data });
   const [ treemapObject, setTreemap ] = useState(null);
 
   const buildTreemap = () => {    
-    const newMap = hierarchy(selectedNode, (d) => d.children) // second param defines where the node's descendants live, must return an array
+    const newMap = hierarchy(selectedNode.data, (d) => d.children) // second param defines where the node's descendants live, must return an array
       .sum((skill) => {
         const { start, end } = skill;
         if (moment.isMoment(start) && moment.isMoment(end) ){
@@ -177,7 +177,7 @@ const RootIndex = (props) => {
 
   const getDisplayMessage = (totalProfessionalHours, skill) => {
     const hoursForSkill = Math.round(skill.value);
-    if (selectedNode.title === 'All Experience') { // show a percentage of total professional hours
+    if (selectedNode.data.title === 'All Experience') { // show a percentage of total professional hours
       const percentOfTotalSkillset = (hoursForSkill / totalProfessionalHours) * 100;
       return `${Math.round(percentOfTotalSkillset)}%`;
     }
@@ -193,19 +193,23 @@ const RootIndex = (props) => {
   const skills = props.data.allContentfulSkill.edges;
   const totalProfessionalHours = treemapObject ? Math.round(treemapObject.value) : 0;
 
+  const goBack = () => {
+    setSelectedNode({ data: selectedNode.parent.data });
+  }
+  console.log(selectedNode)
   return (
       <div id="app">
           <Nav imageProps={imageProps} links={menuLinks}/>
           <div className="home__container">
             {treemapObject && treemapObject.children &&
               <div className="experience__explorer">
-                <h1>{selectedNode.title}</h1>
+                {selectedNode.parent && <FontAwesomeIcon icon="chevron-left" onClick={goBack} />}<h1>{selectedNode.data.title}</h1>
                 <svg width={treemapObject.x1} height={treemapObject.y1} className="skillz-treemap">
                   {treemapObject.children.map((skill) => {
                     const displayMessage = getDisplayMessage(totalProfessionalHours, skill);
                     const width = skill.x1 - skill.x0;
                     const height = skill.y1 - skill.y0;
-                    const handleClick = skill.children ? setSelectedNode.bind(null, skill.data) : null;
+                    const handleClick = skill.children ? setSelectedNode.bind(null, skill) : null;
                     const color = getColorByValue(treemapObject)(skill.value);
                     return (
                       <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={handleClick}>
