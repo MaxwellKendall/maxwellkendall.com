@@ -9,5 +9,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    .experience__explorer__header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      svg:first-of-type { 
+        padding-right: $global-spacer * 2;
+      }
+    }
   }
 }

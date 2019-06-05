@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 library.add(faChevronLeft)
 
+const rootNode = 'All Experience';
 const test_data = {
   "title": "All Experience",
   "children": [
@@ -131,12 +132,42 @@ const test_data = {
 };
 
 const RootIndex = (props) => {
-  const [ visibleMap, setVisibleMap ] = useState(null); // this will have to be rebuilt every time it changes
+  const [ activeMap, setActiveMap ] = useState(null); // this will have to be rebuilt every time it changes
   const [ referenceObject, setReferenceObject ] = useState(null); // this will have to be preserved and used as a reference for traversal.
+  const [ selectedReferenceNode, setSelectedReferenceNode ] = useState(rootNode);
+  
+  const getSelectedReferenceNode = () => {
+    if (!referenceObject) {
+      return { data: test_data }; // no selected node, init reference map
+    }
+    if (selectedReferenceNode === rootNode) {
+      return referenceObject;
+    }
+
+    return referenceObject.children.reduce((acc, child1) => {
+      if (acc.data.title === selectedReferenceNode) {
+        return acc;
+      }
+      // TODO: Good opportunity for recursion here.
+      // depth1
+      if (child1.data.title === selectedReferenceNode) return child1;
+      // depth2
+      const child2 = child1.children
+        ? child1.children.find((child) => child.data.title === selectedReferenceNode)
+        : null;
+      if (child2) return child2;
+      // depth3
+      const child3 = child1.children
+        ? child1.children.find((nextChild) => nextChild.children ? nextChild.children.find((nextNextChild) => nextNextChild.data.title === selectedReferenceNode) : false)
+        : null;
+      if (child3) return child3;
+      return acc;
+    }, { data: { title: '' } });
+  }
 
   const buildTreemap = () => {
-    console.log("BUILDING TREEMAP...");
-    const newMap = hierarchy(test_data, (d) => d.children)
+    const activeNode = getSelectedReferenceNode().data;
+    const newMap = hierarchy(activeNode, (d) => d.children)
       .sum((skill) => {
         const { start, end } = skill;
         if (moment.isMoment(start) && moment.isMoment(end) ){
@@ -157,16 +188,17 @@ const RootIndex = (props) => {
       .size([800, 600]);
   
     tree(newMap);
+
     if (!referenceObject) {
       setReferenceObject(newMap);
     }
-    setVisibleMap(newMap);
+    setActiveMap(newMap);
   }
 
   useEffect((args) => {
     console.log("EFFECT HAPPENING!!!");
     buildTreemap();
-  }, [])
+  }, [selectedReferenceNode])
 
   const getColorByValue = (data) => {
     return scaleLinear()
@@ -181,7 +213,7 @@ const RootIndex = (props) => {
 
   const getDisplayMessage = (totalProfessionalHours, skill) => {
     const hoursForSkill = Math.round(skill.value);
-    if (referenceObject.data.title === 'All Experience') { // show a percentage of total professional hours
+    if (selectedReferenceNode === rootNode) { // show a percentage of total professional hours
       const percentOfTotalSkillset = (hoursForSkill / totalProfessionalHours) * 100;
       return `${Math.round(percentOfTotalSkillset)}%`;
     }
@@ -198,26 +230,33 @@ const RootIndex = (props) => {
   const totalProfessionalHours = referenceObject ? Math.round(referenceObject.value) : 0;
 
   const goBack = () => {
-    setVisibleMap(visibleMap.parent);
+    const activeNode = getSelectedReferenceNode();
+    setSelectedReferenceNode(activeNode.parent.data.title);
+  }
+
+  const goDeeper = (node) => {
+    setSelectedReferenceNode(node.data.title);
   }
 
   console.log('referenceObject ******', referenceObject);
-  console.log('visibleMap ******', visibleMap);
+  console.log('activeMap ******', activeMap);
   // svg should always be the map build from test_data, but the parent of children on line 213 should change dynamically.
   return (
       <div id="app">
           <Nav imageProps={imageProps} links={menuLinks}/>
           <div className="home__container">
-            {visibleMap &&
+            {activeMap &&
               <div className="experience__explorer">
-                {visibleMap.parent && <FontAwesomeIcon icon="chevron-left" onClick={goBack} />}<h1>{visibleMap.data.title}</h1>
-                <svg width={visibleMap.x1} height={visibleMap.y1} className="skillz-treemap">
-                  {visibleMap.children.map((skill) => {
+                <div className="experience__explorer__header">
+                  {selectedReferenceNode !== rootNode && <FontAwesomeIcon icon="chevron-left" onClick={goBack} />}<h1>{activeMap.data.title}</h1>
+                </div>
+                <svg width={activeMap.x1} height={activeMap.y1} className="skillz-treemap">
+                  {activeMap.children.map((skill) => {
                     const displayMessage = getDisplayMessage(totalProfessionalHours, skill);
                     const width = skill.x1 - skill.x0;
                     const height = skill.y1 - skill.y0;
-                    const handleClick = skill.children ? setVisibleMap.bind(null, skill) : null;
-                    const color = getColorByValue(visibleMap)(skill.value);
+                    const handleClick = skill.children ? goDeeper.bind(null, skill) : null;
+                    const color = getColorByValue(activeMap)(skill.value);
                     return (
                       <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={handleClick}>
                         <rect x={0} y={0} fill={color} width={width} height={height} />
