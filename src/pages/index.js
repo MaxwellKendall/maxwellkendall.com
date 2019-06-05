@@ -131,13 +131,12 @@ const test_data = {
 };
 
 const RootIndex = (props) => {
-  const [ dataSource, setDataSource ] = useState({ data: test_data });
-  const [ map, setMap ] = useState(null);
+  const [ visibleMap, setVisibleMap ] = useState(null); // this will have to be rebuilt every time it changes
+  const [ referenceObject, setReferenceObject ] = useState(null); // this will have to be preserved and used as a reference for traversal.
 
   const buildTreemap = () => {
     console.log("BUILDING TREEMAP...");
-    const buildingFromNode = dataSource.data;
-    const newMap = hierarchy(buildingFromNode, (d) => d.children) // second param defines where the node's descendants live, must return an array
+    const newMap = hierarchy(test_data, (d) => d.children)
       .sum((skill) => {
         const { start, end } = skill;
         if (moment.isMoment(start) && moment.isMoment(end) ){
@@ -158,14 +157,16 @@ const RootIndex = (props) => {
       .size([800, 600]);
   
     tree(newMap);
-
-    setMap(newMap);
+    if (!referenceObject) {
+      setReferenceObject(newMap);
+    }
+    setVisibleMap(newMap);
   }
 
   useEffect((args) => {
     console.log("EFFECT HAPPENING!!!");
     buildTreemap();
-  }, [dataSource])
+  }, [])
 
   const getColorByValue = (data) => {
     return scaleLinear()
@@ -180,7 +181,7 @@ const RootIndex = (props) => {
 
   const getDisplayMessage = (totalProfessionalHours, skill) => {
     const hoursForSkill = Math.round(skill.value);
-    if (map.data.title === 'All Experience') { // show a percentage of total professional hours
+    if (referenceObject.data.title === 'All Experience') { // show a percentage of total professional hours
       const percentOfTotalSkillset = (hoursForSkill / totalProfessionalHours) * 100;
       return `${Math.round(percentOfTotalSkillset)}%`;
     }
@@ -194,28 +195,29 @@ const RootIndex = (props) => {
     .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
   const { menuLinks } = props.data.site.siteMetadata;
   const skills = props.data.allContentfulSkill.edges;
-  const totalProfessionalHours = map ? Math.round(map.value) : 0;
+  const totalProfessionalHours = referenceObject ? Math.round(referenceObject.value) : 0;
 
   const goBack = () => {
-    setDataSource(map.parent);
+    setVisibleMap(visibleMap.parent);
   }
 
-  console.log('map ******', map);
+  console.log('referenceObject ******', referenceObject);
+  console.log('visibleMap ******', visibleMap);
   // svg should always be the map build from test_data, but the parent of children on line 213 should change dynamically.
   return (
       <div id="app">
           <Nav imageProps={imageProps} links={menuLinks}/>
           <div className="home__container">
-            {map &&
+            {visibleMap &&
               <div className="experience__explorer">
-                {map.parent && <FontAwesomeIcon icon="chevron-left" onClick={goBack} />}<h1>{map.data.title}</h1>
-                <svg width={map.x1} height={map.y1} className="skillz-treemap">
-                  {map.children.map((skill) => {
+                {visibleMap.parent && <FontAwesomeIcon icon="chevron-left" onClick={goBack} />}<h1>{visibleMap.data.title}</h1>
+                <svg width={visibleMap.x1} height={visibleMap.y1} className="skillz-treemap">
+                  {visibleMap.children.map((skill) => {
                     const displayMessage = getDisplayMessage(totalProfessionalHours, skill);
                     const width = skill.x1 - skill.x0;
                     const height = skill.y1 - skill.y0;
-                    const handleClick = skill.children ? setDataSource.bind(null, skill) : null;
-                    const color = getColorByValue(map)(skill.value);
+                    const handleClick = skill.children ? setVisibleMap.bind(null, skill) : null;
+                    const color = getColorByValue(visibleMap)(skill.value);
                     return (
                       <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={handleClick}>
                         <rect x={0} y={0} fill={color} width={width} height={height} />
