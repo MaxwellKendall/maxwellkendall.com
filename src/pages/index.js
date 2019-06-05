@@ -131,12 +131,13 @@ const test_data = {
 };
 
 const RootIndex = (props) => {
-  const [ selectedNode, setSelectedNode ] = useState(test_data);
-  const [ treemapObject, setTreemap ] = useState({ title: '' });
+  const [ dataSource, setDataSource ] = useState({ data: test_data });
+  const [ map, setMap ] = useState(null);
 
-  const buildTreemap = () => {    
-    console.log("BUILDING TREEMAP...")
-    const newMap = hierarchy(selectedNode, (d) => d.children) // second param defines where the node's descendants live, must return an array
+  const buildTreemap = () => {
+    console.log("BUILDING TREEMAP...");
+    const buildingFromNode = dataSource.data;
+    const newMap = hierarchy(buildingFromNode, (d) => d.children) // second param defines where the node's descendants live, must return an array
       .sum((skill) => {
         const { start, end } = skill;
         if (moment.isMoment(start) && moment.isMoment(end) ){
@@ -157,14 +158,14 @@ const RootIndex = (props) => {
       .size([800, 600]);
   
     tree(newMap);
-  
-    setTreemap(newMap);
+
+    setMap(newMap);
   }
 
-  useEffect(() => {
-    // not triggering at all here
-    return buildTreemap();
-  }, [treemapObject])
+  useEffect((args) => {
+    console.log("EFFECT HAPPENING!!!");
+    buildTreemap();
+  }, [dataSource])
 
   const getColorByValue = (data) => {
     return scaleLinear()
@@ -179,7 +180,7 @@ const RootIndex = (props) => {
 
   const getDisplayMessage = (totalProfessionalHours, skill) => {
     const hoursForSkill = Math.round(skill.value);
-    if (selectedNode.title === 'All Experience') { // show a percentage of total professional hours
+    if (map.data.title === 'All Experience') { // show a percentage of total professional hours
       const percentOfTotalSkillset = (hoursForSkill / totalProfessionalHours) * 100;
       return `${Math.round(percentOfTotalSkillset)}%`;
     }
@@ -193,38 +194,28 @@ const RootIndex = (props) => {
     .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
   const { menuLinks } = props.data.site.siteMetadata;
   const skills = props.data.allContentfulSkill.edges;
-  const totalProfessionalHours = treemapObject ? Math.round(treemapObject.value) : 0;
+  const totalProfessionalHours = map ? Math.round(map.value) : 0;
 
   const goBack = () => {
-    const previousNode = treemapObject.children.find((child) => {
-      return child.data.title === selectedNode.parent.data.title;
-    });
-    setSelectedNode({ data: previousNode });
+    setDataSource(map.parent);
   }
 
-  const getActiveNode = (node) => {
-    return treemapObject.children.find((child) => {
-      return child.data.title === node.data.title;
-    });
-  }
-
-  console.log('selectedNode', selectedNode);
-  console.log('treemap', treemapObject);
-
+  console.log('map ******', map);
+  // svg should always be the map build from test_data, but the parent of children on line 213 should change dynamically.
   return (
       <div id="app">
           <Nav imageProps={imageProps} links={menuLinks}/>
           <div className="home__container">
-            {selectedNode && selectedNode.children &&
+            {map &&
               <div className="experience__explorer">
-                {selectedNode.parent && <FontAwesomeIcon icon="chevron-left" onClick={goBack} />}<h1>{selectedNode.title}</h1>
-                <svg width={selectedNode.x1} height={selectedNode.y1} className="skillz-treemap">
-                  {selectedNode.children.map((skill) => {
+                {map.parent && <FontAwesomeIcon icon="chevron-left" onClick={goBack} />}<h1>{map.data.title}</h1>
+                <svg width={map.x1} height={map.y1} className="skillz-treemap">
+                  {map.children.map((skill) => {
                     const displayMessage = getDisplayMessage(totalProfessionalHours, skill);
                     const width = skill.x1 - skill.x0;
                     const height = skill.y1 - skill.y0;
-                    const handleClick = skill.children ? setSelectedNode.bind(null, getActiveNode(skill)) : null;
-                    const color = getColorByValue(selectedNode)(skill.value);
+                    const handleClick = skill.children ? setDataSource.bind(null, skill) : null;
+                    const color = getColorByValue(map)(skill.value);
                     return (
                       <g transform={`translate(${skill.x0}, ${skill.y0})`} className="skillz-treemap__item" onClick={handleClick}>
                         <rect x={0} y={0} fill={color} width={width} height={height} />
