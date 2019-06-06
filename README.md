@@ -1,4 +1,4 @@
-# Contentful Gatsby Starter Blog
+# MaxwellKendall.com is based on the Gatsby-Contentful Starter
 
 Create a [Gatsby](http://gatsbyjs.com/) blog powered by [Contentful](https://www.contentful.com). This is a simplified version of the [Gatsby Contentful Starter](https://github.com/contentful-userland/gatsby-contentful-starter) which is maintained by our Community.
 
