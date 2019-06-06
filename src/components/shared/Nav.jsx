@@ -50,17 +50,10 @@ const Nav = ({
         <div className="nav">
             {images}
             <h1>Maxwell Kendall</h1>
+            <span>Full Stack Web Developer</span>
             <ul className="nav__links">
                 {navLinks}
             </ul>
-            {/* <h2>Skills</h2>
-            <ul className="competencies__links">
-                {competencyLinks}
-            </ul>
-            <h2>Experience</h2>
-            <ul className="experience__links">
-                {experienceLinks}
-            </ul> */}
         </div>
     );
 }

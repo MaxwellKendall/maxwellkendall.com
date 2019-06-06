@@ -27,10 +27,10 @@ module.exports = {
         name: "Home",
         link: "/"
       },
-      {
-        name: "Portfolio",
-        link: "/portfolio"
-      },
+      // {
+      //   name: "Portfolio",
+      //   link: "/portfolio"
+      // },
       {
         name: "Blog",
         link: "/blog"

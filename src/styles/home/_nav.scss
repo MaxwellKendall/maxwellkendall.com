@@ -26,16 +26,16 @@
 
   h1,
   h2,
+  span,
   a {
     color: white;
   }
 
   h1,
   h2,
+  span,
   .nav__links,
-  .nav__img-headshot,
-  .experience__links,
-  .competencies__links {
+  .nav__img-headshot {
       z-index: 2;
   }
 
