@@ -226,7 +226,6 @@ const RootIndex = (props) => {
     .filter((item) => item.node.title !== "logo-bah")
     .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
   const { menuLinks } = props.data.site.siteMetadata;
-  const skills = props.data.allContentfulSkill.edges;
   const totalProfessionalHours = referenceObject ? Math.round(referenceObject.value) : 0;
 
   const goBack = () => {
@@ -267,11 +266,6 @@ const RootIndex = (props) => {
                   })}
                 </svg>
               </div>}
-            <ul>
-              {skills
-                .sort((skillA, skillB) => (moment(skillA.node.startDate) > moment(skillB.node.startDate)) ? -1 : 1)
-                .map((skill) => renderSkills(skill.node))}
-            </ul>
           </div>
       </div>
   );
@@ -295,14 +289,8 @@ export const pageQuery = graphql`
       edges {
         node {
           title
-          startDate
-          logos {
-            id
-            description
-            file {
-              url
-            }
-          }
+          start
+          end
         }
       }
     }
