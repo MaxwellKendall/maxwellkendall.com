@@ -5,9 +5,9 @@ import cx from 'classnames';
 
 const Nav = ({
     imageProps,
-    links
+    links,
+    isMobile
 }) => {
-
     const createNavLinks = (linkObj) => (
         <li className="nav__item">
             <Link to={`/${linkObj.link}`}>{linkObj.name}</Link>
@@ -25,29 +25,11 @@ const Nav = ({
         );
     }
 
-    const createLinksToExperience = () => {
-        return (
-            <li>
-                <a href="">Some Project I've worked on</a>
-            </li>
-        );
-    }
-
-    const createLinksToCompetencies = () => {
-        return (
-            <li>
-                <a href="">Some thing I'm good at</a>
-            </li>
-        );
-    }
-
-    const images = renderImages();
+    const images = isMobile ? null : renderImages();
     const navLinks = links.map((link) => createNavLinks(link));
-    // const competencyLinks = createLinksToCompetencies();
-    // const experienceLinks = createLinksToExperience();
-
+    console.log('width', window.innerWidth, isMobile)
     return (
-        <div className="nav">
+        <div className={cx({ nav: !isMobile, mobileNave: isMobile })}>
             {images}
             <h1>Maxwell Kendall</h1>
             <span>Full Stack Web Developer</span>
