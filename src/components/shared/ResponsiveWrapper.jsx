@@ -34,8 +34,10 @@ const ResponsiveWrapper = ({ children, page }) => {
 
   const getMapWidth = () => {
     if (isMobile()) {
+      console.log('get map width, mobile: ', windowWidth * 0.95);
       return windowWidth * 0.95;
     }
+    console.log('get map width, mobile: ', windowWidth / 2);
     return windowWidth / 2;
   };
 

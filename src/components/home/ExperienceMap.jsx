@@ -122,7 +122,7 @@ const test_data = {
   ]
 };
 
-const ExperienceMap = ({ mapWidth, mapHeight }) => {
+const ExperienceMap = ({ mapWidth, mapHeight, isMobile }) => {
   const [activeMap, setActiveMap] = useState(null); // this will have to be rebuilt every time it changes
   const [referenceObject, setReferenceObject] = useState(null); // this will have to be preserved and used as a reference for traversal.
   const [selectedReferenceNode, setSelectedReferenceNode] = useState(rootNode);
@@ -201,7 +201,7 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
   useEffect(() => {
     console.log("EFFECT HAPPENING!!!");
     buildTreemap();
-  }, [selectedReferenceNode]);
+  }, [selectedReferenceNode, mapWidth, mapHeight]);
 
   const getColorByValue = data => {
     return scaleLinear()
@@ -221,8 +221,10 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
       return `${Math.round(percentOfTotalSkillset)}%`;
     }
     const skillDuration = moment.duration(hoursForSkill, "hours");
-    const msg = `${skillDuration.years()} years, ${skillDuration.months()}, months`;
-    return msg;
+    if (skillDuration.years() === 0) {
+      return `${skillDuration.months()} months`;
+    }
+    return `${skillDuration.years()} ${skillDuration.years() === 1 ? 'year' : 'years'}, ${skillDuration.months()} ${skillDuration.months() === 1 ? 'month' : 'months'}`;
   };
 
   const goBack = () => {
@@ -237,11 +239,16 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
   const totalProfessionalHours = referenceObject
     ? Math.round(referenceObject.value)
     : 0;
-  console.log("activeMap", activeMap);
-  console.log("referenceObject", referenceObject);
-  console.log("selectedReferenceNode", selectedReferenceNode);
-  console.log("mapWidth", mapWidth);
-  console.log("mapHeight", mapHeight);
+  
+  const getTruncatedTitle = (title, width) => {
+    console.log("title", title);
+    console.log("width ", width);
+    if (width < 100) {
+      return `${title.slice(0,4)}...`;
+    }
+    return title;
+  }
+
   if (activeMap) {
     return (
       <div className="experience__explorer">
@@ -257,16 +264,15 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
           className="skillz-treemap"
         >
           {activeMap.children.map(skill => {
-            const displayMessage = getDisplayMessage(
-              totalProfessionalHours,
-              skill
-            );
+            let displayMessage = getDisplayMessage(totalProfessionalHours, skill);
             const width = skill.x1 - skill.x0;
             const height = skill.y1 - skill.y0;
             const handleClick = skill.children
               ? goDeeper.bind(null, skill)
               : null;
             const color = getColorByValue(activeMap)(skill.value);
+            const skillTitle = getTruncatedTitle(skill.data.title, width);
+            displayMessage = getTruncatedTitle(displayMessage, width);
             return (
               <g
                 transform={`translate(${skill.x0}, ${skill.y0})`}
@@ -280,7 +286,7 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
                   y={height / 2 - 5}
                   fill="white"
                 >
-                  {skill.data.title}
+                  {skillTitle}
                 </text>
                 <text
                   textAnchor="middle"
