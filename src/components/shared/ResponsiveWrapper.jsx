@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { throttle } from "lodash";
 
 const breakpoint = 780;
 
@@ -24,7 +25,7 @@ const ResponsiveWrapper = ({ children, page }) => {
   const updateWindowWidth = () => setWindowWidth(window.innerWidth);
 
   const registerResize = () => {
-    window.addEventListener("resize", updateWindowWidth, 100);
+    window.addEventListener("resize", throttle(updateWindowWidth, 100));
   };
 
   useEffect(() => {
