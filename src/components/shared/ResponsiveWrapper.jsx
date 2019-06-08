@@ -5,7 +5,7 @@ const breakpoint = 780;
 const maxMapWidth = 800;
 const mapPadding = 10;
 
-const homePagePadding = 20;
+const homePagePadding = 58; // 2x nav padding of 2em or 24px, + 10 for extra padding
 
 const classMap = {
   home: "home-page__container",
@@ -20,10 +20,7 @@ const ResponsiveWrapper = ({ children, page }) => {
   const handleResize = () => {
     if (!isMobile && window.innerWidth <= breakpoint) {
       setIsMobile(true);
-    } else if (
-      (isMobile || isMobile === null) &&
-      window.innerWidth > breakpoint
-    ) {
+    } else if ((isMobile || isMobile === null) && window.innerWidth > breakpoint) {
       setIsMobile(false);
     }
   };
@@ -60,7 +57,7 @@ const ResponsiveWrapper = ({ children, page }) => {
 
   return (
     <div
-      style={{ marginLeft: navWidth, padding: homePagePadding }}
+      style={{ marginLeft: navWidth, paddingLeft: homePagePadding }}
       className={classMap[page]}
       id="app">
       {children.map(child => {
