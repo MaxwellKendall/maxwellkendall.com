@@ -5,7 +5,7 @@ const breakpoint = 780;
 const maxMapWidth = 800;
 const mapPadding = 10;
 
-const homePagePadding = 58; // 2x nav padding of 2em or 24px, + 10 for extra padding
+const homePagePadding = 48; // 2x nav padding of 2em or 24px
 
 const classMap = {
   home: "home-page__container",
@@ -14,62 +14,53 @@ const classMap = {
 };
 
 const ResponsiveWrapper = ({ children, page }) => {
-  const [isMobile, setIsMobile] = useState(null);
-  const [navWidth, setNavWidth] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const handleResize = () => {
-    if (!isMobile && window.innerWidth <= breakpoint) {
-      setIsMobile(true);
-    } else if ((isMobile || isMobile === null) && window.innerWidth > breakpoint) {
-      setIsMobile(false);
+  const isMobile = () => {
+    if (windowWidth <= breakpoint) {
+      return true;
+    } else if (windowWidth > breakpoint) {
+      return false;
     }
   };
+
+  const updateWindowWidth = () => setWindowWidth(window.innerWidth);
+
   const registerResize = () => {
-    if (isMobile === null) {
-      handleResize();
-    }
-    window.addEventListener("resize", throttle(handleResize, 100));
+    window.addEventListener("resize", throttle(updateWindowWidth, 100));
   };
 
   useEffect(() => {
-    if (!navWidth) {
-      const width = window.innerWidth * 0.25;
-      setNavWidth(width);
-    }
     registerResize();
   }, []);
 
   const getMapWidth = () => {
-    const { innerWidth } = window;
-
-    if (isMobile) {
-      return innerWidth - mapPadding * 2;
+    if (isMobile()) {
+      return windowWidth * 0.95;
     }
-
-    const normalWidth = innerWidth * 0.75 - mapPadding * 4;
-
-    if (innerWidth > 1024) {
-      return maxMapWidth;
-    }
-
-    return normalWidth;
+    return windowWidth / 2;
   };
+
+  const getNavWidth = () => {
+    if (isMobile()) return windowWidth;
+    return windowWidth * 0.25;
+  }
 
   return (
     <div
-      style={{ marginLeft: navWidth, paddingLeft: homePagePadding }}
+      style={{ left: isMobile() ? 0 : getNavWidth() + homePagePadding }}
       className={classMap[page]}
       id="app">
       {children.map(child => {
         const { name } = child.type;
         if (name === "Nav") {
           return React.cloneElement(child, {
-            isMobile,
-            navWidth: navWidth
+            isMobile: isMobile(),
+            navWidth: getNavWidth()
           });
         } else if (name === "ExperienceMap") {
           return React.cloneElement(child, {
-            isMobile,
+            isMobile: isMobile(),
             mapWidth: getMapWidth(),
             mapHeight: 600
           });
