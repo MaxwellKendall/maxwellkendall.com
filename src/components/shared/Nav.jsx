@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import Image from "gatsby-image";
-import cx from "classnames";
+import { Hamburger } from "./Hamburger";
 
 const Nav = ({ imageProps, links, isMobile, navWidth }) => {
   const createNavLinks = linkObj => (
@@ -25,15 +25,22 @@ const Nav = ({ imageProps, links, isMobile, navWidth }) => {
     });
   };
 
-  const images = isMobile ? null : renderImages();
-  const navLinks = links.map(link => createNavLinks(link));
-  
-  return (
-    <div style={{ width: isMobile ? '100%' : navWidth }} className={cx({ nav: !isMobile, mobileNav: isMobile })}>
+  const desktopView = (images, links) => (
+    <div style={{ width: navWidth }} className="nav">
       {images}
       <h1>Maxwell Kendall</h1>
       <span>Full Stack Web Developer</span>
-      <ul className="nav__links">{navLinks}</ul>
+      <ul className="nav__links">{links}</ul>
+    </div>
+  )
+
+  const images = isMobile ? null : renderImages();
+  const navLinks = links.map(link => createNavLinks(link));
+  if (!isMobile) return desktopView(images, navLinks);
+  
+  return (
+    <div style={{ width: '100%' }} className="mobileNav">
+      <Hamburger />
     </div>
   );
 };
