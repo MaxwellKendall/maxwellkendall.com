@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { throttle } from "lodash";
 
 const breakpoint = 780;
-const maxMapWidth = 800;
-const mapPadding = 10;
 
 const homePagePadding = 48; // 2x nav padding of 2em or 24px
 
