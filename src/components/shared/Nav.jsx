@@ -27,7 +27,7 @@ const Nav = ({ imageProps, links, isMobile, navWidth }) => {
 
   const images = isMobile ? null : renderImages();
   const navLinks = links.map(link => createNavLinks(link));
-
+  
   return (
     <div style={{ width: isMobile ? '100%' : navWidth }} className={cx({ nav: !isMobile, mobileNav: isMobile })}>
       {images}

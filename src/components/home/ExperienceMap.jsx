@@ -199,7 +199,6 @@ const ExperienceMap = ({ mapWidth, mapHeight, isMobile }) => {
   };
 
   useEffect(() => {
-    console.log("EFFECT HAPPENING!!!");
     buildTreemap();
   }, [selectedReferenceNode, mapWidth, mapHeight]);
 
@@ -241,8 +240,6 @@ const ExperienceMap = ({ mapWidth, mapHeight, isMobile }) => {
     : 0;
   
   const getTruncatedTitle = (title, width) => {
-    console.log("title", title);
-    console.log("width ", width);
     if (width < 100) {
       return `${title.slice(0,4)}...`;
     }
