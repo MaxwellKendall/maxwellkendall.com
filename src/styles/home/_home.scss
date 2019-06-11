@@ -1,6 +1,10 @@
 .home-page__container {
-  padding: $global-spacer * 4;
   position: relative;
+  padding: 0;
+  margin: 0;
+  @include for-desktop {
+    padding: $global-spacer * 4;
+  }
   .vertical-timeline-element-icon {
     overflow: hidden;
   }
