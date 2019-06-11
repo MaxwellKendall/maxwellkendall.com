@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
 import Image from "gatsby-image";
-import { Hamburger } from "./Hamburger";
 
 const Nav = ({ imageProps, links, isMobile, navWidth }) => {
   const createNavLinks = linkObj => (
@@ -36,11 +35,12 @@ const Nav = ({ imageProps, links, isMobile, navWidth }) => {
 
   const images = isMobile ? null : renderImages();
   const navLinks = links.map(link => createNavLinks(link));
+
   if (!isMobile) return desktopView(images, navLinks);
   
   return (
     <div style={{ width: '100%' }} className="mobileNav">
-      <Hamburger />
+      <ul className="nav__links">{navLinks}</ul>
     </div>
   );
 };
