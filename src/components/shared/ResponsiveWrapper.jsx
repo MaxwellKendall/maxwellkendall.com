@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { throttle } from "lodash";
+import { debounce } from "lodash";
 
 const breakpoint = 780;
 
@@ -12,7 +12,7 @@ const classMap = {
 };
 
 const ResponsiveWrapper = ({ children, page }) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   const isMobile = () => {
     if (windowWidth <= breakpoint) {
@@ -25,10 +25,11 @@ const ResponsiveWrapper = ({ children, page }) => {
   const updateWindowWidth = () => setWindowWidth(window.innerWidth);
 
   const registerResize = () => {
-    window.addEventListener("resize", throttle(updateWindowWidth, 100));
+    window.addEventListener("resize", debounce(updateWindowWidth, 100));
   };
 
   useEffect(() => {
+    updateWindowWidth();
     registerResize();
   }, []);
 
