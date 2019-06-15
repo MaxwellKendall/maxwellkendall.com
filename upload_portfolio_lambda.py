@@ -43,7 +43,7 @@ def lambda_handler(event, context):
         DistributionId=cfId,
         InvalidationBatch={
           'Paths': {
-              'Quantity': 123,
+              'Quantity': 1,
               'Items': [
                   '/*',
               ]
