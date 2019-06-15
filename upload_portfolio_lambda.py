@@ -1,10 +1,12 @@
-import boto3, zipfile, StringIO, mimetypes
+import boto3, zipfile, StringIO, mimetypes, time
 
 def lambda_handler(event, context):
     s3 = boto3.resource("s3")
     sns = boto3.resource('sns')
+    cf = boto3.client('cloudfront')
+    cfId = 'E2K1YE12XJKXWU'
+    cf_signature=int(round(time.time()))
     topic = sns.Topic('arn:aws:sns:us-east-1:304945936761:deployMaxwellkendall')
-    
     location = {
       "bucketName": "maxwellkendall.build",
       "objectKey": "maxwellkendall-build"
@@ -37,9 +39,20 @@ def lambda_handler(event, context):
             prod_bucket.Object(nm[7:]).Acl().put(ACL='public-read')
       
       topic.publish(Subject="Maxwellkendall.com | Successful Deploy", Message="Maxwellkendall.com was just deployed")
-      if job:
-        codepipeline = boto3.client("codepipeline")
-        codepipeline.put_job_success_result(jobId=job["id"])
+      cf.create_invalidation(
+        DistributionId=cfId,
+        InvalidationBatch={
+          'Paths': {
+              'Quantity': 1,
+              'Items': [
+                  '*',
+              ]
+          },
+          'CallerReference': str(cf_signature)
+        }
+      )
+      codepipeline = boto3.client("codepipeline")
+      codepipeline.put_job_success_result(jobId=job["id"])
     except:
       if job:
         codepipeline = boto3.client("codepipeline")
@@ -51,3 +64,4 @@ def lambda_handler(event, context):
       
       topic.publish(Subject="Maxwellkendall.com | Failed Deploy", Message="Maxwellkendall.com just failed to deploy") 
       raise
+    
