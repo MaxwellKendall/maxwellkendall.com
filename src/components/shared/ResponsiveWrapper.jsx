@@ -15,7 +15,7 @@ const classMap = {
 };
 
 const ResponsiveWrapper = ({ children, page }) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   const isMobile = () => {
     if (windowWidth <= breakpoint) {
@@ -28,6 +28,7 @@ const ResponsiveWrapper = ({ children, page }) => {
   const updateWindowWidth = () => setWindowWidth(window.innerWidth);
 
   const registerResize = () => {
+    updateWindowWidth();
     window.addEventListener("resize", debounce(updateWindowWidth, 100));
   };
 
