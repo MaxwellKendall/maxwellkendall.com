@@ -39,7 +39,7 @@ def lambda_handler(event, context):
             prod_bucket.Object(nm[7:]).Acl().put(ACL='public-read')
       
       topic.publish(Subject="Maxwellkendall.com | Successful Deploy", Message="Maxwellkendall.com was just deployed")
-      test = cf.create_invalidation(
+      cf.create_invalidation(
         DistributionId=cfId,
         InvalidationBatch={
           'Paths': {
@@ -51,9 +51,6 @@ def lambda_handler(event, context):
           'CallerReference': str(cf_signature)
         }
       )
-
-      print "response from invalidation request", test
-
       codepipeline = boto3.client("codepipeline")
       codepipeline.put_job_success_result(jobId=job["id"])
     except:
