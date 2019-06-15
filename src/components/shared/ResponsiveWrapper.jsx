@@ -54,7 +54,10 @@ const ResponsiveWrapper = ({ children, page }) => {
       style={{ left: isMobile() ? 0 : getNavWidth() + homePagePadding }}
       className={classMap[page]}
       id="app">
-      {children.map(child => {
+        {windowWidth === 0 &&
+        <p>Loading...</p>
+        }
+      {windowWidth > 0 && children.map(child => {
         const { type } = child;
         if (type === Nav) {
           return React.cloneElement(child, {
