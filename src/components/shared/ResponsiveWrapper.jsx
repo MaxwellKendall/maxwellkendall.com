@@ -22,7 +22,10 @@ const ResponsiveWrapper = ({ children, page }) => {
     }
   };
 
-  const updateWindowWidth = () => setWindowWidth(window.innerWidth);
+  const updateWindowWidth = () => {
+    console.log("window", window.innerWidth);
+    setWindowWidth(window.innerWidth);
+  }
 
   const registerResize = () => {
     window.addEventListener("resize", debounce(updateWindowWidth, 100));
