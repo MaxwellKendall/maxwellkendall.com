@@ -55,6 +55,7 @@ const ResponsiveWrapper = ({ children, page }) => {
       id="app">
       {children.map(child => {
         const { name } = child.type;
+        console.log("child name", name, "child", child);
         if (name === "Nav") {
           return React.cloneElement(child, {
             isMobile: isMobile(),
