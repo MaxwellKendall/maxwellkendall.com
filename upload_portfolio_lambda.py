@@ -45,7 +45,7 @@ def lambda_handler(event, context):
           'Paths': {
               'Quantity': 1,
               'Items': [
-                  '*',
+                  '/*',
               ]
           },
           'CallerReference': str(cf_signature)
