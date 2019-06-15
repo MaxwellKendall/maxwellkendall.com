@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { debounce } from "lodash";
 
+import Nav from "./Nav";
+import ExperienceMap from "../home/ExperienceMap";
+
 const breakpoint = 780;
 
 const homePagePadding = 48; // 2x nav padding of 2em or 24px
@@ -12,7 +15,7 @@ const classMap = {
 };
 
 const ResponsiveWrapper = ({ children, page }) => {
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const isMobile = () => {
     if (windowWidth <= breakpoint) {
@@ -22,17 +25,13 @@ const ResponsiveWrapper = ({ children, page }) => {
     }
   };
 
-  const updateWindowWidth = () => {
-    console.log("window", window.innerWidth);
-    setWindowWidth(window.innerWidth);
-  }
+  const updateWindowWidth = () => setWindowWidth(window.innerWidth);
 
   const registerResize = () => {
     window.addEventListener("resize", debounce(updateWindowWidth, 100));
   };
 
   useEffect(() => {
-    updateWindowWidth();
     registerResize();
   }, []);
 
@@ -54,14 +53,13 @@ const ResponsiveWrapper = ({ children, page }) => {
       className={classMap[page]}
       id="app">
       {children.map(child => {
-        const { name } = child.type;
-        console.log("child name", name, "child", child);
-        if (name === "Nav") {
+        const { type } = child;
+        if (type === Nav) {
           return React.cloneElement(child, {
             isMobile: isMobile(),
             navWidth: getNavWidth()
           });
-        } else if (name === "ExperienceMap") {
+        } else if (type === ExperienceMap) {
           return React.cloneElement(child, {
             isMobile: isMobile(),
             mapWidth: getMapWidth(),
