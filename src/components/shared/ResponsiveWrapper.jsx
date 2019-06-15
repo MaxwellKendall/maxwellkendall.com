@@ -33,7 +33,7 @@ const ResponsiveWrapper = ({ children, page }) => {
   };
 
   useEffect(() => {
-    console.log("cash");
+    console.log("cash $");
     registerResize();
   }, []);
 
