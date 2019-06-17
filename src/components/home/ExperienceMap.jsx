@@ -122,50 +122,35 @@ const test_data = {
   ]
 };
 
-const ExperienceMap = ({ mapWidth, mapHeight, isMobile }) => {
+const findChild = (node, referenceString) => {
+  if (node.data.title === referenceString) return node;
+  if (node.children) {
+    return node.children.reduce((acc, child) => {
+      if (acc.data.title === referenceString) return acc;
+      if (child.data.title === referenceString) return child;
+      return findChild(child, referenceString);
+    }, { data: { title: "" } });
+  }
+  return { data: { title: "" } };
+}
+
+const ExperienceMap = ({ mapWidth, mapHeight }) => {
   const [activeMap, setActiveMap] = useState(null); // this will have to be rebuilt every time it changes
   const [referenceObject, setReferenceObject] = useState(null); // this will have to be preserved and used as a reference for traversal.
-  const [selectedReferenceNode, setSelectedReferenceNode] = useState(rootNode);
+  const [selectedNodeTitle, setSelectedNodeTitle] = useState(rootNode);
 
   const getSelectedReferenceNode = () => {
     if (!referenceObject) {
       return { data: test_data }; // no selected node, init reference map
     }
-    if (selectedReferenceNode === rootNode) {
+    if (selectedNodeTitle === rootNode) {
       return referenceObject;
     }
 
-    return referenceObject.children.reduce(
-      (acc, child1) => {
-        if (acc.data.title === selectedReferenceNode) {
-          return acc;
-        }
-        // TODO: Good opportunity for recursion here.
-        // depth1
-        if (child1.data.title === selectedReferenceNode) return child1;
-        // depth2
-        const child2 = child1.children
-          ? child1.children.find(
-              child => child.data.title === selectedReferenceNode
-            )
-          : null;
-        if (child2) return child2;
-        // depth3
-        const child3 = child1.children
-          ? child1.children.find(nextChild =>
-              nextChild.children
-                ? nextChild.children.find(
-                    nextNextChild =>
-                      nextNextChild.data.title === selectedReferenceNode
-                  )
-                : false
-            )
-          : null;
-        if (child3) return child3;
-        return acc;
-      },
-      { data: { title: "" } }
-    );
+    return referenceObject.children.reduce((acc, child) => {
+        if (acc.data.title === selectedNodeTitle) return acc;
+        return findChild(child, selectedNodeTitle);
+    }, { data: { title: "" } })
   };
 
   const buildTreemap = () => {
@@ -200,20 +185,22 @@ const ExperienceMap = ({ mapWidth, mapHeight, isMobile }) => {
 
   useEffect(() => {
     buildTreemap();
-  }, [selectedReferenceNode, mapWidth, mapHeight]);
+  }, [selectedNodeTitle, mapWidth, mapHeight]);
 
   const getColorByValue = data => {
+    const lowest = data.children ? data.children[data.children.length - 1].value : data.value;
+    const highest = data.children ? data.children[0].value : data.value;
     return scaleLinear()
       .domain([
-        data.children[data.children.length - 1].value,
-        data.children[0].value
+        lowest,
+        highest
       ])
       .range([interpolateGreens(0.45), interpolateGreens(0.5)]);
   };
 
   const getDisplayMessage = (totalProfessionalHours, skill) => {
     const hoursForSkill = Math.round(skill.value);
-    if (selectedReferenceNode === rootNode) {
+    if (selectedNodeTitle === rootNode) {
       // show a percentage of total professional hours
       const percentOfTotalSkillset =
         (hoursForSkill / totalProfessionalHours) * 100;
@@ -228,11 +215,11 @@ const ExperienceMap = ({ mapWidth, mapHeight, isMobile }) => {
 
   const goBack = () => {
     const activeNode = getSelectedReferenceNode();
-    setSelectedReferenceNode(activeNode.parent.data.title);
+    setSelectedNodeTitle(activeNode.parent.data.title);
   };
 
   const goDeeper = node => {
-    setSelectedReferenceNode(node.data.title);
+    setSelectedNodeTitle(node.data.title);
   };
 
   const totalProfessionalHours = referenceObject
@@ -246,11 +233,47 @@ const ExperienceMap = ({ mapWidth, mapHeight, isMobile }) => {
     return title;
   }
 
+  const renderTreemapCell = (skill) => {
+    let displayMessage = getDisplayMessage(totalProfessionalHours, skill);
+    const width = skill.x1 - skill.x0;
+    const height = skill.y1 - skill.y0;
+    const handleClick = goDeeper.bind(null, skill);
+    const color = getColorByValue(activeMap)(skill.value);
+    const skillTitle = getTruncatedTitle(skill.data.title, width);
+    displayMessage = getTruncatedTitle(displayMessage, width);
+    return (
+      <g
+        transform={`translate(${skill.x0}, ${skill.y0})`}
+        className="skillz-treemap__item"
+        onClick={handleClick}
+      >
+        <rect x={0} y={0} fill={color} width={width} height={height} />
+        <text
+          textAnchor="middle"
+          x={width / 2}
+          y={height / 2 - 5}
+          fill="white"
+        >
+          {skillTitle}
+        </text>
+        <text
+          textAnchor="middle"
+          x={width / 2}
+          y={height / 2 + 15}
+          fill="white"
+        >
+          {displayMessage}
+        </text>
+      </g>
+    );
+  }
+
   if (activeMap) {
+    console.log("map: ", activeMap);
     return (
       <div className="experience__explorer">
         <div className="experience__explorer__header">
-          {selectedReferenceNode !== rootNode && (
+          {selectedNodeTitle !== rootNode && (
             <FontAwesomeIcon icon="chevron-left" onClick={goBack} />
           )}
           <h1>{activeMap.data.title}</h1>
@@ -260,42 +283,10 @@ const ExperienceMap = ({ mapWidth, mapHeight, isMobile }) => {
           height={activeMap.y1}
           className="skillz-treemap"
         >
-          {activeMap.children.map(skill => {
-            let displayMessage = getDisplayMessage(totalProfessionalHours, skill);
-            const width = skill.x1 - skill.x0;
-            const height = skill.y1 - skill.y0;
-            const handleClick = skill.children
-              ? goDeeper.bind(null, skill)
-              : null;
-            const color = getColorByValue(activeMap)(skill.value);
-            const skillTitle = getTruncatedTitle(skill.data.title, width);
-            displayMessage = getTruncatedTitle(displayMessage, width);
-            return (
-              <g
-                transform={`translate(${skill.x0}, ${skill.y0})`}
-                className="skillz-treemap__item"
-                onClick={handleClick}
-              >
-                <rect x={0} y={0} fill={color} width={width} height={height} />
-                <text
-                  textAnchor="middle"
-                  x={width / 2}
-                  y={height / 2 - 5}
-                  fill="white"
-                >
-                  {skillTitle}
-                </text>
-                <text
-                  textAnchor="middle"
-                  x={width / 2}
-                  y={height / 2 + 15}
-                  fill="white"
-                >
-                  {displayMessage}
-                </text>
-              </g>
-            );
-          })}
+          {activeMap.children
+            ? activeMap.children.map(skill => renderTreemapCell(skill))
+            : renderTreemapCell(activeMap)
+          }
         </svg>
       </div>
     );
