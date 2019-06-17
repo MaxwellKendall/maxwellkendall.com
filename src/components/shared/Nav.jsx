@@ -39,7 +39,7 @@ const Nav = ({ imageProps, links, isMobile, navWidth }) => {
   if (!isMobile) return desktopView(images, navLinks);
   
   return (
-    <div style={{ width: '100%' }} className="mobileNav">
+    <div className="mobileNav">
       <ul className="nav__links">{navLinks}</ul>
     </div>
   );

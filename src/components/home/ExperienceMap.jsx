@@ -221,7 +221,7 @@ const ExperienceMap = ({ mapWidth, mapHeight, isMobile }) => {
     }
     const skillDuration = moment.duration(hoursForSkill, "hours");
     if (skillDuration.years() === 0) {
-      return `${skillDuration.months()} months`;
+      return `${skillDuration.months()} ${skillDuration.months() === 1 ? 'month' : 'months'}`;
     }
     return `${skillDuration.years()} ${skillDuration.years() === 1 ? 'year' : 'years'}, ${skillDuration.months()} ${skillDuration.months() === 1 ? 'month' : 'months'}`;
   };
