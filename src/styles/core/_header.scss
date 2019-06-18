@@ -1,22 +1,40 @@
 .header {
   grid-area: header;
+  width: 100%;
   display: grid;
   grid-template-areas:
-    ". title title ."
-    ". search search ."
-    ". tags tags .";
-  justify-self: center;
+  ". pic bio ." 
+  "search search search search" 
+  "tags tags tags tags";
   grid-row-gap: .5em;
-  h1 {
-    grid-area: title;
-    font-size: 1.75rem;
-    margin: 1em 0 .5em .25em;
-    font-family: 'Permanent Marker';
-    text-align: center;
+  align-items: center;
+  padding-top: $global-spacer;
+  .header__image--container {
+    grid-area: pic;
+    justify-content: flex-end;
+    display: flex;
+    .header__image {
+      border-radius: 48%;
+      overflow: hidden;
+      justify-content: center;
+      width: 120px;
+      margin-right: $global-spacer;
+    }
   }
+  .header__bio {
+    justify-content: center;
+    grid-area: bio;
+    h1 {
 
+    }
+    p {
+
+    }
+  }
   a {
     text-decoration: none;
+    font-size: 20px;
+    grid-area: nav;
   }
 }
 
