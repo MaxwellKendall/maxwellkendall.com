@@ -3,12 +3,34 @@
   width: 100%;
   display: grid;
   grid-template-areas:
-    "nav . . ."
-    "search search search search"
-    "tags tags tags tags";
-  justify-self: center;
+  ". pic bio ." 
+  "search search search search" 
+  "tags tags tags tags";
   grid-row-gap: .5em;
   align-items: center;
+  padding-top: $global-spacer;
+  .header__image--container {
+    grid-area: pic;
+    justify-content: flex-end;
+    display: flex;
+    .header__image {
+      border-radius: 48%;
+      overflow: hidden;
+      justify-content: center;
+      width: 120px;
+      margin-right: $global-spacer;
+    }
+  }
+  .header__bio {
+    justify-content: center;
+    grid-area: bio;
+    h1 {
+
+    }
+    p {
+
+    }
+  }
   a {
     text-decoration: none;
     font-size: 20px;

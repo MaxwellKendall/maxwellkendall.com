@@ -1,8 +1,15 @@
+$width-offset: calc($global-spacer * 2 + $global-spacer);
+
 .article-preview {
   text-align: center;
   width: 100%;
+  min-height: 10vh;
+  padding: $global-spacer * 2;
+  color: black;
+  background: white;
+  margin: 0 2px;
   @include for-tablet {
-    width: 33%;
+    width: calc(50% - 28px);
   }
   .preview-title {
     font-size: 1.5em;
@@ -30,6 +37,10 @@
 
 .article-preview__wide {
   width: 100%;
+  min-height: 20vh;
+  padding: $global-spacer * 2;
+  background: black;
+  color: white;
   @include for-tablet {
     width: 100%;
   }

@@ -45,6 +45,10 @@ export const getBio = (name = "Maxwell Kendall") => {
                         }
                         shortBio {
                           shortBio
+                          childMarkdownRemark {
+                            id
+                            html
+                          }
                         }
                       }
                     }
