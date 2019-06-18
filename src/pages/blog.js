@@ -2,13 +2,17 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core'
 import ArticlePreview from '../components/blog/ArticlePreview'
 import { Layout } from '../components/blog/Layout'
 import { Header } from '../components/blog/Header'
 import { Search } from '../components/blog/Search'
-import { Tags } from '../components/blog/Tags';
+import { Tags } from '../components/blog/Tags'
 
 require('../styles/index.scss');
+
+library.add(faHome);
 
 class RootIndex extends React.Component {
   state = {
@@ -61,6 +65,7 @@ class RootIndex extends React.Component {
   }
 
   render() {
+    console.log("props: ", this.props.data);
     const { siteTitle } = this.props.data;
     return (
       <Layout>
@@ -76,11 +81,10 @@ class RootIndex extends React.Component {
         <div className="wrapper">
           {this.state.posts.length === 0 && <p>No posts available, please enter new search term!</p>}
           <ul className="article-list">
-            {this.state.posts.map(({ node }) => {
+            {this.state.posts.map(({ node }, index) => {
+              const wideClass = index % 3 === 0 ? "article-preview__wide" : "";
               return (
-                <li key={node.slug}>
-                  <ArticlePreview article={node} />
-                </li>
+                <ArticlePreview classNames={`article-preview ${wideClass}`} article={node} key={node.slug} />
               )
             })}
           </ul>
@@ -95,25 +99,19 @@ export default RootIndex
 export const pageQuery = graphql`
   query blog {
     allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-          edges {
-            node {
-              title
-              slug
-              publishDate(formatString: "MMMM Do, YYYY")
-              tags
-              description {
-                childMarkdownRemark {
-                  html
-                }
-              }
+      edges {
+        node {
+          title
+          slug
+          publishDate(formatString: "MMMM Do, YYYY")
+          tags
+          description {
+            childMarkdownRemark {
+              html
             }
           }
         }
-        contentfulPerson(name: { eq: "Maxwell Kendall" }) {
-          name
-          shortBio {
-            shortBio
-          }
-        }
-    }
+      }
+    }  
+  }
 `

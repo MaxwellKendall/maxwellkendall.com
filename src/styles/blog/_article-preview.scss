@@ -1,5 +1,9 @@
 .article-preview {
   text-align: center;
+  width: 100%;
+  @include for-tablet {
+    width: 33%;
+  }
   .preview-title {
     font-size: 1.5em;
     text-align: center;
@@ -21,6 +25,13 @@
     border-radius: 2px;
     border: 1px solid #A0A0A0;
     margin-right: .5em;
+  }
+}
+
+.article-preview__wide {
+  width: 100%;
+  @include for-tablet {
+    width: 100%;
   }
 }
 

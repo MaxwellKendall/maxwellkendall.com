@@ -1,3 +1,7 @@
 @mixin for-desktop {
     @media (min-width: $desktop) { @content }
+};
+
+@mixin for-tablet {
+    @media (min-width: $tablet) { @content }
 }

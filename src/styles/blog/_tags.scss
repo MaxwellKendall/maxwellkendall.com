@@ -9,16 +9,6 @@
     flex-direction: row;
     margin-top: 1em;
   }
-  .header {
-    margin-right: .5em;
-    align-self: center;
-    display: flex;
-    @media screen and (min-width: $tablet) {
-      margin: 0;
-      text-align: center;
-    }
-  }
-
   .tags {
     display: flex;
     padding: 0;

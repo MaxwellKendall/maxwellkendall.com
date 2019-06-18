@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
 
-#app {
+#___gatsby {
     min-height: 100vh;
+    width: 100%;
 }
 
 body {
@@ -12,6 +13,9 @@ body {
   color: #373F49;
   background: #eee;
   margin: 0;
+  display: flex;
+  justify-content: center;
+
   .layout {
     display: grid;
     height: 100vh;
@@ -22,49 +26,52 @@ body {
     padding: 0 $global-spacer * 2;
     grid-template-areas: 
       "header header header header"
-      ". main main ."
+      "main main main main"
       "footer footer footer footer";
-    
-    @media screen and (max-width: $tablet) {
-        grid-template-areas: 
+    margin: auto;
+    width: calc(100% * .95);
+    @include for-tablet {
+      grid-template-areas: 
           "header header header header"
           "main main main main"
           "footer footer footer footer";
-      }
+        width: calc(100% * .75); 
+        max-width: 1100px;
+    }
 
     h1 {
       font-size: $h1;
-      @media screen and (max-width: $tablet) {
+      @include for-tablet {
         font-size: $h4;
       }
     }
     h2 {
       font-size: $h2;
-      @media screen and (max-width: $tablet) {
+      @include for-tablet {
         font-size: $h5;
       }
     }
     h3 {
       font-size: $h3;
-      @media screen and (max-width: $tablet) {
+      @include for-tablet {
         font-size: $h6;
       }
     }
     h4 {
       font-size: $h4;
-      @media screen and (max-width: $tablet) {
+      @include for-tablet {
         font-size: $font-size * 1.25
       }
     }
     h5 {
       font-size: $h5;
-      @media screen and (max-width: $tablet) {
+      @include for-tablet {
         font-size: $font-size * 1.15
       }
     }
     h6 {
       font-size: $h6;
-      @media screen and (max-width: $tablet) {
+      @include for-tablet {
         font-size: $font-size * 1.05
       }
     }
@@ -88,7 +95,9 @@ body {
       width: calc(100% - 10vmin);
       margin: 0 auto;
       padding: 5vmin 0;
-      display: grid;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     /**
@@ -98,8 +107,12 @@ body {
       margin: 0;
       padding: 0;
       list-style: none;
-      display: grid;
-      grid-gap: 5vmin; 
+      display: flex;
+      flex-direction: row;
+      grid-gap: 5vmin;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 75%;
     }
 
     /**

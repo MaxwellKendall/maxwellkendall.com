@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export const Header = ({ children }) => (
+import { getBio } from "../../graphql";
+
+export const Header = ({ children }) => {
+  const test = getBio();
+  return (
     <div className="header">
-      <h1>
-        <Link to="/">MAXWELL<strong>KENDALL.COM</strong></Link>
-      </h1>
+        {/* <Link to="/">
+          <FontAwesomeIcon icon="home" />
+        </Link> */}
       {children}
     </div>
-);
+  );
+};
+

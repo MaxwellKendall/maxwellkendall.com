@@ -2,12 +2,12 @@ import React from 'react'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 
-export default ({ article }) => {
+export default ({ article, classNames }) => {
   const renderTags = () => {
     return article.tags.map(tag => tag).join(', ')
   }
   return (
-    <div className="article-preview">
+    <li className={classNames}>
       <Link to={`/blog/${article.slug}`}>
         {article.heroImage && <Img alt="" sizes={article.heroImage.sizes} />}
         <h3 className="preview-title">{article.title}</h3>
@@ -21,6 +21,6 @@ export default ({ article }) => {
           }}
         />
       </Link>
-    </div>
+    </li>
   );
 }
