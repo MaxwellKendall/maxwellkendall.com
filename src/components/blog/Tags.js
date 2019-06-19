@@ -7,16 +7,14 @@ export const Tags = ({
   activeTag,
 }) => {
   return (
-    <div className="tags-wrapper">
-      <ul className="tags">
-        {tags.map((tag) => (
-          <li className="tag">
-            <a className={cx({ "active-tag": (tag === activeTag) })} onClick={() => updateSearch(tag)}>
-              {tag}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="tags">
+      {tags.map((tag) => (
+        <li className="tag">
+          <a className={cx({ "active-tag": (tag === activeTag) })} onClick={() => updateSearch(tag)}>
+            {tag}
+          </a>
+        </li>
+      ))}
+    </ul>
   )
 };

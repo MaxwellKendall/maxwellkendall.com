@@ -1,9 +1,9 @@
 .search {
-  margin: auto;
   width: 100%;
   grid-area: search;
   display: flex;
   justify-content: center;
+  margin: $global-spacer * 2;
   .search__input {
     padding: .75rem;
     border-radius: .25rem;

@@ -36,6 +36,9 @@
     grid-area: bio;
     h1, p {
       text-align: center;
+      @include for-tablet {
+        text-align: left;
+      }
     }
   }
   a {

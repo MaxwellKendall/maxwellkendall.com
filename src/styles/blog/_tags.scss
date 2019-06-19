@@ -1,36 +1,28 @@
-.tags-wrapper {
+.tags {
   grid-area: tags;
   display: flex;
   max-width: 44em;
   justify-self: center;
   align-items: center;
   flex-direction: row;
-  @media screen and (min-width: $tablet) {
-    flex-direction: row;
-    margin-top: 1em;
-  }
-  .tags {
-    display: flex;
-    padding: 0;
-    flex-wrap: wrap;
-    @media screen and (min-width: $tablet) {
-      margin: 0 1em;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: $global-spacer * 2;
+  .tag {
+    list-style: none;
+    margin: .1em .25em;
+    a {
+      border-radius: 0.75em;
+      background: white;
+      padding: .5em;
     }
-    .tag {
-      list-style: none;
-      margin: .1em .25em;
-      a {
-        border-radius: 0.75em;
-        background: white;
-        padding: .5em;
-      }
-      .active-tag {
-        background: black;
-        color: white;
-      }
-      &:hover {
-        cursor: pointer;
-      }
+    .active-tag {
+      background: black;
+      color: white;
+    }
+    &:hover {
+      cursor: pointer;
     }
   }
 }
