@@ -11,7 +11,7 @@ export const Tags = ({
       {tags.map((tag) => (
         <li className="tag">
           <a className={cx({ "active-tag": (tag === activeTag) })} onClick={() => updateSearch(tag)}>
-            {tag}
+            {`#${tag}`}
           </a>
         </li>
       ))}

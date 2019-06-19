@@ -15,7 +15,8 @@
     a {
       border-radius: 0.75em;
       background: white;
-      padding: .5em;
+      padding: $global-spacer;
+      font-size: 1em;
     }
     .active-tag {
       background: black;
