@@ -3,16 +3,26 @@
   width: 100%;
   display: grid;
   grid-template-areas:
-  ". pic bio ." 
-  "search search search search" 
-  "tags tags tags tags";
+      "pic pic pic pic"
+      "bio bio bio bio"
+      "search search search search" 
+      "tags tags tags tags";
+  @include for-tablet {
+    grid-template-areas:
+      ". pic bio ." 
+      "search search search search" 
+      "tags tags tags tags"; 
+  }
   grid-row-gap: .5em;
   align-items: center;
   padding-top: $global-spacer;
   .header__image--container {
     grid-area: pic;
-    justify-content: flex-end;
     display: flex;
+    justify-content: center;
+    @include for-tablet {
+      justify-content: flex-end;
+    }
     .header__image {
       border-radius: 48%;
       overflow: hidden;
@@ -24,11 +34,8 @@
   .header__bio {
     justify-content: center;
     grid-area: bio;
-    h1 {
-
-    }
-    p {
-
+    h1, p {
+      text-align: center;
     }
   }
   a {

@@ -1,12 +1,14 @@
 .search {
   margin: auto;
-  width: 75%;
+  width: 100%;
   grid-area: search;
+  display: flex;
+  justify-content: center;
   .search__input {
     padding: .75rem;
     border-radius: .25rem;
     border: none;
-    width: 100%;
+    width: 20em;
   }
   
   .search input::-webkit-calendar-picker-indicator {
