@@ -40,6 +40,14 @@
         text-align: left;
       }
     }
+    h1 {
+      font-size: $h1;
+      margin-bottom: 0;
+    }
+    p {
+      font-size: $font-size * 1.25;
+      margin-top: 0;
+    }
   }
   a {
     text-decoration: none;
