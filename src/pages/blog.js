@@ -66,18 +66,17 @@ class RootIndex extends React.Component {
 
   render() {
     console.log("props: ", this.props.data);
-    const { siteTitle } = this.props.data;
+    const { siteMetadata } = this.props.data.site;
     return (
       <Layout>
-        <Helmet title={siteTitle} />
-        <Header>
-          <Search
+        <Helmet title={siteMetadata.title} />
+        <Header links={siteMetadata.menuLinks} title={siteMetadata.title} />
+        <Search
             renderAutoCompleteOptions={this.renderAutoCompleteOptions}
             searchTerm={this.state.searchTerm}
             updateSearchTerm={this.updateSearchTerm}
             submit={this.filterPosts} />
-          <Tags activeTag={this.state.activeTag} tags={this.getUniqueTags()} updateSearch={(tag) => { this.setState({ searchTerm: tag, activeTag: tag }, this.filterPosts)}} />
-        </Header>
+        <Tags activeTag={this.state.activeTag} tags={this.getUniqueTags()} updateSearch={(tag) => { this.setState({ searchTerm: tag, activeTag: tag }, this.filterPosts)}} />
         <div className="wrapper">
           {this.state.posts.length === 0 && <p>No posts available, please enter new search term!</p>}
           <ul className="article-list">
@@ -111,6 +110,15 @@ export const pageQuery = graphql`
             }
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        menuLinks {
+          link
+          name
+        }
+        title
       }
     }  
   }

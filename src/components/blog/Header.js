@@ -5,19 +5,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { getBio } from "../../graphql";
 
-export const Header = ({ children }) => {
-  const { image, shortBio } = getBio();
+export const Header = ({ links, title }) => {
+  const { headShots } = getBio();
   return (
     <div className="header">
-        <Link className="header__image--container" to="/">
-          <Image className="header__image" fluid={image.fluid} />
-        </Link>
-          <div
-            className="header__bio"
-            dangerouslySetInnerHTML={{
-              __html: shortBio.childMarkdownRemark.html
-            }} />
-      {children}
+      <Image className="header__image" fluid={headShots[1].fluid} />
+      <h1>{title}</h1>
+      {links.map((link) => <Link to={link.link}>{link.name}</Link>)}
+        {/* <div
+          className="header__bio"
+          dangerouslySetInnerHTML={{
+            __html: shortBio.childMarkdownRemark.html
+          }} /> */}
     </div>
   );
 };

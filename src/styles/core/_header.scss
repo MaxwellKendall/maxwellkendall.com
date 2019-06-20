@@ -1,49 +1,27 @@
 .header {
   grid-area: header;
   width: 100%;
-  display: grid;
-  grid-template-areas:
-      "pic pic pic pic"
-      "bio bio bio bio"
-      "search search search search" 
-      "tags tags tags tags";
-  grid-row-gap: .5em;
+  display: flex;
   align-items: center;
   padding-top: $global-spacer;
-  .header__image--container {
-    grid-area: pic;
+  .header__image {
     display: flex;
     justify-content: center;
-    .header__image {
-      border-radius: 48%;
-      overflow: hidden;
-      justify-content: center;
-      height: 250px;
-      width: 250px;
-      margin-right: $global-spacer;
-    }
+    border-radius: 48%;
+    overflow: hidden;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    margin-right: $global-spacer * 3;
   }
-  .header__bio {
-    justify-content: center;
-    grid-area: bio;
-    display: flex;
-    flex-direction: column;
-    h1, p {
-      text-align: center;
-    }
-    h1 {
-      font-size: $h1;
-      margin-bottom: 0;
-    }
-    p {
-      font-size: $font-size * 1.25;
-      margin-top: 0;
-    }
+  h1 {
+    margin-right: auto;
   }
   a {
     text-decoration: none;
     font-size: 20px;
     grid-area: nav;
+    margin: 0 .5em;
   }
 }
 
