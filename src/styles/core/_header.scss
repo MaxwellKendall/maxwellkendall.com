@@ -7,12 +7,6 @@
       "bio bio bio bio"
       "search search search search" 
       "tags tags tags tags";
-  @include for-tablet {
-    grid-template-areas:
-      ". pic bio ." 
-      "search search search search" 
-      "tags tags tags tags"; 
-  }
   grid-row-gap: .5em;
   align-items: center;
   padding-top: $global-spacer;
@@ -20,25 +14,22 @@
     grid-area: pic;
     display: flex;
     justify-content: center;
-    @include for-tablet {
-      justify-content: flex-end;
-    }
     .header__image {
       border-radius: 48%;
       overflow: hidden;
       justify-content: center;
-      width: 120px;
+      height: 250px;
+      width: 250px;
       margin-right: $global-spacer;
     }
   }
   .header__bio {
     justify-content: center;
     grid-area: bio;
+    display: flex;
+    flex-direction: column;
     h1, p {
       text-align: center;
-      @include for-tablet {
-        text-align: left;
-      }
     }
     h1 {
       font-size: $h1;
