@@ -1,12 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
-import Helmet from 'react-helmet'
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import ArticlePreview from '../components/blog/ArticlePreview'
 import { Layout } from '../components/blog/Layout'
-import { Header } from '../components/blog/Header'
 import { Search } from '../components/blog/Search'
 import { Tags } from '../components/blog/Tags'
 
@@ -65,12 +63,8 @@ class RootIndex extends React.Component {
   }
 
   render() {
-    console.log("props: ", this.props.data);
-    const { siteMetadata } = this.props.data.site;
     return (
-      <Layout>
-        <Helmet title={siteMetadata.title} />
-        <Header links={siteMetadata.menuLinks} title={siteMetadata.title} />
+      <Layout className="blog__home">
         <Search
             renderAutoCompleteOptions={this.renderAutoCompleteOptions}
             searchTerm={this.state.searchTerm}
@@ -110,15 +104,6 @@ export const pageQuery = graphql`
             }
           }
         }
-      }
-    }
-    site {
-      siteMetadata {
-        menuLinks {
-          link
-          name
-        }
-        title
       }
     }  
   }

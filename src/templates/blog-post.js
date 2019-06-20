@@ -12,7 +12,7 @@ class BlogPostTemplate extends Component {
     const post = get(this.props, 'data.contentfulBlogPost')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
     return (
-      <Layout includeHeader>
+      <Layout className="blog__post">
         <div className="blogpost__wrapper" style={{ background: '#fff' }}>
           <Helmet title={`${post.title} | ${siteTitle}`} />
           {post.heroImage &&
