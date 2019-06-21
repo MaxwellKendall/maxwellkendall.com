@@ -8,8 +8,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "build website with new blog post"
-          command: "npm run build"
+          name: "install dependencies"
+          command: "npm install"
+      - run:
+          name: "build code"
+          command: "npm build"
   deploy:
     working_directory: ~/maxwellkendall.com/public
     docker:
