@@ -5,7 +5,10 @@ jobs:
     docker:
       - image: "circleci/node:10.15.3"
       - image: "circleci/python:3.7.2"
+    branches:
+      only: master
     steps:
+      - checkout
       - run:
           name: "build website with new blog post"
           command: "npm run build"
@@ -19,6 +22,3 @@ jobs:
       new_blog_post:
         jobs:
           - deploy:
-              filters:
-                branches:
-                  only: master
