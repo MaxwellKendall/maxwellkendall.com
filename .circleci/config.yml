@@ -12,7 +12,7 @@ jobs:
           command: "npm install"
       - run:
           name: "build code"
-          command: "npm build"
+          command: "npm run build"
   deploy:
     working_directory: ~/maxwellkendall.com/public
     docker:
