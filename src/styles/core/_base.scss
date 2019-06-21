@@ -117,7 +117,7 @@ body {
       padding: 5vmin 0;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
     }
 
     /**
@@ -132,7 +132,7 @@ body {
       grid-gap: 5vmin;
       flex-wrap: wrap;
       justify-content: center;
-      width: 75%;
+      width: 100%;
     }
 
     /**
