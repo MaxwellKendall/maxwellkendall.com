@@ -27,6 +27,10 @@ jobs:
       - run:
           name: "upload the build files using aws cli"
           command: "aws s3 sync . s3://maxwellkendall.com --region us-east-1 --acl public-read"
+      - run:
+          name: "invalidate cache"
+          command: "aws cloudfront create-invalidation --distribution-id E2K1YE12XJKXWU \
+            --paths /"
 workflows:
   version: 2
   build_and_deploy:
