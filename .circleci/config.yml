@@ -19,7 +19,7 @@ jobs:
   deploy:
     working_directory: ~/maxwellkendall.com/public
     docker:
-      - image: "circleci/python:3.7.2"
+      - image: "circleci/python:2.7"
     steps:
       - run:
           name: "install the awscli"
