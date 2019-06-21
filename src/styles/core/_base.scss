@@ -20,8 +20,9 @@ body {
       "header header header header"
       "main main main main"
       "footer footer footer footer";
-    grid-template-rows: 115px auto;
+    grid-template-rows: 250px auto;
     @include for-tablet {
+      grid-template-rows: 115px auto;
       grid-template-areas: 
         "header header header header"
         "main main main main"
@@ -31,8 +32,8 @@ body {
   .blog__home {
     grid-template-areas: 
       "header header header header"
-      ". search search ."
-      ". tags tags ."
+      "search search search search"
+      "tags tags tags tags"
       "main main main main"
       "footer footer footer footer";
     grid-template-rows: 250px 70px 70px auto;

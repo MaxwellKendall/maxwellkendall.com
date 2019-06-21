@@ -11,7 +11,7 @@
   margin: $global-spacer * 2;
   .tag {
     list-style: none;
-    margin: .1em .25em;
+    margin: $global-spacer;
     a {
       border-radius: 0.75em;
       background: white;
