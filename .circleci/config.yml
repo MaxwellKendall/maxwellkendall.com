@@ -11,7 +11,7 @@ jobs:
           name: "build website with new blog post"
           command: "npm run build"
   deploy:
-    working_directory: ~/maxwellkendall.com
+    working_directory: ~/maxwellkendall.com/public
     docker:
       - image: "circleci/python:3.7.2"
     steps:
@@ -20,12 +20,13 @@ jobs:
           command: "sudo pip install aws-cli"
       - run:
           name: "upload the build files using aws cli"
-          command: "aws s3 ./public s3://maxwellkendall.com --region us-east-1 --acl public-read"
-    workflows:
-      build:
-        jobs:
-          - build:
-            filters:
-              branches:
-                only: master
-          - deploy
+          command: "aws s3 . s3://maxwellkendall.com --region us-east-1 --acl public-read"
+  workflows:
+    version: 2
+    build_and_deploy:
+      jobs:
+        - build:
+          filters:
+            branches:
+              only: master
+        - deploy
