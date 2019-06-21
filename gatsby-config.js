@@ -11,6 +11,7 @@ contentfulConfig = {
   accessToken: process.env.CONTENTFUL_DELIVERY_TOKEN || contentfulConfig.accessToken
 };
 
+
 const { spaceId, accessToken } = contentfulConfig
 
 if (!spaceId || !accessToken) {
