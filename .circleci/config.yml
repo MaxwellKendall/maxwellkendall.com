@@ -1,24 +1,30 @@
 # Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
 version: 2.1
 jobs:
-  new_blog_post:
+  build:
+    working_directory: ~/maxwellkendall.com
     docker:
       - image: "circleci/node:10.15.3"
-      - image: "circleci/python:3.7.2"
-    branches:
-      only: master
     steps:
       - checkout
       - run:
           name: "build website with new blog post"
           command: "npm run build"
+  deploy:
+    working_directory: ~/maxwellkendall.com
+    docker:
+      - image: "circleci/python:3.7.2"
+    steps:
       - run:
           name: "install the awscli"
           command: "sudo pip install aws-cli"
       - run:
           name: "upload the build files using aws cli"
-          command: "aws s3 ./public s3://maxwellkendall.com --region us-east-1 --acl public-read"    
+          command: "aws s3 ./public s3://maxwellkendall.com --region us-east-1 --acl public-read"
     workflows:
-      new_blog_post:
+      build:
         jobs:
-          - deploy:
+          - new_blog_post:
+            filters:
+              branches:
+                only: master
