@@ -24,7 +24,8 @@ jobs:
     workflows:
       build:
         jobs:
-          - new_blog_post:
+          - build:
             filters:
               branches:
                 only: master
+          - deploy
