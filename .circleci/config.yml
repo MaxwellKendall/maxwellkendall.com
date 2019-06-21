@@ -26,7 +26,7 @@ jobs:
           command: "sudo pip install awscli"
       - run:
           name: "upload the build files using aws cli"
-          command: "aws s3 . s3://maxwellkendall.com --region us-east-1 --acl public-read"
+          command: "aws s3 sync . s3://maxwellkendall.com --region us-east-1 --acl public-read"
 workflows:
   version: 2
   build_and_deploy:
