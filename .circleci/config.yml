@@ -13,6 +13,9 @@ jobs:
       - run:
           name: "build code"
           command: "npm run build"
+          environment:
+            CONTENTFUL_SPACE_ID: "b9r33i3rvu3z"
+            CONTENTFUL_DELIVERY_TOKEN: "99b97289fcd220b19dececcdfc13794c62cc149ee7f355b206ed56515755de74"
   deploy:
     working_directory: ~/maxwellkendall.com/public
     docker:
