@@ -19,11 +19,11 @@ jobs:
   deploy:
     working_directory: ~/maxwellkendall.com/public
     docker:
-      - image: "circleci/python:2.7"
+      - image: "circleci/python:3.5.5"
     steps:
       - run:
           name: "install the awscli"
-          command: "sudo pip install aws-cli"
+          command: "sudo pip install awscli"
       - run:
           name: "upload the build files using aws cli"
           command: "aws s3 . s3://maxwellkendall.com --region us-east-1 --acl public-read"
