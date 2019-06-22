@@ -3,8 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: "circleci/python:3.5.5"
-      - image: "circleci/node:10.15.3"
+      - image: "nikolaik/python-nodejs"
     steps:
       - checkout
       - run:
