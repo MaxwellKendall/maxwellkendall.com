@@ -17,7 +17,7 @@ jobs:
             CONTENTFUL_DELIVERY_TOKEN: "99b97289fcd220b19dececcdfc13794c62cc149ee7f355b206ed56515755de74"
       - run:
           name: "install the awscli"
-          command: "sudo pip install awscli"
+          command: "pip install awscli"
       - run:
           name: "upload the build files using aws cli"
           command: "aws s3 sync ./public s3://maxwellkendall.com --region us-east-1 --acl public-read"
