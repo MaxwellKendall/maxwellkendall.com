@@ -4,6 +4,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import "react-vertical-timeline-component/style.min.css";
 
+import { SEO } from "../components/shared/SEO";
 import Nav from "../components/shared/Nav";
 import ResponsiveWrapper from "../components/shared/ResponsiveWrapper";
 import ExperienceMap from "../components/home/ExperienceMap";
@@ -20,10 +21,13 @@ const RootIndex = props => {
   const { menuLinks } = props.data.site.siteMetadata;
   // svg should always be the map build from test_data, but the parent of children on line 213 should change dynamically.
   return (
-    <ResponsiveWrapper page="home">
-      <Nav imageProps={imageProps} links={menuLinks} />
-      <ExperienceMap />
-    </ResponsiveWrapper>
+    <React.Fragment>
+      <SEO siteMetadata={props.data.site.siteMetadata} />  
+      <ResponsiveWrapper page="home">
+        <Nav imageProps={imageProps} links={menuLinks} />
+        <ExperienceMap />
+      </ResponsiveWrapper>
+    </React.Fragment>
   );
 };
 
@@ -56,6 +60,8 @@ export const pageQuery = graphql`
           name
           link
         }
+        title
+        description
       }
     }
   }

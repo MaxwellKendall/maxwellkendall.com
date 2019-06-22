@@ -36,7 +36,8 @@ module.exports = {
         link: "/blog"
       }
     ],
-    title: "MaxwellKendall.com"
+    title: "MaxwellKendall.com",
+    description: "Blog about software engineering"
   },
   plugins: [
     "gatsby-plugin-react-helmet",

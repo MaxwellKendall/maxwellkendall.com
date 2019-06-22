@@ -14,7 +14,7 @@ const classMap = {
   blogPost: "blog-post__container"
 };
 
-const ResponsiveWrapper = ({ children, page }) => {
+const ResponsiveWrapper = ({ children, page, meta }) => {
   const [windowWidth, setWindowWidth] = useState(0);
 
   const isMobile = () => {

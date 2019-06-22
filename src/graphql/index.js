@@ -49,6 +49,9 @@ export const getBio = (name = "Maxwell Kendall") => {
                       srcSetWebp
                       sizes
                     }
+                    file {
+                      url
+                    }
                   }
                   shortBio {
                     childMarkdownRemark {

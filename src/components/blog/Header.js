@@ -14,7 +14,7 @@ export const Header = ({ links, title }) => {
   return (
     <div className="header">
       <Image className="header__image" fluid={image.fluid} />
-      <h1>WUT UP AGAIN {title}</h1>
+      <h1>{title}</h1>
       {links.map((link) => <Link to={link.link}>{link.name}</Link>)}
         {/* <div
           className="header__bio"
