@@ -1,12 +1,12 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import get from 'lodash/get'
+import React from 'react';
+import { graphql } from 'gatsby';
+import get from 'lodash/get';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import ArticlePreview from '../components/blog/ArticlePreview'
-import { Layout } from '../components/blog/Layout'
-import { Search } from '../components/blog/Search'
-import { Tags } from '../components/blog/Tags'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import ArticlePreview from '../components/blog/ArticlePreview';
+import { Layout } from '../components/blog/Layout';
+import { Search } from '../components/blog/Search';
+import { Tags } from '../components/blog/Tags';
 
 require('../styles/index.scss');
 
@@ -16,7 +16,7 @@ class RootIndex extends React.Component {
   state = {
     searchTerm: '',
     posts: [],
-    activeTag: ''
+    activeTag: '',
   };
 
   componentDidMount() {
@@ -28,66 +28,63 @@ class RootIndex extends React.Component {
   }
 
   filterPosts = () => {
-    const searchTerm = this.state.searchTerm.toLowerCase();
-    const posts = this.props.data.allContentfulBlogPost.edges.filter((post) => {
-      return (
-        post.node.tags.some((tag) => tag.toLowerCase().includes(searchTerm)) ||
-        post.node.title.toLowerCase().includes(searchTerm)
-      );
-    });
+    const { searchTerm } = this.state;
+    const posts = this.props.data.allContentfulBlogPost.edges.filter((post) => (
+      post.node.tags.some((tag) => tag.toLowerCase().includes(searchTerm))
+        || post.node.title.toLowerCase().includes(searchTerm)
+    ));
 
     this.setState({ posts });
   };
 
   renderAutoCompleteOptions = () => {
     const tags = this.props.data.allContentfulBlogPost.edges.map((post) => {
-        const tagsForCurrentPost = post.node.tags
-          .filter(tag => tag.includes(this.state.searchTerm))
-          .join(',')
-          return tagsForCurrentPost;
-      })
+      const tagsForCurrentPost = post.node.tags
+        .filter((tag) => tag.includes(this.state.searchTerm))
+        .join(',');
+      return tagsForCurrentPost;
+    });
     return Array.from(new Set(tags))
-      .map(tag => <option value={tag}>{tag}</option>)
+      .map((tag) => <option value={tag}>{tag}</option>);
   }
 
-  getUniqueTags = (limit = 4) => {
-    return this.props.data.allContentfulBlogPost.edges.reduce((acc, edge) => {
-      edge.node.tags.forEach((tag) => {
-        if (acc.includes(tag)) {
-          return null
-        }
-        acc.push(tag)
-      })
-      return acc;
-    }, [])
-  }
+  getUniqueTags = (limit = 4) => this.props.data.allContentfulBlogPost.edges.reduce((acc, edge) => {
+    edge.node.tags.forEach((tag) => {
+      if (acc.includes(tag)) {
+        return null;
+      }
+      acc.push(tag);
+    });
+    return acc;
+  }, [])
 
   render() {
     return (
       <Layout className="blog__home">
         <Search
-            renderAutoCompleteOptions={this.renderAutoCompleteOptions}
-            searchTerm={this.state.searchTerm}
-            updateSearchTerm={this.updateSearchTerm}
-            submit={this.filterPosts} />
-        <Tags activeTag={this.state.activeTag} tags={this.getUniqueTags()} updateSearch={(tag) => { this.setState({ searchTerm: tag, activeTag: tag }, this.filterPosts)}} />
+          renderAutoCompleteOptions={this.renderAutoCompleteOptions}
+          searchTerm={this.state.searchTerm}
+          updateSearchTerm={this.updateSearchTerm}
+          submit={this.filterPosts}
+        />
+        <Tags activeTag={this.state.activeTag} tags={this.getUniqueTags()} updateSearch={(tag) => { this.setState({ searchTerm: tag, activeTag: tag }, this.filterPosts); }} />
         <div className="wrapper">
           {this.state.posts.length === 0 && <p>No posts available, please enter new search term!</p>}
           <ul className="article-list">
             {this.state.posts.map(({ node }, index) => {
-              const wideClass = index % 3 === 0 ? "article-preview__wide" : "";
+              const wideClass = index % 3 === 0 ? 'article-preview__wide' : '';
               return (
                 <ArticlePreview classNames={`article-preview ${wideClass}`} article={node} key={node.slug} />
-              )
+              );
             })}
           </ul>
         </div>
       </Layout>
-    )
+    );
   }
 }
 
-export default RootIndex
+export default RootIndex;
 
 export const pageQuery = graphql`
   query blog {
@@ -107,4 +104,4 @@ export const pageQuery = graphql`
       }
     }  
   }
-`
+`;
