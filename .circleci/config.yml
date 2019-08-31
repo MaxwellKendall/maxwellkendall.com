@@ -13,8 +13,8 @@ jobs:
           name: "build code"
           command: "npm run build"
           environment:
-            CONTENTFUL_SPACE_ID: "b9r33i3rvu3z"
-            CONTENTFUL_DELIVERY_TOKEN: "99b97289fcd220b19dececcdfc13794c62cc149ee7f355b206ed56515755de74"
+            CONTENTFUL_SPACE_ID: $CONTENTFUL_SPACE_ID
+            CONTENTFUL_DELIVERY_TOKEN: $CONTENTFUL_DELIVERY_TOKEN
       - run:
           name: "install the awscli"
           command: "pip install awscli"
@@ -23,7 +23,7 @@ jobs:
           command: "aws s3 sync ./public s3://maxwellkendall.com --region us-east-1 --acl public-read"
       - run:
           name: "invalidate cache"
-          command: "aws cloudfront create-invalidation --distribution-id E2K1YE12XJKXWU \
+          command: "aws cloudfront create-invalidation --distribution-id $S3_DISTRIBUTION_ID \
             --paths /'*'"
 workflows:
   version: 2
