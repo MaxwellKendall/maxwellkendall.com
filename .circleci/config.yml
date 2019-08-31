@@ -12,9 +12,6 @@ jobs:
       - run:
           name: "build code"
           command: "npm run build"
-          environment:
-            CONTENTFUL_SPACE_ID: $CONTENTFUL_SPACE_ID
-            CONTENTFUL_DELIVERY_TOKEN: $CONTENTFUL_DELIVERY_TOKEN
       - run:
           name: "install the awscli"
           command: "pip install awscli"
