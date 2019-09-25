@@ -119,6 +119,18 @@ body {
       display: flex;
       justify-content: center;
       align-items: flex-start;
+      min-width: 300px;
+      @include for-device($tablet) {
+        width: $blog-container-width-tablet;
+      }
+
+      @include for-device($desktop) {
+        width: $blog-container-width-desktop;
+      }
+
+      @include for-device($monitor) {
+        width: $blog-container-width-monitor;
+      }
     }
 
     /**
@@ -133,19 +145,7 @@ body {
       grid-gap: 5vmin;
       flex-wrap: wrap;
       justify-content: center;
-      min-width: 300px;
-      @include for-device($tablet) {
-        width: $blog-container-width-tablet;
-      }
-
-      @include for-device($desktop) {
-        width: $blog-container-width-desktop;
-      }
-
-      @include for-device($monitor) {
-        width: $blog-container-width-monitor;
-      }
-
+      width: 100%;
     }
 
     /**
