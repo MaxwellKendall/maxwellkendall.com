@@ -8,7 +8,7 @@ const propTypes = {
   onSubmit: PropTypes.func
 };
 
-export const Search = ({
+const Search = ({
   searchTerm,
   updateSearchTerm,
   submit,
@@ -25,9 +25,9 @@ export const Search = ({
       <datalist className="search__options" id="tags">
         {renderAutoCompleteOptions()}
       </datalist>
-
     </div>
   );
-}
+};
 
- Search.propTypes = propTypes;
+Search.propTypes = propTypes;
+export default Search;

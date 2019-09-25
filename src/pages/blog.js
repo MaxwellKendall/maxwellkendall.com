@@ -5,7 +5,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import ArticlePreview from '../components/blog/ArticlePreview';
 import { Layout } from '../components/blog/Layout';
-import { Search } from '../components/blog/Search';
+import Search from '../components/blog/Search';
 import { Tags } from '../components/blog/Tags';
 
 require('../styles/index.scss');
@@ -41,7 +41,7 @@ class RootIndex extends React.Component {
     const tags = this.props.data.allContentfulBlogPost.edges.map((post) => {
       const tagsForCurrentPost = post.node.tags
         .filter((tag) => tag.includes(this.state.searchTerm))
-        .join(',');
+        .join(' ');
       return tagsForCurrentPost;
     });
     return Array.from(new Set(tags))
@@ -70,14 +70,16 @@ class RootIndex extends React.Component {
         <Tags activeTag={this.state.activeTag} tags={this.getUniqueTags()} updateSearch={(tag) => { this.setState({ searchTerm: tag, activeTag: tag }, this.filterPosts); }} />
         <div className="wrapper">
           {this.state.posts.length === 0 && <p>No posts available, please enter new search term!</p>}
-          <ul className="article-list">
-            {this.state.posts.map(({ node }, index) => {
-              const wideClass = (index === 0 || index % 3 === 0) ? 'article-preview__wide' : '';
-              return (
-                <ArticlePreview classNames={`article-preview ${wideClass}`} article={node} key={node.slug} />
-              );
-            })}
-          </ul>
+          {this.state.posts.length > 0 && (
+            <ul className="article-list">
+              {this.state.posts.map(({ node }, index) => {
+                const wideClass = (index === 0 || index % 3 === 0) ? 'article-preview__wide' : '';
+                return (
+                  <ArticlePreview classNames={`article-preview ${wideClass}`} article={node} key={node.slug} />
+                );
+              })}
+            </ul>
+          )}
         </div>
       </Layout>
     );
