@@ -34,7 +34,7 @@ class RootIndex extends React.Component {
         || post.node.title.toLowerCase().includes(searchTerm)
     ));
 
-    this.setState({ posts });
+    this.setState({ posts, activeTag: searchTerm });
   };
 
   renderAutoCompleteOptions = () => {
@@ -45,7 +45,7 @@ class RootIndex extends React.Component {
       return tagsForCurrentPost;
     });
     return Array.from(new Set(tags))
-      .map((tag) => <option value={tag}>{tag}</option>);
+      .map((tag) => <option selected={(tag === this.state.searchTerm)} value={tag}>{tag}</option>);
   }
 
   getUniqueTags = (limit = 4) => this.props.data.allContentfulBlogPost.edges.reduce((acc, edge) => {

@@ -17,13 +17,15 @@
       background: white;
       padding: $global-spacer;
       font-size: 1em;
+      &:hover {
+        cursor: pointer;
+        color: white;
+        background: black;
+      }
     }
     .active-tag {
       background: black;
       color: white;
-    }
-    &:hover {
-      cursor: pointer;
     }
   }
 }
