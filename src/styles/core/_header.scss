@@ -5,7 +5,7 @@
   align-items: center;
   padding-top: $global-spacer;
   flex-direction: column;
-  @include for-tablet {
+  @include for-device($tablet) {
     flex-direction: row;
   }
   .header__image {
@@ -20,7 +20,7 @@
   }
   h1 {
     text-align: center;
-    @include for-tablet {
+    @include for-device($tablet) {
       text-align: left;
       margin-right: auto;
       font-size: 1.25rem;

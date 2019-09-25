@@ -72,7 +72,7 @@ class RootIndex extends React.Component {
           {this.state.posts.length === 0 && <p>No posts available, please enter new search term!</p>}
           <ul className="article-list">
             {this.state.posts.map(({ node }, index) => {
-              const wideClass = index % 3 === 0 ? 'article-preview__wide' : '';
+              const wideClass = (index === 0 || index % 3 === 0) ? 'article-preview__wide' : '';
               return (
                 <ArticlePreview classNames={`article-preview ${wideClass}`} article={node} key={node.slug} />
               );

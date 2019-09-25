@@ -14,7 +14,7 @@
     margin: auto;
     padding: 0 $global-spacer;
     width: 98%;
-    @include for-tablet {
+    @include for-device($tablet) {
       margin: auto;
       width: 80%;
       padding: 0 $global-spacer * 4;

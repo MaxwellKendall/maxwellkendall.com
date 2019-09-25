@@ -8,7 +8,7 @@ $width-offset: calc($global-spacer * 2 + $global-spacer);
   color: black;
   background: white;
   margin: 0 2px;
-  @include for-tablet {
+  @include for-device($tablet) {
     width: calc(50% - 28px);
   }
   .preview-title {
@@ -41,7 +41,7 @@ $width-offset: calc($global-spacer * 2 + $global-spacer);
   padding: $global-spacer * 2;
   background: black;
   color: white;
-  @include for-tablet {
+  @include for-device($tablet) {
     width: 100%;
   }
 }

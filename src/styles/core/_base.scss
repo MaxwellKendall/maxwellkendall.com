@@ -21,7 +21,7 @@ body {
       "main main main main"
       "footer footer footer footer";
     grid-template-rows: 250px auto;
-    @include for-tablet {
+    @include for-device($tablet) {
       grid-template-rows: 115px auto;
       grid-template-areas: 
         "header header header header"
@@ -37,7 +37,7 @@ body {
       "main main main main"
       "footer footer footer footer";
     grid-template-rows: 250px 70px 70px auto;
-    @include for-tablet {
+    @include for-device($tablet) {
       grid-template-areas: 
         "header header header header"
         ". search search ."
@@ -56,44 +56,44 @@ body {
     height: 100vh;
     margin: auto;
     width: calc(100% * .95);
-    @include for-tablet {
+    @include for-device($tablet) {
         width: calc(100% * .75); 
         max-width: 1100px;
     }
 
     h1 {
       font-size: $h1;
-      @include for-tablet {
+      @include for-device($tablet) {
         font-size: $h4;
       }
     }
     h2 {
       font-size: $h2;
-      @include for-tablet {
+      @include for-device($tablet) {
         font-size: $h5;
       }
     }
     h3 {
       font-size: $h3;
-      @include for-tablet {
+      @include for-device($tablet) {
         font-size: $h6;
       }
     }
     h4 {
       font-size: $h4;
-      @include for-tablet {
+      @include for-device($tablet) {
         font-size: $font-size * 1.25
       }
     }
     h5 {
       font-size: $h5;
-      @include for-tablet {
+      @include for-device($tablet) {
         font-size: $font-size * 1.15
       }
     }
     h6 {
       font-size: $h6;
-      @include for-tablet {
+      @include for-device($tablet) {
         font-size: $font-size * 1.05
       }
     }
@@ -133,7 +133,19 @@ body {
       grid-gap: 5vmin;
       flex-wrap: wrap;
       justify-content: center;
-      width: 100%;
+      min-width: 300px;
+      @include for-device($tablet) {
+        width: $blog-container-width-tablet;
+      }
+
+      @include for-device($desktop) {
+        width: $blog-container-width-desktop;
+      }
+
+      @include for-device($monitor) {
+        width: $blog-container-width-monitor;
+      }
+
     }
 
     /**

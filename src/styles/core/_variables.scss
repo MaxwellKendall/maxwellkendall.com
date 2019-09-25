@@ -13,6 +13,7 @@ $h6: $font-size * 1.5;
 // device widths
 $tablet: 780px;
 $desktop: 1024px;
+$monitor: 1400px;
 
 // Margins & Padding
 $global-spacer: .5em;
@@ -20,3 +21,9 @@ $global-spacer: .5em;
 // page specific
 $home-header-width: 25%;
 $home-header-padding: $global-spacer * 4;
+
+// blog home page
+$blog-container-width-mobile: 300px;
+$blog-container-width-tablet: 770px;
+$blog-container-width-desktop: 1000px;
+$blog-container-width-monitor: 1200px;
