@@ -1,5 +1,4 @@
 $width-offset: calc($global-spacer * 2 + $global-spacer);
-
 .article-preview {
   text-align: center;
   width: 100%;
@@ -11,10 +10,6 @@ $width-offset: calc($global-spacer * 2 + $global-spacer);
   margin: 0 2px;
   &:hover {
     background: #eee;
-  }
-  @include for-device($tablet) {
-    width: calc(37% - 28px);
-    border-radius: 2em;
   }
   .preview-title {
     font-size: 1.5em;
@@ -40,23 +35,5 @@ $width-offset: calc($global-spacer * 2 + $global-spacer);
     border-radius: 2px;
     border: 1px solid #A0A0A0;
     margin-right: .5em;
-  }
-}
-
-.article-preview__wide {
-  min-height: 20vh;
-  padding: 1em;
-  color: black;
-  border: 5px solid #eee;
-  border-radius: 2em;
-  width: 75%;
-}
-
-@media screen and (max-width: 780px) {
-  .preview {
-    height: 25em;
-  }
-  .wrapper {
-    margin: 0 1em;
   }
 }

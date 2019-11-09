@@ -140,6 +140,12 @@ body {
       flex-wrap: wrap;
       justify-content: center;
       width: 100%;
+      @include for-device($tablet) {
+        width: 75%;
+      }
+      @include for-device($desktop) {
+        width: 50%;
+      }
     }
 
     /**
