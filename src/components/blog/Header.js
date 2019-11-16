@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { getBio } from "../../graphql";
 
-const isInclusivelyAfter5 = moment().hour() >= 17; 
+const isInclusivelyAfter5 = moment().hour() >= 17;
 
 export const Header = ({ links, title }) => {
   const { headShots } = getBio();
