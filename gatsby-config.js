@@ -41,6 +41,22 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sharp',
     {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        extensions: ['.mdx', '.md'],
+        plugins: ['gatsby-remark-images'],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1035,
+              sizeByPixelDensity: true
+            },
+          },
+        ],
+      },
+    },
+    {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-131464926-1',
@@ -59,26 +75,6 @@ module.exports = {
         name: 'blog',
         path: `${__dirname}/src/blog-posts/`,
       },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: `${__dirname}/src/images/`,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-mdx',
-      options: {
-        gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 1035,
-            },
-          },
-        ],
-      },
-    },
+    }
   ],
 };
