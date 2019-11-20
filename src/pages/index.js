@@ -1,31 +1,43 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import 'react-vertical-timeline-component/style.min.css';
+import React from "react";
+import { Link, graphql } from "gatsby";
 
-import { SEO } from '../components/shared/SEO';
-import Nav from '../components/shared/Nav';
-import ResponsiveWrapper from '../components/shared/ResponsiveWrapper';
-import ExperienceMap from '../components/home/ExperienceMap';
+const RootIndex = ({ data }) => {
+  const { edges: posts } = data.allMdx
 
-library.add(faChevronLeft);
-
-const RootIndex = (props) => {
-  // const imageProps = props.data.allContentfulAsset.edges
-  //   .filter((item) => item.node.title !== 'logo-bah')
-  //   .reduce((node, item) => ({ ...node, [item.node.title]: item.node.fluid }), {});
-  // const { menuLinks } = props.data.site.siteMetadata;
-  // svg should always be the map build from test_data, but the parent of children on line 213 should change dynamically.
   return (
-    <>
-      <SEO siteMetadata={'test'} />
-      <ResponsiveWrapper page="home">
-        {/* <Nav imageProps={imageProps} links={menuLinks} /> */}
-        <ExperienceMap />
-      </ResponsiveWrapper>
-    </>
-  );
-};
+    <div>
+      <h1>Awesome MDX Blog</h1>
+      <ul>
+        {posts.map(({ node: post }) => (
+          <li key={post.id}>
+            <Link to={post.fields.slug}>
+              <h2>{post.frontmatter.title}</h2>
+            </Link>
+            <p>{post.excerpt}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+export const pageQuery = graphql`
+  query blogIndex {
+    allMdx {
+      edges {
+        node {
+          id
+          excerpt
+          frontmatter {
+            title
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default RootIndex;
