@@ -8,7 +8,7 @@ export default function PageTemplate({ data: { mdx } }) {
       <div className="header">
         <h1>Awesome MDX Blog</h1>
       </div>
-      <div className="blog-post">
+      <div className="blog-post markdown-body">
         <h1>{mdx.frontmatter.title}</h1>
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </div>
