@@ -16,10 +16,6 @@ html {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  ul {
-    list-style: none;
-    padding: 0;
-  }
   .header {
     width: 100%;
   }
@@ -29,6 +25,8 @@ html {
     align-items: center;
     flex-direction: column;
     width: 100%;
+    list-style: none;
+    padding: 0;
     .blog-post__preview {
       h2 {
         text-align: center;
