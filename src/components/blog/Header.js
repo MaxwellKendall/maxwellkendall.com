@@ -1,22 +1,18 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import Image from 'gatsby-image';
-import moment from 'moment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Img from 'gatsby-image';
 
-import { getBio } from "../../graphql";
+import { getImage } from "../../graphql/index";
 
-const isInclusivelyAfter5 = moment().hour() >= 17;
-
-export const Header = ({ links, title }) => {
-  const { headShots } = getBio();
-  const image = isInclusivelyAfter5 ? headShots[1] : headShots[0];
+export const Header = () => {
+  const image = getImage(1);
   return (
     <div className="header">
-      <Image className="header__image" fluid={image.fluid} />
-      <h1>{title}</h1>
-      {links.map((link) => <Link to={link.link}>{link.name}</Link>)}
-    </div>
+        <h1>Maxwell Kendall</h1>
+        <div className="header__bio">
+          <Img fluid={image} />
+          <p>React, Redux, ES6, Webpack, AWS, Python webdev stuff.</p>
+        </div>
+      </div>
   );
 };
 

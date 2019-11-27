@@ -1,13 +1,12 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { Header } from "../components/blog/Header";
 
 export default function PageTemplate({ data: { mdx } }) {
   return (
     <div className="main">
-      <div className="header">
-        <h1>Awesome MDX Blog</h1>
-      </div>
+      <Header />
       <div className="blog-post markdown-body">
         <h1>{mdx.frontmatter.title}</h1>
         <MDXRenderer>{mdx.body}</MDXRenderer>

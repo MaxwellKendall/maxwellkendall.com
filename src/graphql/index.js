@@ -1,35 +1,32 @@
 import { useStaticQuery, graphql } from "gatsby";
+import moment from 'moment';
 
-// export const getSkilledExperience = (skill) => {
-//     const { allContentfulExperience } = useStaticQuery(
-//         graphql`
-//             {
-//                 allContentfulExperience {
-//                     edges {
-//                         node {
-//                             startDate
-//                             endDate
-//                             description {
-//                                 id
-//                                 childMarkdownRemark {
-//                                     id
-//                                     html
-//                                 }
-//                             }
-//                             image {
-//                                 fluid {
-//                                     ...GatsbyContentfulFluid
-//                                 }
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         `
-//     );
-//     return allContentfulExperience.edges.find((edge) => edge.node.skill === skill).node;
-// }
+const izOffHrs = () => {
+  return (
+    moment().day() >= 6 || moment().hour() >= 17
+  ); 
+};
 
-export const getBio = (name = "Maxwell Kendall") => {
-  return { headShots: [] };
+export const getImage = () => {
+  let index = 1; // fancy headshot
+    const { allImageSharp } = useStaticQuery(
+        graphql`
+          query getImage {
+            allImageSharp {
+              edges {
+                node {
+                  original {
+                    src
+                  }
+                  id
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+            }
+          }`
+    );
+    if (izOffHrs()) index = 0;
+    return allImageSharp.edges[index].node.fluid;
 };

@@ -1,24 +1,23 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import Img from 'gatsby-image';
+import { Header } from "../components/blog/Header";
 
 import "../styles/index.scss";
 
 const RootIndex = ({ data }) => {
   const { edges: posts } = data.allMdx
   return (
-    <div className="main">
-      <div className="header">
-        <h1>Awesome MDX Blog</h1>
-      </div>
+    <div className ="main">
+      <Header />
       <ul className="blog-list">
         {posts.map(({ node: post }) => (
           <li className="blog-post__preview" key={post.id}>
             <Link to={post.fields.slug}>
               <h2>{post.frontmatter.title}</h2>
               <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
+              <p>{post.excerpt}</p>
             </Link>
-            <p>{post.excerpt}</p>
           </li>
         ))}
       </ul>
@@ -26,8 +25,8 @@ const RootIndex = ({ data }) => {
         Maxwell Kendall
       </div>
     </div>
-  )
-}
+  );
+};
 
 export const pageQuery = graphql`
   query blogIndex {
@@ -44,7 +43,7 @@ export const pageQuery = graphql`
             featuredImage {
               id
               childImageSharp {
-                fluid(maxWidth: 200) {
+                fluid {
                   ...GatsbyImageSharpFluid
                 }
               }
