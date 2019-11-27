@@ -1,5 +1,7 @@
 @import "github-markdown-css";
 
+$global-sep-padding: 60px;
+
 #___gatsby {
     min-height: 100vh;
     width: 100%;
@@ -51,7 +53,7 @@ html {
     width: 100%;
     list-style: none;
     padding: 0;
-    margin-top: 60px;
+    margin-top: $global-sep-padding;
     .blog-post__preview {
       display: flex;
       justify-content: center;
@@ -86,6 +88,20 @@ html {
   }
 
   .footer {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: $global-sep-padding;
+    .svgs {
+      svg {
+        font-size: 60px;
+        color: #6DA7B5;
+        margin: 0 5px;
+      }
+    } 
+    p {
+      color: #6DA7B5;
+    }
   }
 }

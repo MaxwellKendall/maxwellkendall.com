@@ -1,7 +1,9 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import Img from 'gatsby-image';
+
 import { Header } from "../components/blog/Header";
+import { Footer } from "../components/blog/Footer";
 
 import "../styles/index.scss";
 
@@ -24,9 +26,7 @@ const RootIndex = ({ data }) => {
           );
         })}
       </ul>
-      <div className="footer">
-        Maxwell Kendall
-      </div>
+      <Footer />
     </div>
   );
 };
