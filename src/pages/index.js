@@ -11,15 +11,18 @@ const RootIndex = ({ data }) => {
     <div className ="main">
       <Header />
       <ul className="blog-list">
-        {posts.map(({ node: post }) => (
-          <li className="blog-post__preview" key={post.id}>
-            <Link to={post.fields.slug}>
-              <h2>{post.frontmatter.title}</h2>
-              <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
-              <p>{post.excerpt}</p>
-            </Link>
-          </li>
-        ))}
+        {posts.map(({ node: post }) => {
+          const img = post.frontmatter.featuredImage;
+          return (
+            <li className="blog-post__preview" key={post.id}>
+              <Link to={post.fields.slug}>
+                <h2>{post.frontmatter.title}</h2>
+                {img && <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />}
+                <p>{post.excerpt}</p>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
       <div className="footer">
         Maxwell Kendall
