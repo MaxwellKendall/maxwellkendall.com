@@ -8,7 +8,7 @@ const izOffHrs = () => {
 };
 
 export const getImage = () => {
-  let index = 1; // fancy headshot
+  let str = "Headshot"; // fancy headshot
     const { allImageSharp } = useStaticQuery(
         graphql`
           query getImage {
@@ -27,6 +27,10 @@ export const getImage = () => {
             }
           }`
     );
-    if (izOffHrs()) index = 0;
-    return allImageSharp.edges[index].node.fluid;
+    if (izOffHrs()) str = "dancing";
+    return allImageSharp.edges
+      .find((edge) => {
+        return edge.node.original.src.includes(str);
+      })
+      .node.fluid;
 };

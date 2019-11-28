@@ -4,7 +4,7 @@ import Img from 'gatsby-image';
 import { getImage } from "../../graphql/index";
 
 export const Header = () => {
-  const image = getImage(1);
+  const image = getImage();
   return (
     <div className="header">
         <h1>Maxwell Kendall</h1>
