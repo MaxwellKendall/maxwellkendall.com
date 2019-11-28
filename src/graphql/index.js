@@ -1,14 +1,9 @@
 import { useStaticQuery, graphql } from "gatsby";
-import moment from 'moment';
 
-export const izOffHrs = () => {
-  return (
-    moment().day() >= 6 || moment().hour() >= 17
-  ); 
-};
-
-export const getImage = () => {
-  let str = "Headshot"; // fancy headshot
+export const getImage = (izOffHrs) => {
+  const str = izOffHrs
+    ? "dancing"
+    : "Headshot";
     const { allImageSharp } = useStaticQuery(
         graphql`
           query getImage {
@@ -27,7 +22,6 @@ export const getImage = () => {
             }
           }`
     );
-    if (izOffHrs()) str = "dancing";
     return allImageSharp.edges
       .find((edge) => {
         return edge.node.original.src.includes(str);

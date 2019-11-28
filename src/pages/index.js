@@ -1,26 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, graphql } from "gatsby";
 import Img from 'gatsby-image';
 
 import { Header } from "../components/blog/Header";
 import { Footer } from "../components/blog/Footer";
+import { ThemeContext } from "../../gatsby-browser";
 
 import "../styles/index.scss";
 
 const RootIndex = ({ data }) => {
   const { edges: posts } = data.allMdx
+  const { izOffHrs } = useContext(ThemeContext);
+  const color = izOffHrs
+    ? '#6DA7B5'
+    : '#4C6063';
   return (
     <div className="main">
-      <Header />
+      <Header izOffHrs={izOffHrs} />
       <ul className="blog-list">
         {posts.map(({ node: post }) => {
           const img = post.frontmatter.featuredImage;
           return (
             <li className="blog-post__preview" key={post.id}>
               <Link to={post.fields.slug}>
-                <h2>{post.frontmatter.title}</h2>
+                <h2 style={{ color }}>{post.frontmatter.title}</h2>
                 {img && <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />}
-                <p>{post.excerpt}</p>
+                <p style={{ color }}>{post.excerpt}</p>
               </Link>
             </li>
           );
