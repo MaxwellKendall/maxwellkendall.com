@@ -10,7 +10,8 @@ export const izOffHrs = () => (
 
 export const getFontColor = (condition) => (
     condition
-        ? '#6DA7B5'
+        // #6DA7B5
+        ? 'yellow'
         : '#4C6063'
 );
 
