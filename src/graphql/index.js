@@ -1,7 +1,7 @@
 import { useStaticQuery, graphql } from "gatsby";
 import moment from 'moment';
 
-const izOffHrs = () => {
+export const izOffHrs = () => {
   return (
     moment().day() >= 6 || moment().hour() >= 17
   ); 

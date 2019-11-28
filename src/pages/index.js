@@ -10,7 +10,7 @@ import "../styles/index.scss";
 const RootIndex = ({ data }) => {
   const { edges: posts } = data.allMdx
   return (
-    <div className ="main">
+    <div className="main">
       <Header />
       <ul className="blog-list">
         {posts.map(({ node: post }) => {
