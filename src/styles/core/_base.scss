@@ -1,170 +1,110 @@
-@import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
-@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+$global-sep-padding: 60px;
 
 #___gatsby {
     min-height: 100vh;
     width: 100%;
 }
 
-body {
-  font-family: "Varela Round", sans-serif;
+html {
   font-size: $font-size;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.main {
   line-height: 1.65;
   color: #373F49;
   background: #FFF;
-  margin: 0;
   display: flex;
   justify-content: center;
-  .blog__post {
-    grid-template-areas: 
-      "header header header header"
-      "main main main main"
-      "footer footer footer footer";
-    grid-template-rows: 250px auto;
-    @include for-device($tablet) {
-      grid-template-rows: 115px auto;
-      grid-template-areas: 
-        "header header header header"
-        "main main main main"
-        "footer footer footer footer";
-    }
-  }
-  .blog__home {
-    grid-template-areas: 
-      "header header header header"
-      "search search search search"
-      "tags tags tags tags"
-      "main main main main"
-      "footer footer footer footer";
-    grid-template-rows: 250px 70px 70px auto;
-    @include for-device($tablet) {
-      grid-template-areas: 
-        "header header header header"
-        ". search search ."
-        ". tags tags ."
-        "main main main main"
-        "footer footer footer footer";
-        grid-template-rows: 115px 70px 70px auto;
-    }
-  }
-  .layout {
-    display: grid;
-    -ms-grid-columns: auto;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: $global-spacer * 2;
-    padding: 0 $global-spacer * 2;
-    height: 100vh;
-    margin: auto;
-    min-width: 300px;
-    @include for-device($tablet) {
-      width: $blog-container-width-tablet;
-    }
-
-    @include for-device($desktop) {
-      width: $blog-container-width-desktop;
-    }
-
-    @include for-device($monitor) {
-      width: $blog-container-width-monitor;
-    }
-
+  align-items: center;
+  flex-direction: column;
+  max-width: 750px;
+  margin: auto;
+  .header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 31px;
     h1 {
-      font-size: $h1;
-      @include for-device($tablet) {
-        font-size: $h4;
-      }
+      margin-bottom: 5px;
+      // text-transform: uppercase;
     }
-    h2 {
-      font-size: $h2;
-      @include for-device($tablet) {
-        font-size: $h5;
-      }
-    }
-    h3 {
-      font-size: $h3;
-      @include for-device($tablet) {
-        font-size: $h6;
-      }
-    }
-    h4 {
-      font-size: $h4;
-      @include for-device($tablet) {
-        font-size: $font-size * 1.25
-      }
-    }
-    h5 {
-      font-size: $h5;
-      @include for-device($tablet) {
-        font-size: $font-size * 1.15
-      }
-    }
-    h6 {
-      font-size: $h6;
-      @include for-device($tablet) {
-        font-size: $font-size * 1.05
-      }
-    }
-
-    pre {
-      white-space: pre-wrap;
-    }
-    
-    img {
-      display: block;
-      width: 100%;
-    }
-
-    a {
-      color: currentColor;
-      text-decoration: none;
-    }
-
-    .wrapper {
-      grid-area: main;
-      padding: 5vmin 0;
+    .header__bio {
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    /**
-    * article grid
-    */
-    .article-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: flex;
-      flex-direction: row;
-      grid-gap: 5vmin;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-      @include for-device($tablet) {
-        width: 75%;
-      }
-      @include for-device($desktop) {
+      align-items: center;
+      p {
         width: 50%;
+        font-size: 16px;
+        margin-left: 10px;
+        font-weight: 800;
+      }
+      .gatsby-image-wrapper {
+        width: 60px;
+        border-radius: 50%;
+        height: 60px;
       }
     }
-
-    /**
-    *
-    */
-    .section-headline {
-      padding: 0 0 0.4em 0;
-      margin: 0 0 5vmin 0;
-      border-bottom: 1px solid #ddd;
+  }
+  .blog-list {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin-top: $global-sep-padding;
+    .blog-post__preview {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      a {
+        width: 100%;
+        text-decoration: none;
+        h2 {
+          text-align: left;
+          font-size: 24px;
+          color: #6DA7B5;
+        }
+        p {
+          font-size: 16px;
+          color: #6DA7B5;
+        }
+      }
     }
-
-    .list-inline {
-      margin: 0;
-      padding: 0;
-      list-style: none;
+  }
+  .blog-post {
+    width: 100%;
+    &.markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      margin: 0 auto;
+      padding: 15px;
+      @include for-device($tablet) {
+        padding: 45px;
+      }
     }
+  }
 
-    .list-inline li {
-      display: inline-block;
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: $global-sep-padding;
+    .svgs {
+      svg {
+        font-size: 60px;
+        color: #6DA7B5;
+        margin: 0 5px;
+      }
+    } 
+    p {
+      color: #6DA7B5;
     }
   }
 }

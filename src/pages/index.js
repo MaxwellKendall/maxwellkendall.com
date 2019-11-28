@@ -1,68 +1,66 @@
-import React from "react";
-import { graphql } from "gatsby";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import "react-vertical-timeline-component/style.min.css";
+import React, { useContext } from "react";
+import { Link, graphql } from "gatsby";
+import Img from 'gatsby-image';
 
-import { SEO } from "../components/shared/SEO";
-import Nav from "../components/shared/Nav";
-import ResponsiveWrapper from "../components/shared/ResponsiveWrapper";
-import ExperienceMap from "../components/home/ExperienceMap";
+import { Header } from "../components/blog/Header";
+import { Footer } from "../components/blog/Footer";
+import { ThemeContext } from "../../gatsby-browser";
 
-library.add(faChevronLeft);
+import "../styles/index.scss";
 
-const RootIndex = props => {
-  const imageProps = props.data.allContentfulAsset.edges
-    .filter(item => item.node.title !== "logo-bah")
-    .reduce(
-      (node, item) => ({ ...node, [item.node.title]: item.node.fluid }),
-      {}
-    );
-  const { menuLinks } = props.data.site.siteMetadata;
-  // svg should always be the map build from test_data, but the parent of children on line 213 should change dynamically.
+const RootIndex = ({ data }) => {
+  const { edges: posts } = data.allMdx
+  const { izOffHrs } = useContext(ThemeContext);
+  const color = izOffHrs
+    ? '#6DA7B5'
+    : '#4C6063';
   return (
-    <React.Fragment>
-      <SEO siteMetadata={props.data.site.siteMetadata} />  
-      <ResponsiveWrapper page="home">
-        <Nav imageProps={imageProps} links={menuLinks} />
-        <ExperienceMap />
-      </ResponsiveWrapper>
-    </React.Fragment>
+    <div className="main">
+      <Header izOffHrs={izOffHrs} />
+      <ul className="blog-list">
+        {posts.map(({ node: post }) => {
+          const img = post.frontmatter.featuredImage;
+          return (
+            <li className="blog-post__preview" key={post.id}>
+              <Link to={post.fields.slug}>
+                <h2 style={{ color }}>{post.frontmatter.title}</h2>
+                {img && <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />}
+                <p style={{ color }}>{post.excerpt}</p>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+      <Footer />
+    </div>
   );
 };
 
-export default RootIndex;
-
 export const pageQuery = graphql`
-  query homePageData {
-    allContentfulAsset(filter: { title: { in: ["headshot", "chs", "BAH"] } }) {
+  query blogIndex {
+    allMdx {
       edges {
         node {
-          title
-          fluid {
-            ...GatsbyContentfulFluid
+          id
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+            featuredImage {
+              id
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
     }
-    allContentfulSkill {
-      edges {
-        node {
-          title
-          start
-          end
-        }
-      }
-    }
-    site {
-      siteMetadata {
-        menuLinks {
-          name
-          link
-        }
-        title
-        description
-      }
-    }
   }
-`;
+  `;
+
+export default RootIndex;
