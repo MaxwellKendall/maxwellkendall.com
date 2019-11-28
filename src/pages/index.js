@@ -13,6 +13,7 @@ const RootIndex = ({ data }) => {
   const { izOffHrs } = useContext(ThemeContext);
   console.log("is off hrs", izOffHrs);
   const color = getFontColor(izOffHrs);
+  console.log("color", color);
   return (
     <div className="main">
       <Header izOffHrs={izOffHrs} />
