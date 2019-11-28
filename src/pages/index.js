@@ -4,16 +4,15 @@ import Img from 'gatsby-image';
 
 import { Header } from "../components/blog/Header";
 import { Footer } from "../components/blog/Footer";
-import { ThemeContext } from "../../gatsby-browser";
+import { ThemeContext, getFontColor } from "../../gatsby-browser";
 
 import "../styles/index.scss";
 
 const RootIndex = ({ data }) => {
   const { edges: posts } = data.allMdx
   const { izOffHrs } = useContext(ThemeContext);
-  const color = izOffHrs
-    ? '#6DA7B5'
-    : '#4C6063';
+  console.log("is off hrs", izOffHrs);
+  const color = getFontColor(izOffHrs);
   return (
     <div className="main">
       <Header izOffHrs={izOffHrs} />

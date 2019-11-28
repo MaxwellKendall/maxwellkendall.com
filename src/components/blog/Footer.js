@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ThemeContext } from "../../../gatsby-browser";
+import { ThemeContext, getFontColor } from "../../../gatsby-browser";
 
 export const Footer = () => {
   const { izOffHrs } = useContext(ThemeContext);
-  const color = izOffHrs
-    ? '#6DA7B5'
-    : '#4C6063';
+  const color = getFontColor(izOffHrs);
   return (
     <div className="footer">
       <div className="svgs">
@@ -19,6 +17,6 @@ export const Footer = () => {
         </a>
       </div>
       <p style={{ color }}>&#169; {`Copyright Maxwell Kendall ${new Date().getFullYear()}`}</p>
-    </div>
+    </div> 
   );
 }
