@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Header } from "../components/blog/Header";
 import { Footer } from '../components/blog/Footer';
+import { ThemeContext } from "../../gatsby-browser";
 
 export default function PageTemplate({ data: { mdx } }) {
+  const { izOffHrs } = useContext(ThemeContext);
+
   return (
     <div className="main">
-      <Header />
+      <Header izOffHrs={izOffHrs} />
       <div className="blog-post markdown-body">
         <MDXRenderer>{mdx.body}</MDXRenderer>
       </div>
-      <Footer />
+      <Footer izOffHrs={izOffHrs} />
     </div>
   );
 }

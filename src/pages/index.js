@@ -32,7 +32,7 @@ const RootIndex = ({ data }) => {
           );
         })}
       </ul>
-      <Footer />
+      <Footer izOffHrs={izOffHrs} />
     </div>
   );
 };
