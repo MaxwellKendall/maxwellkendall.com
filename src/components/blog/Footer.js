@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ThemeContext, getFontColor } from "../../../gatsby-browser";
+import { ThemeContext } from "../../../gatsby-browser";
+import { getFontColor } from "../../utils/index";
 
 export const Footer = () => {
   const { izOffHrs } = useContext(ThemeContext);

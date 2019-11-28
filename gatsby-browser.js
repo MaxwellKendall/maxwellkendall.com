@@ -8,14 +8,6 @@ export const izOffHrs = () => (
     moment().day() >= 6 || moment().hour() >= 17
 );
 
-export const getFontColor = (condition) => {
-    console.log("getFontColor", condition);
-    return condition
-        // #6DA7B5
-        ? 'yellow'
-        : '#4C6063'
-};
-
 require("github-markdown-css");
 
 export const ThemeContext = React.createContext({ izOffHrs: izOffHrs() });

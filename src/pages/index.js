@@ -4,7 +4,8 @@ import Img from 'gatsby-image';
 
 import { Header } from "../components/blog/Header";
 import { Footer } from "../components/blog/Footer";
-import { ThemeContext, getFontColor } from "../../gatsby-browser";
+import { ThemeContext } from "../../gatsby-browser";
+import { getFontColor } from "../utils/index";
 
 import "../styles/index.scss";
 
