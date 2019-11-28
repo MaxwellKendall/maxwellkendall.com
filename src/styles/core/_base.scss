@@ -44,6 +44,7 @@ html {
       align-items: center;
       @include for-device($tablet) {
         flex-direction: row;
+        justify-content: flex-start;
       }
       p {
         width: 75%;
