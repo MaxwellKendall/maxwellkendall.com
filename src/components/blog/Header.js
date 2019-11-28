@@ -10,7 +10,7 @@ export const Header = ({ izOffHrs }) => {
         <h1>Maxwell Kendall</h1>
         <div className="header__bio">
           <Img fluid={image} />
-          <p>React, Redux, ES6, Webpack, AWS, Python webdev stuff.</p>
+          <p>Front End Development, AWS, Data Science and miscellaneous webdev stuff...</p>
         </div>
       </div>
   );
