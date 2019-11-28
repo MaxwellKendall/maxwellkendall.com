@@ -8,8 +8,8 @@ export const izOffHrs = () => (
     moment().day() >= 6 || moment().hour() >= 17
 );
 
-export const getFontColor = (izOffHrs) => (
-    izOffHrs
+export const getFontColor = (condition) => (
+    condition
         ? '#6DA7B5'
         : '#4C6063'
 );
