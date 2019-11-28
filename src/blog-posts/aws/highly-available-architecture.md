@@ -16,13 +16,6 @@ This configuration supports a “Master” writer node where our “marketing te
 - updating our images
 - adding a new blog
 
-```javascript
-const heresSomeCode = [].map((item) => item + "checkyoself");
-
-heresSomeCode.forEach((item) => item + 1);
-
-```
-
 
 ## Part Two: Setting up auto-scaling read-only-nodes
 - **Create AMI from writer node instance**
