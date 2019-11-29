@@ -3,7 +3,6 @@ import { MDXProvider } from '@mdx-js/react';
 import moment from 'moment';
 import Highlight, { defaultProps } from "prism-react-renderer";
 
-
 export const izOffHrs = () => (
     moment().day() >= 6 || moment().hour() >= 17
 );
