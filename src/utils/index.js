@@ -1,4 +1,5 @@
 export const getFontColor = (izOffHrs) => {
+    console.log("izOffHrs", izOffHrs);
     if (izOffHrs === false) {
         return '#4C6063';
     }
