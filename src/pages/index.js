@@ -12,8 +12,6 @@ import "../styles/index.scss";
 const RootIndex = ({ data }) => {
   const { edges: posts } = data.allMdx
   const { izOffHrs } = useContext(ThemeContext);
-  const fontColor = getFontColor(izOffHrs);
-  console.log("RootIndex", fontColor);
   
   return (
     <div className="main">
@@ -24,9 +22,9 @@ const RootIndex = ({ data }) => {
           return (
             <li className="blog-post__preview" key={post.id}>
               <Link to={post.fields.slug}>
-                <h2 style={{ color: fontColor }}>{post.frontmatter.title}</h2>
+                <h2 style={{ color: getFontColor(izOffHrs) }}>{post.frontmatter.title}</h2>
                 {img && <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />}
-                <p style={{ color: fontColor }}>{post.excerpt}</p>
+                <p style={{ color: getFontColor(izOffHrs) }}>{post.excerpt}</p>
               </Link>
             </li>
           );
