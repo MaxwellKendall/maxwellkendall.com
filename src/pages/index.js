@@ -12,7 +12,8 @@ import "../styles/index.scss";
 const RootIndex = ({ data }) => {
   const { edges: posts } = data.allMdx
   const { izOffHrs } = useContext(ThemeContext);
-  
+  console.log("isOffHrs", izOffHrs);
+    
   return (
     <div className="main">
       <Header izOffHrs={izOffHrs} />
