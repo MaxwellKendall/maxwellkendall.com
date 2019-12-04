@@ -4,19 +4,14 @@ tags: keepin it real, checkin yo self, doin big thangs
 featuredImage: ../../images/aws_logo.png
 ---
 
-# AWS Lingo
+**Durability**: existence of items in storage.
 
-**Durability**: existence of items in storage
+**Availability**: fetching items in storage.
 
-**Availability**: fetching items in storage
+**Resiliency**: ability to recover from failure.
 
-**Resiliency**: ability to recover from failure
-**Elasticity**: scaling resources up/down
+**Elasticity**: scaling resources up/down.
 
-**Reliability**: system providing functionality
+**Reliability**: system providing functionality.
 
-**Redundancy**: Horizontal scaling
-
-
-
-#aws/associate/test-prep
+**Redundancy**: Horizontal scaling.

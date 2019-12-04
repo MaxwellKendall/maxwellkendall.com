@@ -1,5 +1,5 @@
 ---
-title: Setting Up a Highly Avaialable Wordpress Website on AWS
+title: Part One Setting up a Master Writer Node for our Word Press Blog
 tags: keepin it real, checkin yo self, doin big thangs
 featuredImage: ../../images/aws_logo.png
 ---

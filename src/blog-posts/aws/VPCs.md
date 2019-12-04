@@ -4,7 +4,6 @@ tags: keepin it real, checkin yo self, doin big thangs
 featuredImage: ../../images/aws_logo.png
 ---
 
-
 # VPCs
 Networking concepts
 

@@ -25,8 +25,3 @@ Example:
 ```
 
 The first key, `cat-pics` is considered a logical resource which creates what’s known as a _stack_. A stack is a physical resource, in this case an S3 Bucket, derived from a template. 
-
-
-
-
-#aws/associate/test-prep
