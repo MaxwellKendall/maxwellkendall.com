@@ -4,18 +4,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getFontColor } from "../../utils/index";
 
 export const Footer = ({ izOffHrs }) => {
-  const color = getFontColor(izOffHrs);
+  const fontColor = getFontColor(izOffHrs);
+  console.log("Footer", fontColor);
   return (
     <div className="footer">
       <div className="svgs">
         <a href="https://github.com/MaxwellKendall">
-          <FontAwesomeIcon style={{ color }} icon={faGithub} />
+          <FontAwesomeIcon style={{ color: fontColor }} icon={faGithub} />
         </a>
         <a href="https://www.linkedin.com/in/maxwellkendall/">
-          <FontAwesomeIcon style={{ color }} icon={faLinkedinIn} />
+          <FontAwesomeIcon style={{ color: fontColor }} icon={faLinkedinIn} />
         </a>
       </div>
-      <p style={{ color }}>&#169; {`Copyright Maxwell Kendall ${new Date().getFullYear()}`}</p>
+      <p style={{ color: fontColor }}>&#169; {`Copyright Maxwell Kendall ${new Date().getFullYear()}`}</p>
     </div> 
   );
 }
