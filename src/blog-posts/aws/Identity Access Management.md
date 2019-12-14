@@ -1,10 +1,9 @@
 ---
 title: Identity Access Management
-tags: keepin it real, checkin yo self, doin big thangs
+tags: public, keepin it real, checkin yo self, doin big thangs
 featuredImage: ../../images/aws_logo.png
 ---
 
-# Identity Access Management
 Users are considered those with an AWS Identity that can log in to the console. These identities are governed by policies which can be associated with a role or a group.
 
 Groups do not sign in to the AWS Console, nor do roles; only users — those with an AWS Identity.

@@ -1,10 +1,9 @@
 ---
 title: Neworking Basics for AWS Fundamentals
-tags: keepin it real, checkin yo self, doin big thangs
+tags: public, keepin it real, checkin yo self, doin big thangs
 featuredImage: ../../images/aws_logo.png
 ---
 
-# Networking
 A basic understanding of networking is helpful for understanding AWS. This covers the basics of how devices can communicate with one another.
 
 ## The Seven Layers of an Open Systems Interconnection (OSI) Network

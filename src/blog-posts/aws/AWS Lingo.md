@@ -1,6 +1,6 @@
 ---
 title: AWS Lingo
-tags: keepin it real, checkin yo self, doin big thangs
+tags: public, keepin it real, checkin yo self, doin big thangs
 featuredImage: ../../images/aws_logo.png
 ---
 

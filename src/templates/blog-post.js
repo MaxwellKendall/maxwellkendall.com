@@ -12,7 +12,10 @@ export default function PageTemplate({ data: { mdx } }) {
     <div className="main">
       <Header izOffHrs={izOffHrs} />
       <div className="blog-post markdown-body">
-        <MDXRenderer>{mdx.body}</MDXRenderer>
+        <h2>{mdx.frontmatter.title}</h2>
+        <MDXRenderer>
+          {mdx.body}
+        </MDXRenderer>
       </div>
       <Footer izOffHrs={izOffHrs} />
     </div>

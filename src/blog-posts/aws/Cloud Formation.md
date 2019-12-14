@@ -1,10 +1,9 @@
 ---
 title: Cloud Formation
-tags: keepin it real, checkin yo self, doin big thangs
+tags: public, keepin it real, checkin yo self, doin big thangs
 featuredImage: ../../images/aws_logo.png
 ---
 
-# Cloud Formation
 Infrastructure as Code. Ballin.
 
 ## Configuration Object

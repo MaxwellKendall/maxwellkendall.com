@@ -1,10 +1,9 @@
 ---
 title: Part One Setting up a Master Writer Node for our Word Press Blog
-tags: keepin it real, checkin yo self, doin big thangs
+tags: public, keepin it real, checkin yo self, doin big thangs
 featuredImage: ../../images/aws_logo.png
 ---
 
-## Part One: Setting up a Master Writer Node for our Word Press Blog
 - **Configuring the Instance**
     - This instance has WordPress installed on apache http services
     - We configured all the assets in `wp-content/uploads` to be redirected to our cloud front distribution, which stands in front of an s3 Bucket, which has the same assets as `wp-content/uploads`

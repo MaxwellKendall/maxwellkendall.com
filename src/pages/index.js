@@ -18,17 +18,19 @@ const RootIndex = ({ data }) => {
     <div className="main">
       <Header izOffHrs={izOffHrs} />
       <ul className="blog-list">
-        {posts.map(({ node: post }) => {
-          const img = post.frontmatter.featuredImage;
-          return (
-            <li className="blog-post__preview" key={post.id}>
-              <Link to={post.fields.slug}>
-                <h2 style={{ color: getFontColor(izOffHrs) }}>{post.frontmatter.title}</h2>
-                {img && <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />}
-                <p style={{ color: getFontColor(izOffHrs) }}>{post.excerpt}</p>
-              </Link>
-            </li>
-          );
+        {posts
+          .filter(({ node: post }) => post.frontmatter.tags.split(", ").includes("public"))
+          .map(({ node: post }) => {
+            const img = post.frontmatter.featuredImage;
+            return (
+              <li className="blog-post__preview" key={post.id}>
+                <Link to={post.fields.slug}>
+                  <h2 style={{ color: getFontColor(izOffHrs) }}>{post.frontmatter.title}</h2>
+                  {img && <Img fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />}
+                  <p style={{ color: getFontColor(izOffHrs) }}>{post.excerpt}</p>
+                </Link>
+              </li>
+            );
         })}
       </ul>
       <Footer izOffHrs={izOffHrs} />
@@ -48,6 +50,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            tags
             featuredImage {
               id
               childImageSharp {

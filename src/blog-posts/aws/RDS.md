@@ -1,10 +1,10 @@
 ---
 title: Relational Database Service (RDS)
-tags: keepin it real, checkin yo self, doin big thangs
+tags: public, keepin it real, checkin yo self, doin big thangs
 featuredImage: ../../images/aws_logo.png
 ---
 
-## Multi AZ Deployments
+**Multi AZ Deployments**
 In deploying a DB, you can specify if you want Multi AZ. In this option, the standby db is **synchronously replicated** in the secondary AZ. 
 
 ### Failover

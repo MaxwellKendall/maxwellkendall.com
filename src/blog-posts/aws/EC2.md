@@ -1,6 +1,6 @@
 ---
 title: Elastic Cloud Compute (EC2)
-tags: AWS, Virtual Machines, Networking
+tags: public, AWS, Virtual Machines, Networking
 featuredImage: ../../images/aws_logo.png
 ---
 
