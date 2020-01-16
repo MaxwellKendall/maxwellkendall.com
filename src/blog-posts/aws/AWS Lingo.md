@@ -15,3 +15,5 @@ featuredImage: ../../images/aws_logo.png
 **Reliability**: system providing functionality.
 
 **Redundancy**: Horizontal scaling.
+
+**Fault Tolerance**, refers to the feature of resilience. 
