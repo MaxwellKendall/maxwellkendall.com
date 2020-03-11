@@ -17,7 +17,7 @@ jobs:
           command: "pip install awscli"
       - run:
           name: "upload the build files using aws cli"
-          command: "aws s3 sync ./public s3://maxwellkendall.com --profile default --region us-east-1 --acl public-read"
+          command: "aws s3 sync ./public s3://maxwellkendall.com --region us-east-1 --acl public-read"
       - run:
           name: "invalidate cache"
           command: "aws cloudfront create-invalidation --distribution-id $S3_DISTRIBUTION_ID \
