@@ -11,7 +11,7 @@ module.exports = {
         link: '/blog',
       },
     ],
-    title: 'MaxwellKendall.com',
+    title: 'Maxwell Kendall | Software Engineer',
     description: 'Blog about software engineering',
   },
   plugins: [

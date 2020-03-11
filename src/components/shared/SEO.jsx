@@ -1,16 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import moment from 'moment';
 
-import { getBio } from '../../graphql';
-
-const isInclusivelyAfter5 = moment().hour() >= 17;
-const isWeekend = (moment().isoWeekday() === 6 || moment().isoWeekday() === 7);
-
-export const SEO = ({ siteMetadata }) => {
-    const { headShots } = getBio();
-    const image = (isInclusivelyAfter5 || isWeekend) ? headShots[1] : headShots[0];
-
+export const SEO = ({ siteMetadata, children }) => {
     return (
         <React.Fragment>
             <Helmet>
@@ -35,6 +26,7 @@ export const SEO = ({ siteMetadata }) => {
                 <meta name="twitter:description" content={description} />
                 <meta name="twitter:image" content={image} /> */}
             </Helmet>
+            {children}
         </React.Fragment>
     );
 }
