@@ -2,6 +2,7 @@
 title: Modern Websites and the Problem of SEO
 tags: SSR, public
 featuredImage: ../../images/nextjs.png
+date: '04-04-20'
 ---
 
 In former times, the way a website would be served by the browser is by making a blocking request to a server for an `.html` document. A "blocking request" means that the browser itself would load until this request resolves. This makes for a bad user experience. Everytime a user goes to a new link inside the same website, it would reload. Nowadays, user's expect a much different experience when navigating the page. The way this experience is achieved is through dynamic `HTML` generation, from JavaScript executing inside the browser either linked or embedded inside the `.html` document.
@@ -51,7 +52,7 @@ The outcome of this is great SEO and performance.
 ### Option 3 of 3: Server Side Rendering  (SSR)
 This is the old school way of serving a website. In this case, the browser makes a blocking network request for an `.html` document and then the browser serves it up. Before the browser was able to handle heavy JavaScript bundles that built HTML on the fly, this was the main option that was taken, if not the only one available. 
 
-## A Hybrid Implementation for your Application: SSG, CSR, and SSR in One Application
+## A Hybrid Implementation: SSG, CSR, and SSR
 NextJS allows for a mesh of all these different approaches in a single application. What this means is, using the NextJS API, we can create an application with 3 different pages; the first, using CSR; the second, using SSR; and the third, using SSG.
 
 ### Modern SSR vs Classic SSR

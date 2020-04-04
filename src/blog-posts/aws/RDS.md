@@ -2,6 +2,7 @@
 title: Relational Database Service (RDS)
 tags: public, keepin it real, checkin yo self, doin big thangs
 featuredImage: ../../images/aws_logo.png
+date: '12-09-19'
 ---
 
 **Multi AZ Deployments**

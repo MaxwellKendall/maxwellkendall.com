@@ -2,6 +2,7 @@
 title: Virtual Private Cloud (VPC)
 tags: public, keepin it real, checkin yo self, doin big thangs
 featuredImage: ../../images/aws_logo.png
+date: '12-09-19'
 ---
 
 Networking concepts
