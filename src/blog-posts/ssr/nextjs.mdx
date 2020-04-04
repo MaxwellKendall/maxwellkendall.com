@@ -1,0 +1,66 @@
+---
+title: Modern Websites and the Problem of SEO
+tags: SSR, public
+---
+
+With the introduction of modern browsers, many modern websites are rendered by javascript executing inside the browser. This makes for a nice fast website. In former times, the way a website would be interpreted by the browser is by making a network call for html from a server. This means everytime a user would go to a new link inside the same website, it would reload. Nowadays, though, user's expect a much faster experience when navigating the page. The way this works is through dynamic HTML generation, inside the browser, from javascript linked or embedded inside the HTML.
+
+The problem with this approach is that google indexes websites by crawling their HTML. If we're building the HTML using javascript and modern browsers, on the initial page load, google only sees the initial HTML. For example, this:
+
+```html
+<body>
+    <div id="app"></div>
+<script type="text/javascript" src="/vendors.e9f29bdd842eb8e17b59.js"></script>
+<script type="text/javascript" src="/app.499547aa7f29e137bb71.js"></script>
+<script type="text/javascript" src="/runtime.d5cf8bed6d924b27a6d0.js"></script>
+</body>
+```
+
+That does not provide a lot of information for google to use for site indexing! Modern Javascript, like React, build the HTML as soon as the HTML loads, so it very quickly becomes:
+
+```html
+<body>
+    <div id="app">
+        <div>
+            <div class="usa-da-home-page">
+            <div class="site-header">
+```
+
+However, google does not wait for our Javascript to build this HTML.
+
+## The Best of Both Worlds: Next.js
+
+[Next.js](https://github.com/zeit/next.js) is an open source framework that was built to solve this problem. It is used by major industry leaders in the software industry including NETFLIX, HULU, Twitch, Starbucks, GitHub, and Uber. This adoption provides confidence that the tool will be maintained for the forseeable future until a better option is developed by the open source community.
+
+The Next.js framework allows for 3 different types of data fetching. Each may be used interchangeably on the same site, depending on the nature of the page in view.
+
+### Option 1 of 3: Client Side Rendering
+This is where the content of a page (think HTML) is progressively built by the browser through javascript as the user traverses a page. A perfect example of this is the "Load More" button. When you are on facebook and you scroll to the bottom of the screen, you may see this button. Clicking this button demonstrates the client side rendering approach: on click, the broswer:
+
+1. Fetches more data
+2. Processes/cleans that data
+3. Uses it to build new HTML
+
+Next.js exposes an API which allows us to keep this functionality, at our discretion, including some bells and whistles; like lazy-loading, where network requests necessary for new HTML are not made until the user scrolls to the position where that HTML is needed.
+
+### Option 2 of 3: Static Site Generation
+This is the ideal manner of serving HTML. This is where all the HTML is built before the user has even requested it. This means that the website is fully built and exposed for google indexing and it can be rendered by the browser as fast it takes to load the HTML, images, and Javascript assets necessary (for other tasks besides building more HTML).
+
+The outcome of this is great SEO and UX.
+
+### Option 3 of 3: Server Side Rendering 
+This is the old school way of serving a website. In this case, the browser makes a network request for HTML and then the browser serves it up. Before the browser was able to handle heavy javascript bundles that built HTML on the fly, this was the main option that was taken, if not the only one available. 
+
+What Next.js allows us to do is use each of these techniques, sometimes multiple on the same page, to provide the best UX possible while maintaining SEO best practices. 
+
+## Implementation on USAspending.gov
+- Static Site Generation:
+  - Agency Profile Page
+  - All Search Pages
+  - Home Page
+
+- Server Side Rendering:
+  - Federal Account Page
+  - Award Page
+  - Recipient Page
+  
