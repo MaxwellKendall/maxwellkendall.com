@@ -40,7 +40,7 @@
     "gatsby-transformer-sharp": "^2.3.5",
     "github-markdown-css": "^3.0.1",
     "i": "^0.3.6",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.6.0",
