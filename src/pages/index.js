@@ -24,7 +24,6 @@ const RootIndex = ({ data }) => {
             {posts
               .filter(({ node: post }) => post.frontmatter.tags.split(", ").includes("public"))
               .sort((a, b) => {
-                console.log("a", a);
                   const momentA = moment(a.node.frontmatter.date);
                   const momentB = moment(b.node.frontmatter.date);
                   if (momentA.isAfter(momentB)) return -1;
@@ -32,7 +31,6 @@ const RootIndex = ({ data }) => {
                   return 0;
               })
               .map(({ node: post }) => {
-                console.log("node", moment(post.frontmatter.date))
                 const img = post.frontmatter.featuredImage;
                 return (
                   <li className="blog-post__preview" key={post.id}>
