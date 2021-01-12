@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
 import moment from "moment";
 import { hierarchy, treemap, treemapBinary } from "d3-hierarchy";
 import { interpolateGreens } from "d3-scale-chromatic";
@@ -134,7 +135,7 @@ const findChild = (node, referenceString) => {
   return { data: { title: "" } };
 }
 
-const ExperienceMap = ({ mapWidth, mapHeight }) => {
+const ExperienceMap = ({ mapWidth = 800, mapHeight = 500 }) => {
   const [activeMap, setActiveMap] = useState(null); // this will have to be rebuilt every time it changes
   const [referenceObject, setReferenceObject] = useState(null); // this will have to be preserved and used as a reference for traversal.
   const [selectedNodeTitle, setSelectedNodeTitle] = useState(rootNode);
@@ -269,14 +270,11 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
   }
 
   if (activeMap) {
-    console.log("map: ", activeMap);
     return (
       <div className="experience__explorer">
         <div className="experience__explorer__header">
-          {selectedNodeTitle !== rootNode && (
-            <FontAwesomeIcon icon="chevron-left" onClick={goBack} />
-          )}
           <h1>{activeMap.data.title}</h1>
+          {selectedNodeTitle !== rootNode && <FontAwesomeIcon icon={faChevronLeft} onClick={goBack} />}
         </div>
         <svg
           width={activeMap.x1}
