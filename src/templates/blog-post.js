@@ -11,7 +11,7 @@ export default function PageTemplate({ data: { mdx } }) {
   return (
     <div className="main">
       <Header izOffHrs={izOffHrs} />
-      <div className="blog-post markdown-body">
+      <div className="blog-post markdown-body max-w-6xl">
         <h2>{mdx.frontmatter.title}</h2>
         <MDXRenderer>
           {mdx.body}

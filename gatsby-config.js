@@ -15,6 +15,15 @@ module.exports = {
     description: 'Blog about software engineering',
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-sass',
+      options: {
+        postCssPlugins: [
+          require("tailwindcss"),
+          require("./tailwind.config.js"), // Optional: Load custom Tailwind CSS configuration
+        ],
+      },
+    },
     'gatsby-plugin-react-helmet',
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
@@ -103,12 +112,6 @@ module.exports = {
       options: {
         trackingId: 'UA-131464926-1',
         head: false,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-sass',
-      options: {
-        includePaths: ['src/styles'],
       },
     },
     {
