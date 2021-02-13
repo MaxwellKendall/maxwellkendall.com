@@ -272,9 +272,9 @@ const ExperienceMap = ({ mapWidth = 800, mapHeight = 500 }) => {
   if (activeMap) {
     return (
       <div className="experience__explorer">
-        <div className="experience__explorer__header">
-          <h1>{activeMap.data.title}</h1>
-          {selectedNodeTitle !== rootNode && <FontAwesomeIcon icon={faChevronLeft} onClick={goBack} />}
+        <div className="experience__explorer__header flex items-center">
+          {selectedNodeTitle !== rootNode && <FontAwesomeIcon icon={faChevronLeft} onClick={goBack} className="cursor-pointer mr-2 text-2xl" />}
+          <h2 className="text-3xl uppercase tracking-wider">{activeMap.data.title}</h2>
         </div>
         <svg
           width={activeMap.x1}

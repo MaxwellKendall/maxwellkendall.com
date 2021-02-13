@@ -16,11 +16,11 @@ const RootIndex = ({ data }) => {
   const { siteMetadata } = data.site;
   return (
       <SEO siteMetadata={siteMetadata}>
-        <div className="main">
-          <Header izOffHrs={izOffHrs} />
-          <ExperienceMap />
-          <Footer izOffHrs={izOffHrs} />
-        </div>
+        <Header izOffHrs={izOffHrs} />
+          <div className="w-full about flex flex-wrap mx-auto justify-center items-center">
+            <ExperienceMap />
+          </div>
+        <Footer izOffHrs={izOffHrs} />
       </SEO>
   );
 };

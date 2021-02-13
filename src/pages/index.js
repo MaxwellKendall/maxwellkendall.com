@@ -18,9 +18,9 @@ const Blog = ({ data }) => {
 
   return (
     <SEO siteMetadata={siteMetadata}>
-      <div className="main">
-        <Header izOffHrs={izOffHrs} />
-        <ul className="blog-list">
+      <Header izOffHrs={izOffHrs} />
+      <div className="main bg-gray-200">
+        <ul className="blog-list flex flex-wrap mx-auto justify-center">
           {posts
             .filter(({ node: post }) =>
               post.frontmatter.tags.split(", ").includes("public")
@@ -35,31 +35,30 @@ const Blog = ({ data }) => {
             .map(({ node: post }) => {
               const img = post.frontmatter.featuredImage;
               return (
-                <li className="blog-post__preview" key={post.id}>
-                  <Link to={post.fields.slug}>
-                    <h2 style={{ color: getFontColor(izOffHrs) }}>
+                <li className="blog-post__preview flex w-1/4 my-10 p-10 bg-white mx-8" key={post.id}>
+                  <Link to={post.fields.slug} className="flex flex-column flex-wrap">
+                    <h2 className="pb-10 tracking-wider uppercase w-full font-bold text-4xl text-center">
                       {post.frontmatter.title}
                     </h2>
                     {img && (
                       <Img
+                        className="w-11/12 m-auto"
                         fluid={
                           post.frontmatter.featuredImage.childImageSharp.fluid
                         }
                       />
                     )}
-                    <p style={{ color: getFontColor(izOffHrs) }}>
+                    <p className="text-xl pt-10">
                       {post.excerpt}
                     </p>
-                    <p
-                      style={{ color: "black" }}
-                    >{`${post.timeToRead} minute read`}</p>
+                    <p className="text-xl w-full pt-10 text-center mt-auto">{`${post.timeToRead} minute read`}</p>
                   </Link>
                 </li>
               );
             })}
         </ul>
-        <Footer izOffHrs={izOffHrs} />
       </div>
+      <Footer izOffHrs={izOffHrs} />
     </SEO>
   );
 };
@@ -88,7 +87,7 @@ export const pageQuery = graphql`
             featuredImage {
               id
               childImageSharp {
-                fluid {
+                fluid(maxWidth: 260) {
                   ...GatsbyImageSharpFluid
                 }
               }

@@ -14,20 +14,7 @@ html {
 
 .main {
   line-height: 1.65;
-  color: #373F49;
-  background: #FFF;
-  display: block;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  max-width: 750px;
-  margin: auto;
   .header {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    font-size: 31px;
-    justify-content: center;
     a {
       text-decoration: none;
       color: #373F49;
@@ -71,34 +58,15 @@ html {
       }
     }
   }
+
   .blog-list {
-    width: 500px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
     list-style: none;
     padding: 0;
     margin-top: $global-sep-padding;
     .blog-post__preview {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 100%;
       a {
         width: 100%;
         text-decoration: none;
-        h2 {
-          text-align: center;
-          @include for-device($tablet) {
-            text-align: left;
-          }
-          font-size: 24px;
-        }
-        p {
-          font-size: 16px;
-        }
       }
     }
   }
@@ -116,16 +84,17 @@ html {
   }
 
   .footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: $global-sep-padding;
     .svgs {
       svg {
-        font-size: 60px;
+        // font-size: 60px;
         margin: 0 5px;
       }
     } 
   }
 }
+
+  .blog-list,
+  .about {
+    min-height: 75vh;
+    max-width: 135rem;
+  }
