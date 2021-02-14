@@ -35,7 +35,7 @@ const Blog = ({ data }) => {
             .map(({ node: post }) => {
               const img = post.frontmatter.featuredImage;
               return (
-                <li className="blog-post__preview flex w-1/4 my-10 p-10 bg-white mx-8" key={post.id}>
+                <li className="blog-post__preview flex w-full md:w-1/4 my-10 p-10 bg-white mx-8" key={post.id}>
                   <Link to={post.fields.slug} className="flex flex-column flex-wrap">
                     <h2 className="pb-10 tracking-wider uppercase w-full font-bold text-4xl text-center">
                       {post.frontmatter.title}
@@ -87,7 +87,7 @@ export const pageQuery = graphql`
             featuredImage {
               id
               childImageSharp {
-                fluid(maxWidth: 260) {
+                fluid {
                   ...GatsbyImageSharpFluid
                 }
               }

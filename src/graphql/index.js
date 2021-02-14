@@ -5,8 +5,7 @@ export const getImage = (izOffHrs) => {
     ? "dancing"
     : "Headshot";
     const { allImageSharp } = useStaticQuery(
-        graphql`
-          query getImage {
+        graphql`{
             allImageSharp {
               edges {
                 node {

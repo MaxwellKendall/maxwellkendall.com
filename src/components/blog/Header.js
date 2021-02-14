@@ -9,7 +9,7 @@ export const Header = ({ izOffHrs }) => {
   return (
     <div className="header w-full mx-auto max-w-5xl">
         <Link to="/" className="flex justify-center items-center py-10">
-          <div className="header__bio w-6/12 lg:w-1/12">
+          <div className="header__bio w-1/4 lg:w-1/12">
           <Img fluid={image} className="w-full rounded-xl" imgStyle={{ borderRadius: '50%' }} />
           </div>
           <h1 className="text-3xl pl-2 uppercase">Maxwell Kendall</h1>
