@@ -1,6 +1,6 @@
 ---
 title: The City of God; Book I Chapter IX
-tags: keepin it real, checkin yo self, doin big thangs
+tags: religion
 # featuredImage: ../../images/aws_logo.png
 date: '06-20-2020'
 ---

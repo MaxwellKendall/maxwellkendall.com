@@ -1,6 +1,6 @@
 ---
 title: Calvin and the Third Use of the Law
-tags: keepin it real, checkin yo self, doin big thangs
+tags: religion
 featuredImage: ../../images/aws_logo.png
 date: '04-20-2020'
 ---

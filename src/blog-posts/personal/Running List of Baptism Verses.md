@@ -1,7 +1,6 @@
 ---
 title: The Principle of Inclusion
-tags: keepin it real, checkin yo self, doin big thangs
-featuredImage: ../../images/aws_logo.png
+tags: religion
 date: '05-13-2020'
 ---
 

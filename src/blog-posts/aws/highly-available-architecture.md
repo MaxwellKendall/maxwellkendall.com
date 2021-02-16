@@ -1,6 +1,6 @@
 ---
 title: Part One Setting up a Master Writer Node for our Word Press Blog
-tags: public, keepin it real, checkin yo self, doin big thangs
+tags: public, aws
 featuredImage: ../../images/aws_logo.png
 date: '12-09-19'
 ---

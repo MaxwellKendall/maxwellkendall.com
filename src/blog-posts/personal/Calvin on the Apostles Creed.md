@@ -1,6 +1,6 @@
 ---
 title: Calvin on Christ's Ascension and Judgment
-tags: keepin it real, checkin yo self, doin big thangs
+tags: religion
 featuredImage: ../../images/aws_logo.png
 date: '05-23-2020'
 ---

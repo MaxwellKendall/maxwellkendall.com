@@ -1,6 +1,6 @@
 ---
 title: Identity Access Management
-tags: public, keepin it real, checkin yo self, doin big thangs
+tags: public, aws
 featuredImage: ../../images/aws_logo.png
 date: '12-09-19'
 ---

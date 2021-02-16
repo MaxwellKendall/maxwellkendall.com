@@ -1,6 +1,6 @@
 ---
 title: PostgreSQL DB
-tags: SQL, public
+tags: public, backend
 featuredImage: ../../images/psql.png
 date: '08-27-20'
 ---

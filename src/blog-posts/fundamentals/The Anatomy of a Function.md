@@ -1,6 +1,6 @@
 ---
 title: The Anatomy of a Function
-tags: Fundamentals, public
+tags: public, cs fundamentals
 featuredImage: ../../images/fundamentals.png
 date: '04-25-20'
 ---
