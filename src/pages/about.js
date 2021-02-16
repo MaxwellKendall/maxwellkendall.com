@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, graphql } from "gatsby";
 import Img from 'gatsby-image';
 import moment from 'moment';
@@ -11,14 +11,49 @@ import ExperienceMap from "../components/home/ExperienceMap";
 import "../styles/index.scss";
 import { SEO } from "../components/shared/SEO";
 
+const useMapDimensions = () => {
+  const [mapDimensions, setMapDimensions] = useState({ mapHeight: 0, mapWidth: 0 });
+
+  const setDimensions = (viewPort) => {
+    if (viewPort && viewPort < 900) {
+      setMapDimensions({
+        mapHeight: 300,
+        mapWidth: viewPort - 100
+      });
+    } else if (viewPort) {
+      setMapDimensions({
+        mapHeight: 500,
+        mapWidth: 800
+      });
+    } else {
+      setMapDimensions({
+        mapHeight: 0,
+        mapWidth: 0
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (window) {
+      setDimensions(window.innerWidth);
+      window.addEventListener('resize', () => {
+        setDimensions(window.innerWidth);
+      })
+    }
+  }, [])
+
+  return mapDimensions;
+}
+
 const RootIndex = ({ data }) => {
   const { izOffHrs } = useContext(ThemeContext);
   const { siteMetadata } = data.site;
+  const mapDimensions = useMapDimensions()
   return (
       <SEO siteMetadata={siteMetadata}>
         <Header izOffHrs={izOffHrs} />
           <div className="w-full about flex flex-wrap mx-auto justify-center items-center">
-            <ExperienceMap />
+          <ExperienceMap {...mapDimensions} />
           </div>
         <Footer izOffHrs={izOffHrs} />
       </SEO>

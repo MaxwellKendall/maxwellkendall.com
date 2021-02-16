@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const Footer = ({ izOffHrs }) => {
   return (
     <div className="footer flex justify-center items-center flex-col mt-auto mt-10">
-      <div className="svgs">
+      <div className="svgs pt-10">
         <a href="https://github.com/MaxwellKendall">
           <FontAwesomeIcon icon={faGithub} className="text-6xl mx-2"/>
         </a>
@@ -13,7 +13,7 @@ export const Footer = ({ izOffHrs }) => {
           <FontAwesomeIcon icon={faLinkedinIn} className="text-6xl mx-2"/>
         </a>
       </div>
-      <a href="https://maxwell-kendall-resume.s3.amazonaws.com/MAXWELL_KENDALL_Resume.PDF" className="pt-10"> Check out My Resume</a>
+      <a href="https://maxwell-kendall-resume.s3.amazonaws.com/MAXWELL_KENDALL_Resume.PDF" className="pt-10"> View my Resume</a>
       <p className="p-2">&#169; {`Copyright Maxwell Kendall ${new Date().getFullYear()}`}</p>
     </div>
   );

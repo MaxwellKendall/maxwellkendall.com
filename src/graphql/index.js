@@ -13,7 +13,7 @@ export const getImage = (izOffHrs) => {
                     src
                   }
                   id
-                  fluid {
+                  fluid(maxWidth: 100) {
                     ...GatsbyImageSharpFluid
                   }
                 }

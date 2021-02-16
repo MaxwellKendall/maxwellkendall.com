@@ -9,9 +9,11 @@ import { scaleLinear } from "d3-scale";
 const rootNode = "All Experience";
 const test_data = {
   title: "All Experience",
+  notes: "Click on a category to learn more about my experience.",
   children: [
     {
       title: "Front End Engineering",
+      notes: "Full stack developer for Recreation.gov and USAspending.gov.",
       children: [
         {
           title: "Sass/CSS",
@@ -42,21 +44,25 @@ const test_data = {
     },
     {
       title: "Back End Engineering",
+      notes: "As a full stack developer in my career thus far I have always focused on the front end. My experience here should be read as such.",
       children: [
         {
           title: "Golang",
           start: moment("2018-03-01"),
-          end: moment("2019-03-01")
+          end: moment("2019-03-01"),
+          notes: "Professional experience includes building very simple endpoints as well as data migrations.",
         },
         {
           title: "Python",
           start: moment("2019-03-01"),
-          end: moment()
+          end: moment(),
+          notes: "Professional experience includes building very simple endpoints using Django.",
         },
         {
           title: "NodeJS",
           start: moment("2017-07-01"),
-          end: moment()
+          end: moment(),
+          notes: "Professional experience includes building a sitemap using Node, configuring build process with WebPack, and various other miscellaneous scripts.",
         }
       ]
     },
@@ -65,60 +71,46 @@ const test_data = {
       children: [
         {
           title: "AWS",
+          notes: "Professional experience includes S3, CloudFront, Lambda, and API Gateway.",
           children: [
             {
-              title: "DynamoDB",
-              start: moment("2019-03-01"),
+              title: "Certified Solutions Architect, Associate",
+              start: moment("2019-12-01"),
               end: moment()
             },
-            {
-              title: "S3",
-              start: moment("2019-07-01"),
-              end: moment()
-            },
-            {
-              title: "Code Pipeline",
-              start: moment("2019-05-01"),
-              end: moment()
-            },
-            {
-              title: "Code Build",
-              start: moment("2019-05-01"),
-              end: moment()
-            },
-            {
-              title: "Simple Notification Service",
-              start: moment("2019-03-01"),
-              end: moment()
-            }
           ]
         },
         {
           title: "Docker",
           start: moment("2018-03-01"),
-          end: moment()
+          end: moment(),
+          notes: "Professional experience includes setting up deployable containers using DockerFile and maintaining local back ends.",
         },
         {
           title: "Jenkins",
           start: moment("2018-03-01"),
-          end: moment()
+          end: moment(),
+          notes: "Professional experience kicking off jobs regularly as well as defining a job to decouple our sitemap generation from our deploy process."
         }
       ]
     },
     {
       title: "Janitorial Work",
       start: moment("2010-07-01"),
-      end: moment("2013-01-01")
+      end: moment("2013-01-01"),
+      notes: "Very grateful for this experience as a janitor at my church during college. I'm grateful to be able to work with my mind and not so much my hands.",
     },
     {
       title: "Construction",
       start: moment("2012-06-01"),
-      end: moment("2013-01-01")
+      end: moment("2013-01-01"),
+      notes: "Very grateful for this experience as a facilities manager at a Christian Summer camp. I'm grateful to be able to work with my mind and not so much my hands.",
     },
     {
-      title: "FOH/BOH Restaurant",
+      title: "Restaurant",
       start: moment("2013-01-01"),
-      end: moment("2014-06-01")
+      end: moment("2014-06-01"),
+      notes: "Very grateful for this experience as a deli worker at the best deli in Charleston SC -- Mozzo Deli.",
     }
   ]
 };
@@ -135,7 +127,7 @@ const findChild = (node, referenceString) => {
   return { data: { title: "" } };
 }
 
-const ExperienceMap = ({ mapWidth = 800, mapHeight = 500 }) => {
+const ExperienceMap = ({ mapWidth, mapHeight }) => {
   const [activeMap, setActiveMap] = useState(null); // this will have to be rebuilt every time it changes
   const [referenceObject, setReferenceObject] = useState(null); // this will have to be preserved and used as a reference for traversal.
   const [selectedNodeTitle, setSelectedNodeTitle] = useState(rootNode);
@@ -228,6 +220,9 @@ const ExperienceMap = ({ mapWidth = 800, mapHeight = 500 }) => {
     : 0;
   
   const getTruncatedTitle = (title, width) => {
+    if (width < 50) {
+      return `${title.slice(0,2)}`;
+    }
     if (width < 100) {
       return `${title.slice(0,4)}...`;
     }
@@ -245,7 +240,7 @@ const ExperienceMap = ({ mapWidth = 800, mapHeight = 500 }) => {
     return (
       <g
         transform={`translate(${skill.x0}, ${skill.y0})`}
-        className="skillz-treemap__item"
+        className="skillz-treemap__item cursor-pointer"
         onClick={handleClick}
       >
         <rect x={0} y={0} fill={color} width={width} height={height} />
@@ -270,6 +265,7 @@ const ExperienceMap = ({ mapWidth = 800, mapHeight = 500 }) => {
   }
 
   if (activeMap) {
+    console.log('active', activeMap)
     return (
       <div className="experience__explorer w-full flex flex-col items-center justify-center">
         <div className="experience__explorer__header flex items-center">
@@ -286,6 +282,11 @@ const ExperienceMap = ({ mapWidth = 800, mapHeight = 500 }) => {
             : renderTreemapCell(activeMap)
           }
         </svg>
+        {activeMap.data?.notes && (
+          <p className="pt-10 text-xl text-center">
+            {activeMap.data.notes}
+          </p>
+        )}
       </div>
     );
   }
