@@ -1,14 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, graphql, navigate } from "gatsby";
 import Img from "gatsby-image";
-import moment from "moment";
 import { useLocation } from '@reach/router';
-
+import { isAfter, format } from 'date-fns';
 
 import { Header } from "../components/blog/Header";
 import { Footer } from "../components/blog/Footer";
 import { ThemeContext } from "../../gatsby-browser";
-import { getFontColor } from "../utils/index";
 
 import "../styles/index.scss";
 import { SEO } from "../components/shared/SEO";
@@ -87,10 +85,10 @@ const Blog = ({ data, location }) => {
               );
             })
             .sort((a, b) => {
-              const momentA = moment(a.node.frontmatter.date);
-              const momentB = moment(b.node.frontmatter.date);
-              if (momentA.isAfter(momentB)) return -1;
-              if (momentB.isAfter(momentA)) return 1;
+              const dateA = new Date(a.node.frontmatter.date);
+              const dateB = new Date(b.node.frontmatter.date);
+              if (isAfter(dateA, dateB)) return -1;
+              if (isAfter(dateB, dateA)) return 1;
               return 0;
             })
             .map(({ node: post }) => {
@@ -112,6 +110,7 @@ const Blog = ({ data, location }) => {
                     <p className="text-xl pt-10">
                       {post.excerpt}
                     </p>
+                    <p className="text-xl w-full pt-10 text-center mt-auto">{`Published ${format(new Date(post.frontmatter.date), 'MM/dd/yyyy')}`}</p>
                     <p className="text-xl w-full pt-10 text-center mt-auto">{`${post.timeToRead} minute read`}</p>
                   </Link>
                 </li>
@@ -151,7 +150,7 @@ export const pageQuery = graphql`
             featuredImage {
               id
               childImageSharp {
-                fluid {
+                fluid(maxWidth: 260) {
                   ...GatsbyImageSharpFluid
                 }
               }

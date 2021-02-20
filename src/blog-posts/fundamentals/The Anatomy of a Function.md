@@ -2,7 +2,7 @@
 title: The Anatomy of a Function
 tags: public, cs fundamentals
 featuredImage: ../../images/fundamentals.png
-date: '04-25-20'
+date: '2020-04-25'
 ---
 A function is the bread and butter of any program or application. While there are other pieces, the functions which make up a program are ultimately responsible for what makes a program/application executable. Functions are the engine of the program. When I was first learning how to code I was really tripped up  by a couple of things related to functions and there is still a lot I can learn!
 

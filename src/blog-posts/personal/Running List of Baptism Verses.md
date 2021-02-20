@@ -1,7 +1,7 @@
 ---
 title: The Principle of Inclusion
 tags: religion
-date: '05-13-2020'
+date: '2020-05-13'
 ---
 
 Psalm 87: https://biblehub.com/esv/psalms/87.htm

@@ -2,7 +2,7 @@
 title: Relational Database Service (RDS)
 tags: public, aws
 featuredImage: ../../images/aws_logo.png
-date: '12-09-19'
+date: '2019-12-09'
 ---
 
 **Multi AZ Deployments**

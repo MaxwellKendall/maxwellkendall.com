@@ -2,7 +2,7 @@
 title: Calvin on Christ's Ascension and Judgment
 tags: religion
 featuredImage: ../../images/aws_logo.png
-date: '05-23-2020'
+date: '2020-05-23'
 ---
 
 ### Benefits imparted out our faith by Christ’s ascension (On the Apostles Creed “He ascended into heaven):

@@ -2,7 +2,7 @@
 title: Calvin and the Third Use of the Law
 tags: religion
 featuredImage: ../../images/aws_logo.png
-date: '04-20-2020'
+date: '2020-04-20'
 ---
 
 > The third and **principal use**, which pertains more closely to the proper use of the law, finds its place among believers in whose hearts the Spirit of God already lives and reigns. For even though they have the law written and engraved upon their hearts by the finger of God, that is, have been so moved and quickened through the directing of the Spirit that they long to obey God, they still profit by the law in two ways. 

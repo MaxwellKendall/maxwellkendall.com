@@ -2,7 +2,7 @@
 title: Virtual Private Cloud (VPC)
 tags: public, aws
 featuredImage: ../../images/aws_logo.png
-date: '12-09-19'
+date: '2019-12-09'
 ---
 
 Networking concepts

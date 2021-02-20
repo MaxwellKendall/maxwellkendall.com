@@ -2,7 +2,7 @@
 title: Identity Access Management
 tags: public, aws
 featuredImage: ../../images/aws_logo.png
-date: '12-09-19'
+date: '2019-12-09'
 ---
 
 Users are considered those with an AWS Identity that can log in to the console. These identities are governed by policies which can be associated with a role or a group.

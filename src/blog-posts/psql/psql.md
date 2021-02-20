@@ -2,7 +2,7 @@
 title: PostgreSQL DB
 tags: public, backend
 featuredImage: ../../images/psql.png
-date: '08-27-20'
+date: '2020-08-27'
 ---
 
 PostgreSQL is a popular relational database. This post will focus on the parts of SQL which I don't understand very well or have little to no  experience.

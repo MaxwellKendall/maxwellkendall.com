@@ -2,7 +2,7 @@
 title: Elastic Cloud Compute (EC2)
 tags: public, aws, Virtual Machines, Networking
 featuredImage: ../../images/aws_logo.png
-date: '12-09-19'
+date: '2019-12-09'
 ---
 
 This AWS Service provides Virtual Machines (or dedicated physical servers) available in a variety of pricing models. The main selling point behind EC2 is the removal of a need for traffic forecasting by the implementation of auto-scaling. Auto scaling refers to the ability to scale compute resources up or down based traffic.

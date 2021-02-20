@@ -2,7 +2,7 @@
 title: Cloud Formation
 tags: public, aws
 featuredImage: ../../images/aws_logo.png
-date: '12-09-19'
+date: '2019-12-09'
 ---
 
 Infrastructure as Code. Ballin.

@@ -2,7 +2,7 @@
 title: Neworking Basics for AWS Fundamentals
 tags: public, aws
 featuredImage: ../../images/aws_logo.png
-date: '12-09-19'
+date: '2019-12-09'
 ---
 
 A basic understanding of networking is helpful for understanding AWS. This covers the basics of how devices can communicate with one another.
