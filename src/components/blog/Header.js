@@ -19,7 +19,7 @@ export const Header = ({ izOffHrs }) => {
           <Link className="tex-3xl font-bold mr-10" to="/about">ABOUT</Link>
         </li>
         <li>
-          <Link className="tex-3xl font-bold" to="/">BLOG</Link>
+          <Link className="tex-3xl font-bold" to="/blog">BLOG</Link>
         </li>
       </ul>
       </div>
