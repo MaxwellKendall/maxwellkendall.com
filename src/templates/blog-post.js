@@ -1,13 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Header } from "../components/blog/Header";
 import { Footer } from '../components/blog/Footer';
 import { ThemeContext } from "../../gatsby-browser";
 
+const hasWindow = typeof window === 'object';
+
 export default function PageTemplate({ data: { mdx } }) {
   const { izOffHrs } = useContext(ThemeContext);
-
+  const [isClient, setClient] = useState(hasWindow);
+  useEffect(() => {
+      console.info('isClient?', isClient)
+      if (!isClient) {
+          setClient(true);
+          console.info('isClient?', isClient)
+      }
+  }, []);
   return (
     <div className="blog-post-page">
       <Header izOffHrs={izOffHrs} />

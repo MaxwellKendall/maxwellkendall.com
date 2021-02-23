@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import moment from 'moment';
 import vsDark from 'prism-react-renderer/themes/vsDark';
@@ -15,7 +15,7 @@ export const ThemeContext = React.createContext({ izOffHrs: izOffHrs() });
 const SyntaxHighlighter = (props) => {
     const className = props.children.props.className || "";
     const matches = className.match(/language-(?<lang>.*)/);
-
+    
     return (
         <Highlight
             {...defaultProps}
@@ -30,7 +30,7 @@ const SyntaxHighlighter = (props) => {
             <pre className={className} style={style}>
                     {tokens.map((line, i) => (
                         <div {...getLineProps({ line, key: i })}>
-                            <div className="inline-block w-2 text-gray-400 pr-5 mr-5 border-gray border-r">{i + 1}</div>
+                            <div className="line-number">{i + 1}</div>
                             {line.map((token, key) => (
                                 <span {...getTokenProps({ token, key })} />
                         ))}
