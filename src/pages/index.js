@@ -64,7 +64,7 @@ const RootIndex = ({ data: { site: { siteMetadata: seoInfo }, mdx }}) => {
 };
 
 export const pageQuery = graphql`
-  query aboutPage {
+  query homePage {
     site {
       siteMetadata {
         title

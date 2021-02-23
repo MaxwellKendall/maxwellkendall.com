@@ -68,7 +68,7 @@ const Blog = ({ data, location }) => {
             )
         })}
       </ul>
-      <div className="main bg-gray-200">
+      <div className="blog bg-gray-200">
         <ul className="blog-list flex flex-wrap mx-auto justify-center">
           {posts
             .filter(({ node: post }) => post.frontmatter.tags.split(", ").includes("public"))

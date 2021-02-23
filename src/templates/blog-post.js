@@ -9,7 +9,7 @@ export default function PageTemplate({ data: { mdx } }) {
   const { izOffHrs } = useContext(ThemeContext);
 
   return (
-    <div className="main">
+    <div className="blog-post-page">
       <Header izOffHrs={izOffHrs} />
       <div className="blog-post markdown-body max-w-6xl">
         <h2>{mdx.frontmatter.title}</h2>
