@@ -41,7 +41,8 @@ The body is the place between the `{}`! This is where we take our function input
 ### Name and Signature
 The signature is the input and return value of the function. Based on the signature, we give a proper name:
 
-```javascript{numberLines: true}
+```javascript
+
     const getItemFromArrayOfObjectsWithValue = (arrayOfObjects, key, value) => {
         return arrayOfObjects
             .find((obj) => {
@@ -54,14 +55,19 @@ This function becomes more readable when we name it based on what it actually do
 - The inputs are (1) an array of objects, (2) a key present on the items in the array, and (3) the value for the given key of one of the objects in the array.
 - The return is one of the items in the array
 
+An ordered list:
+1. One
+2. Two
+3. Three
+
 What's clean about this example is we can reasonably infer both the input and return values without going through the complexity found in the body.
 
 Now here is our invocation of `getItemFromArrayOfObjectsWithValue`:
 
 ```javascript
 
-    const array = [{ name: 'jon' }, { name: 'jane' }];
-    const jon = getItemFromArrayOfObjectsWithValue(array, 'name', 'jon');
+const array = [{ name: 'jon' }, { name: 'jane' }];
+const jon = getItemFromArrayOfObjectsWithValue(array, 'name', 'jon');
 ```
 
 ## Overview

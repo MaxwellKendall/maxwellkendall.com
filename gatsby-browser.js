@@ -1,6 +1,7 @@
 import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import moment from 'moment';
+import vsDark from 'prism-react-renderer/themes/vsDark';
 import Highlight, { defaultProps } from "prism-react-renderer";
 
 export const izOffHrs = () => (
@@ -18,20 +19,22 @@ const SyntaxHighlighter = (props) => {
     return (
         <Highlight
             {...defaultProps}
+            theme={vsDark}
             code={props.children.props.children.trim()}
             language={
-                matches && matches.groups && matches.groups.lang
+            matches && matches.groups && matches.groups.lang
                     ? matches.groups.lang
                     : ""
             }>
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <pre className={className} style={style}>
-                {tokens.map((line, i) => (
-                <div {...getLineProps({ line, key: i })}>
-                    {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} />
-                    ))}
-                </div>
+                    {tokens.map((line, i) => (
+                        <div {...getLineProps({ line, key: i })}>
+                            <div className="inline-block w-2 text-gray-400 pr-5 mr-5 border-gray border-r">{i + 1}</div>
+                            {line.map((token, key) => (
+                                <span {...getTokenProps({ token, key })} />
+                        ))}
+                    </div>
                 ))}
             </pre>
             )}
