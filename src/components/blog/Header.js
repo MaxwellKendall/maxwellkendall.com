@@ -9,7 +9,7 @@ import { getImage } from "../../graphql/index";
 export const Header = ({ izOffHrs }) => {
   const image = getImage(izOffHrs);
   return (
-    <div className="header w-full mx-auto max-w-5xl">
+    <div className="header w-full mx-auto max-w-5xl mb-10 md:mb-20">
         <Link to="/" className="flex justify-center items-center pt-10">
           <div className="header__bio w-1/4 lg:w-1/12">
             <Img fluid={image} className="w-full rounded-xl p-10" imgStyle={{ borderRadius: '50%' }} />
