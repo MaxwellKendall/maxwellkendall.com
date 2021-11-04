@@ -3,3 +3,9 @@
 @import "tailwindcss/utilities";
 
 @import "./core/index";
+
+.blog-post-page .blog-post.markdown-body {
+    pre {
+        background-color: black;
+    }
+}

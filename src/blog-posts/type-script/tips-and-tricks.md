@@ -2,7 +2,7 @@
 title: TypeScript Tips and Tricks
 tags: public, type-script
 featuredImage: ../../images/type-script.png
-date: '2020-06-15'
+date: '2021-06-15'
 ---
 
 Working with types in JavaScript is a lot easier when you have a few tips and tricks 

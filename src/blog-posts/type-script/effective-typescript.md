@@ -2,7 +2,7 @@
 title: Effective TypeScript
 tags: public, type-script
 featuredImage: ../../images/type-script.png
-date: '2020-06-15'
+date: '2021-06-15'
 ---
 
 We can rely on the `tsc` to infer types. We can also statically type a variable to be a `Union Type`:
