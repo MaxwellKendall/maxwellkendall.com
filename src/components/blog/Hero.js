@@ -1,7 +1,7 @@
 import React from 'react'
-import Img from 'gatsby-plugin-image';
+import { GatsbyImage as Img } from 'gatsby-plugin-image';
 
-export default ({ data }) => (
+const Hero = ({ data }) => (
   <div className="hero">
     {data.heroImage && (
       <Img
@@ -17,3 +17,5 @@ export default ({ data }) => (
     </div>
   </div>
 );
+
+export default Hero;

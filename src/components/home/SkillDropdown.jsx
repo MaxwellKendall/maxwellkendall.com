@@ -1,6 +1,6 @@
 import React  from 'react';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
-import Image from 'gatsby-plugin-image';
+import { GatsbyImage as Img } from 'gatsby-plugin-image';
 
 import moment from 'moment';
 
@@ -15,7 +15,7 @@ export const SkillDropdown = ({ title, startDate, imgs }) => {
         return (
             <VerticalTimelineElement
                 date={`${start} through ${end}`}
-                icon={<Image className="BAH-Icon" fluid={experience.image.fluid} />}>
+                icon={<Image className="BAH-Icon" alt="" image={experience.image.fluid} />}>
                 <div
                 className="timeline-element__body"
                 dangerouslySetInnerHTML={{

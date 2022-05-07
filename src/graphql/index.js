@@ -13,17 +13,16 @@ export const getImage = (izOffHrs) => {
                     src
                   }
                   id
-                  fluid(maxWidth: 100) {
-                    ...GatsbyImageSharpFluid
-                  }
+                  gatsbyImageData(layout: CONSTRAINED)
                 }
               }
             }
           }`
     );
+    console.log('allImageSharp.edges', allImageSharp.edges)
     return allImageSharp.edges
       .find((edge) => {
         return edge.node.original.src.includes(str);
       })
-      .node.fluid;
+      .node.gatsbyImageData;
 };

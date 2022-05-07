@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, graphql, navigate } from "gatsby";
-import Img from 'gatsby-plugin-image';
+import { GatsbyImage as Img } from 'gatsby-plugin-image';
 import { useLocation } from '@reach/router';
 import { isAfter, format } from 'date-fns';
 
@@ -102,7 +102,8 @@ const Blog = ({ data, location }) => {
                     {img && (
                       <Img
                         className="w-11/12 m-auto"
-                        fluid={post.frontmatter.featuredImage.childImageSharp.fluid} />
+                        alt=""
+                        image={post.frontmatter.featuredImage.childImageSharp.gatsbyImageData} />
                     )}
                     <p className="text-xl pt-10">
                       {post.excerpt}
@@ -147,9 +148,7 @@ export const pageQuery = graphql`
             featuredImage {
               id
               childImageSharp {
-                fluid(maxWidth: 260) {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(layout: CONSTRAINED)
               }
             }
           }
