@@ -1,6 +1,6 @@
 import React  from 'react';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
-import Image from "gatsby-image";
+import Image from 'gatsby-plugin-image';
 
 import moment from 'moment';
 

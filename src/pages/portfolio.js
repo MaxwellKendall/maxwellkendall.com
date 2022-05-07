@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-
+import { graphql } from 'gatsby';
 import { ThemeContext } from "../../gatsby-browser";
 import { SEO } from "../components/shared/SEO";
 import { Header } from "../components/blog/Header";

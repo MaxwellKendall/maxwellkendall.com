@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, graphql, navigate } from "gatsby";
-import Img from "gatsby-image";
+import Img from 'gatsby-plugin-image';
 import { useLocation } from '@reach/router';
 import { isAfter, format } from 'date-fns';
 
