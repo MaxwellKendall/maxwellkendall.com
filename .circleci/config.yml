@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: "install dependencies"
-          command: "npm ci"
+          command: "npm ci --legacy-peer-deps"
       - run:
           name: "build code"
           command: "npm run build"
