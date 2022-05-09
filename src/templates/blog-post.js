@@ -3,12 +3,12 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Header } from "../components/blog/Header";
 import { Footer } from '../components/blog/Footer';
-import { ThemeContext } from "../../gatsby-browser";
+import { isOffHrs } from "../utils";
 
 const hasWindow = typeof window === 'object';
 
 export default function PageTemplate({ data: { mdx } }) {
-  const { izOffHrs } = useContext(ThemeContext);
+  const izOffHrs = isOffHrs();
   const [isClient, setClient] = useState(hasWindow);
   useEffect(() => {
       console.info('isClient?', isClient)

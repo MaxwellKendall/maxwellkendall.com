@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, graphql } from "gatsby";
 // import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { Header } from "../components/blog/Header";
 import { Footer } from "../components/blog/Footer";
-import { ThemeContext } from "../../gatsby-browser";
+import { isOffHrs } from "../utils";
 import ExperienceMap from "../components/home/ExperienceMap";
 
 import "../styles/index.css";
@@ -45,7 +45,7 @@ const useMapDimensions = () => {
 }
 
 const RootIndex = ({ data: { site: { siteMetadata: seoInfo }, mdx }}) => {
-  const { izOffHrs } = useContext(ThemeContext);
+  const izOffHrs = isOffHrs();
   const mapDimensions = useMapDimensions()
   return (
       <SEO siteMetadata={seoInfo}>

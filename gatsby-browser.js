@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
-import moment from 'moment';
 import vsDark from 'prism-react-renderer/themes/vsDark';
 import Highlight, { defaultProps } from "prism-react-renderer";
 
-export const izOffHrs = () => (
-    moment().day() >= 6 || moment().hour() >= 17
-);
-
 require("github-markdown-css");
-
-export const ThemeContext = React.createContext({ izOffHrs: izOffHrs() });
 
 const SyntaxHighlighter = (props) => {
     const className = props.children.props.className || "";
@@ -50,10 +43,8 @@ export const wrapRootElement = ({
     element
 }) => {
     return (
-        <ThemeContext.Provider value={{ izOffHrs: izOffHrs() }}>
-            <MDXProvider components={components}>
-                {element}
-            </MDXProvider>
-        </ThemeContext.Provider>
+        <MDXProvider components={components}>
+            {element}
+        </MDXProvider>
     );
 };

@@ -19,7 +19,6 @@ export const getImage = (izOffHrs) => {
             }
           }`
     );
-    console.log('allImageSharp.edges', allImageSharp.edges)
     return allImageSharp.edges
       .find((edge) => {
         return edge.node.original.src.includes(str);

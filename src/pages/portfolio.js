@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { graphql } from 'gatsby';
-import { ThemeContext } from "../../gatsby-browser";
+
 import { SEO } from "../components/shared/SEO";
 import { Header } from "../components/blog/Header";
 import { Footer } from "../components/blog/Footer";
+import { isOffHrs} from "../utils";
 
 const PortfolioPage = ({ data: { site: { siteMetadata: seoInfo }, mdx } }) => {
-  const { izOffHrs } = useContext(ThemeContext);
+  const { izOffHrs } = isOffHrs();
   return (
       <SEO siteMetadata={seoInfo}>
         <Header izOffHrs={izOffHrs} />

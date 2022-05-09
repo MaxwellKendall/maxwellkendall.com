@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, graphql, navigate } from "gatsby";
 import { GatsbyImage as Img } from 'gatsby-plugin-image';
 import { useLocation } from '@reach/router';
@@ -6,8 +6,7 @@ import { isAfter, format } from 'date-fns';
 
 import { Header } from "../components/blog/Header";
 import { Footer } from "../components/blog/Footer";
-import { ThemeContext } from "../../gatsby-browser";
-
+import { isOffHrs} from "../utils";
 import "../styles/index.css";
 import { SEO } from "../components/shared/SEO";
 
@@ -25,7 +24,7 @@ const Blog = ({ data, location }) => {
   const urlSearch = query.get('q') || '';
   const { edges: posts } = data.allMdx;
   const { siteMetadata } = data.site;
-  const { izOffHrs } = useContext(ThemeContext);
+  const izOffHrs = isOffHrs();
   const [searchTerm, setSearch] = useState(urlSearch);
 
   const handleSearch = (e) => {
