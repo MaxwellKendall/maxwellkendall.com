@@ -1,3 +1,3 @@
 ## MDX
 
-Using MDX for blogging.
+Using MDX for blogging

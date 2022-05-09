@@ -10,12 +10,14 @@
   "scripts": {
     "start": "gatsby develop -H 0.0.0.0",
     "build": "gatsby clean && gatsby build",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "deploy": "aws s3 sync ./public s3://maxwellkendall.com --region us-east-1 --acl public-read ; aws cloudfront create-invalidation --distribution-id $S3_DISTRIBUTION_ID --paths /'*'"
   },
   "bugs": {
     "url": "https://github.com/contentful/starter-gatsby-blog/issues"
   },
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.17.10",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
@@ -29,11 +31,13 @@
     "d3-scale-chromatic": "^1.3.3",
     "date-fns": "^2.17.0",
     "gatsby": "^4.13.1",
+    "gatsby-link": "^4.13.0",
     "gatsby-plugin-google-analytics": "^4.13.0",
     "gatsby-plugin-image": "^2.13.0",
     "gatsby-plugin-mdx": "^3.13.0",
     "gatsby-plugin-react-helmet": "^5.13.0",
     "gatsby-plugin-sharp": "^4.13.0",
+    "gatsby-react-router-scroll": "^5.13.0",
     "gatsby-remark-images": "^6.13.0",
     "gatsby-remark-prismjs": "^6.13.0",
     "gatsby-source-filesystem": "^4.13.0",
