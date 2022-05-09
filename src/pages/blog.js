@@ -8,7 +8,7 @@ import { Header } from "../components/blog/Header";
 import { Footer } from "../components/blog/Footer";
 import { ThemeContext } from "../../gatsby-browser";
 
-import "../styles/index.scss";
+import "../styles/index.css";
 import { SEO } from "../components/shared/SEO";
 
 const acceptableChars = "abcdefghijklmnopqrstuvwxyz123456789";

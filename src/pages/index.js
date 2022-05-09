@@ -7,7 +7,7 @@ import { Footer } from "../components/blog/Footer";
 import { ThemeContext } from "../../gatsby-browser";
 import ExperienceMap from "../components/home/ExperienceMap";
 
-import "../styles/index.scss";
+import "../styles/index.css";
 import { SEO } from "../components/shared/SEO";
 
 const useMapDimensions = () => {
