@@ -13,7 +13,7 @@ const test_data = {
   children: [
     {
       title: "Front End Engineering",
-      notes: "Full stack developer for Recreation.gov and USAspending.gov.",
+      notes: "Full stack developer for Recreation.gov and USAspending.gov and app.mural.co.",
       children: [
         {
           title: "Sass/CSS",
@@ -39,12 +39,17 @@ const test_data = {
           title: "ES6",
           start: moment("2017-07-01"),
           end: moment()
+        },
+        {
+          title: "Type Script",
+          start: moment("2021-06-07"),
+          end: moment()
         }
       ]
     },
     {
       title: "Back End Engineering",
-      notes: "As a full stack developer in my career thus far I have always focused on the front end. My experience here should be read as such.",
+      notes: "I have been focused mostly on the back end since 2021.",
       children: [
         {
           title: "Golang",
@@ -55,14 +60,14 @@ const test_data = {
         {
           title: "Python",
           start: moment("2019-03-01"),
-          end: moment(),
+          end: moment("2021-05-31"),
           notes: "Professional experience includes building very simple endpoints using Django.",
         },
         {
           title: "NodeJS",
           start: moment("2017-07-01"),
           end: moment(),
-          notes: "Professional experience includes building a sitemap using Node, configuring build process with WebPack, and various other miscellaneous scripts.",
+          notes: "Professional experience includes engineering APIs, auto-generated sitemaps, serverless functions, architecting the SPA build process with WebPack, and various scripts for debugging.",
         }
       ]
     },
@@ -84,7 +89,7 @@ const test_data = {
           title: "Docker",
           start: moment("2018-03-01"),
           end: moment(),
-          notes: "Professional experience includes setting up deployable containers using DockerFile and maintaining local back ends.",
+          notes: "Professional experience includes setting up deployable containers using DockerFile, Docker Compose, and maintaining local back ends.",
         },
         {
           title: "Jenkins",
@@ -95,22 +100,49 @@ const test_data = {
       ]
     },
     {
-      title: "Janitorial Work",
-      start: moment("2010-07-01"),
-      end: moment("2013-01-01"),
-      notes: "Very grateful for this experience as a janitor at my church during college. I'm grateful to be able to work with my mind and not so much my hands.",
+      title: "Production Operations & Support",
+      start: moment("2014-06-01"),
+      end: moment(),
+      children: [
+        {
+          title: "SaaS Help Desk",
+          start: moment("2014-06-01"),
+          end: moment("2015-05-31")
+        },
+        {
+          title: "Operations Support",
+          start: moment("2015-06-01"),
+          end:  moment("2017-02-28"),
+        },
+        {
+          title: "Software Engineering",
+          start:  moment("2017-03-01"),
+          end: moment()
+        }
+      ]
     },
     {
-      title: "Construction",
-      start: moment("2012-06-01"),
-      end: moment("2013-01-01"),
-      notes: "Very grateful for this experience as a facilities manager at a Christian Summer camp. I'm grateful to be able to work with my mind and not so much my hands.",
-    },
-    {
-      title: "Restaurant",
-      start: moment("2013-01-01"),
-      end: moment("2014-06-01"),
-      notes: "Very grateful for this experience as a deli worker at the best deli in Charleston SC -- Mozzo Deli.",
+      title: "Miscellaneous",
+      children: [
+        {
+          title: "Janitorial Work",
+          start: moment("2010-07-01"),
+          end: moment("2013-01-01"),
+          notes: "Worked as a janitor at my church during college.",
+        },
+        {
+          title: "Construction",
+          start: moment("2012-06-01"),
+          end: moment("2013-01-01"),
+          notes: "Landscaping, electrical, and plumbing for a Christian Summer Camp.",
+        },
+        {
+          title: "Restaurant",
+          start: moment("2013-01-01"),
+          end: moment("2014-06-01"),
+          notes: "Not sure I loved food until I worked at Mozzo Deli.",
+        }
+      ]
     }
   ]
 };
