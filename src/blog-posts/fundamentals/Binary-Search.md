@@ -5,6 +5,18 @@ featuredImage: ../../images/fundamentals.png
 date: '2022-05-03'
 ---
 
+**Problem Statement:** Given a sorted array and a target, find the proper index for it while maintaining all other elements and the initial sort.
+
+The Binary Search algorithim, in as much as I currently understand it, implements the "divide and conquer" strategy. Given an array and a target element,
+we find the target (or target index) under the assumption that the array is sorted in some manner that helps us find the target or target index.
+
+The most common example is when the array is an array of integers, sorted in ascending order. With this constraint -- the input array is always sorted in some
+manner which we expect -- we traverse the array by comparing the middle element to the target. If the middle is greater than the target, we recursively call the
+function with a narrowed array, where the previous middle is the new last entry `arr[0:middle]`. This is considered "moving to the left". Conversely, if the middle 
+is less than the target, we recursively call the function with a narrow array, where the previous middle is now the first entry: `arr[middle:]`.
+
+**Solution**:
+
 ```javascript
 /**
  * @param {number[]} nums
@@ -46,3 +58,9 @@ var searchInsert = function(nums, target, start = null, end = null) {
 };
 
 ```
+
+## Efficency Analysis
+The space complexity for this is 0(1). No matter how big the input size, the space is constant.
+
+The time complexity for this is 0(log n). Depending on the size of the input, we use the log of n invocations of our function.
+
