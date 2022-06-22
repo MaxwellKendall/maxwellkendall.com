@@ -1,5 +1,5 @@
 ---
-title: Basic Algorithims - Sorting
+title: Sorting Strategies
 tags: cs fundamentals
 featuredImage: ../../images/fundamentals.png
 date: '2022-05-27'

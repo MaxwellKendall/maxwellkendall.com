@@ -1,6 +1,6 @@
 ---
 title: Binary Search Algorithim
-tags: public, cs fundamentals
+tags: public, fundamentals
 featuredImage: ../../images/fundamentals.png
 date: '2022-05-03'
 ---
