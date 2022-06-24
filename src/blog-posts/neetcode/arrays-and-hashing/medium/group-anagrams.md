@@ -2,7 +2,7 @@
 title: Two Sum
 tags: cs fundamentals
 featuredImage: ../../images/fundamentals.png
-date: '2022-06-222'
+date: '2022-06-22'
 ---
 [Link](https://leetcode.com/problems/group-anagrams/)
 
