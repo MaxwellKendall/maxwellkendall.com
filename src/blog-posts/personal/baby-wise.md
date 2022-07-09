@@ -218,13 +218,12 @@ Avoid `snack or cluster feedings` as they will work against "the synchronozation
 ### Hind and Fore Milk
 Hindmilk is the good stuff, foremilk is the diluted stuff at the beginning. (Lots of detail on page 66/67)
 
-
 ### Nursing positions
 > Proper latching requires the baby's entire body, head, chest,stomach and legs aligned and facing mom's breasat. If the head is twisted away from his body, then the baby will not be able to nurse efficently. Imagine trying to receive a drink from someone standing behind you with your head sideways. Your esophagus is pinched at the point where your head is turne.d that is what it is like whe na baby is not aligned properly on his mother's breast.
 
 Three main positions: cradle, side-lying, and football hold. Most common is the cradle position. 
 
-## How often should I nurse?
+### How often should I nurse?
 > Always feed a hungry baby! ...On average for the first month do once every 2.5 - 3 hours... Feedings are best measured from the beginning of one to the beginning of the next. 
 
 Feeding duration: 20 - 30 minutes
@@ -313,3 +312,98 @@ Positons:
 2. Tummy over lap position
 3. Shoulder position
 4. Cradle Position
+
+
+## Managing your Bab'ys Day (Use App for Specific Schedule)
+A baby's routine must be established _before_ flexibility is introduced to the Baby's day.
+
+Three activities of babys routine are 
+1. Feeding Time
+2. Wake Time
+3. Naptime
+
+With age appropriate modifications, these same three activites continue thorought the first year and constitue a "feed-wake-sleep cycle".
+
+We _merge_ the changing needs of the baby from one growth stage to the next by making small adjustments to the schedule that allows us to drop a feeding time.
+
+> Babies "Drop feedings" because they are either sleeping longer or staying awake longer. The act of "dropping a feeding" is part of the larger merging process and requires that some adjustments be made in a baby's daily routine
+
+### Guiding Principles to Merging Cycles
+> "First-last"... No matter what "merge" is taking place, when adjusting a baby's routine, the first feeding is always strategic. Without a consistent time set for the first morning feeding, a baby may feed every three hours, but each day's routine will be different. That is not good for baby or Mom. While ther can be some flexibility to this first feeding time, try to keep it within a 20 minute time frame.
+> "Time variation" ... Not every cycle is the same length once you get beyond the newborn stage; for instance at four months of age, some may be 2.5 hours, some may be 3.5. This is normal.
+> "Capacity and Ability"... baby's do not have the ability or capacity to arbitrarily drop a cycle.
+> "Individuality" ... obviously each kid is different
+> "Two steps forward, one step back" ... most merges take four to six days before a "new normal" is established.
+
+### First Month Principles
+> If you need to awaken your baby during the day to prevent him from sleeping longer than the three hour cycle, do so. Such intervention is necessary to help stabilize the baby's digestive metabolism and help him organize his sleep paterns into a predictable routine.
+> During the first month, a baby may give Mom and Dad a 4-hour stretch at night, but do not let the baby sleep longer than 4 hours. Wake your baby, feed him and put him right back down to sleep. An infant under four weeks of age is too young to go much longer without food. 
+### Waketime and the First Three Months
+> Your baby's feeding time _is_ his wake time, because that's all a newborn can handle before sleep overtakes his little body. Usually bye weeks 2 or 3 most babies fall into a predictable feed-wake-sleep routine. When this happens, you and your baby have arrived at another level of success.
+
+#### Birth to Two Weeks
+Over two to three hours:
+- Feeding time / Wake Time: 30-50 minutes
+- Sleep: 1.5 - 2hours
+
+> NOTE: Feeding time is basically the baby's wake time. 30 to 50 minutes include feeding, diaper change, burping, and any hygiene care necessary, (plus cuddles and kisses)
+
+### Three to Five Weeks
+Over 2.5 to 3 hours
+- Feedtime / Wake time: 30-60 minutes
+- Sleep: 1.5 - 2 hours
+
+> NOTE: Around week three you will notice that waketimes are starting to separate as a distinct activity and may last up to 30 minutes... With good feedings and healthy sleep habits, a new level of alertness emerges that requires additional thought and planning.
+
+### Six to Twelve Weeks
+Over 2.5 to 3.5 hours::
+- Feedtime: 30 minutes
+- Wake time: 30-50minutes
+- Sleep: 1.5 - 2 hours
+
+Very important! 👇👇👇👇
+> NOTE: By week 12, wake times could be 60 minutes or longer. By then, your baby should be sleeping through the night... DO NOT ALLOW `wake-feed-sleep` to overtake `feed-wake-sleep`! ...Baby is now feeding after a waketime when `he has less energy to feed effeciently`... It is not a big deal if this happens once or twice (due to almost no waketime and short nap where baby wakes up after having just fed recently); however, if this begins to repeat itself off and on, even for acouple days, then Baby's routine will begin to reflect a `wake-feed-sleep` cycle. Here is the problem with that routine. Inadequate waketimes lead to insufficient sleep, resulting in shorter naptimes; shorter naps lead to inefficient feedings, and from there everything falls apart. That is why feedings, in the early months, should follow after naps and not wake times.
+
+Very important 👆👆👆👆
+
+### General Principles
+> Consider context, be considerate of others. Your baby's routine is not the most important thing in the world. Consider other people.
+
+> Other people -- like nursery workers in church -- should not be obligated to follow your baby's routine
+
+Flexibility is okay so long as there is a routine that is established. Unforseen things occur and we have to be flexible as circumstances require:
+> Thoughtful parental responses determine whether a child is a blessing to others or a source of mild irritation.
+
+> At the heart of the Parent Directed Feeding plan lie three basic infant activites: baby feeds, baby is awake, baby sleeps. Matching baby's needs with apretnal care is all about the process of learning how to proactively love your baby.
+
+## Chapter Six: Waketimes and Naps
+Wake times is when you notice the most change
+
+### Activities
+1. Feeding & Touch
+> Touch is important because it is the first language of newborns is one they need and crave... while they do not need to be held 24/7 or have constant skin-to-skin contact with mom, they do need to be held by many members of the community... The more hand sthat communicate love through touch the more secure the child.
+2. Singing
+Never to early to sing. Kids recognize our voices and the sound of our voices and the ways words can be used
+3. Reading
+> Never to early to read and show him colorful, tactile books that he can expore on your own
+4. Bath Time
+5. Playing
+> The best part of waketime is when you get to cuddle and play with people, such feelings of love cannot be replaced
+6. Walking
+> Baby cannot walk, but his parents can! Going for a stroller lide and fresh air is great fun for Baby. Good for strollers to face outward so he can see the world around him take in new sights and so on.
+
+#### Alone time
+> Some monitroed alone time provides critical opportunities for learning... We do not mean leaving baby out of sight, but rather providing opportunities for him to investigate his world without being constantly entertained.
+
+You can do this via:
+1. Infant seat: elevated so he can see things
+2. Bouncy seat: Designed for baby who can hold head upright without support, usually at 3 - 4 months.
+> Keeping baby upright for 10-15 minutes after each feeding helps food to settle and minimizes spitting up.
+3. Tummy time:
+On blanket, on belly.
+> can begin once he is able to hold his head up consistently, usually between 12-16 weeks
+> Since SIDS prevention requiring babies to sleep on their back, more `plagiocephaly` has occured (flatenning of baby's head)... Tummy time has become a preventive counter-measure to correct the deficiencies (neck strenghth motor skills and so on are also affected by sleeping on back) of the supine (on back) sleeping arrangement
+> An ideal time to have tummy time is shortly after feeding while he is alert and happy, but not before a nap, when he is tired and may fall asleep.
+> Best blace is on Mom or Dad's chest
+> Must be planned for the welfare of your baby
+> Most pediatritaions recommend 30 cumulative minutes (or longer) of tummy time each day.
