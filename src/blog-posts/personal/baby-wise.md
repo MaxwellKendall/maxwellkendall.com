@@ -404,6 +404,78 @@ On blanket, on belly.
 > can begin once he is able to hold his head up consistently, usually between 12-16 weeks
 > Since SIDS prevention requiring babies to sleep on their back, more `plagiocephaly` has occured (flatenning of baby's head)... Tummy time has become a preventive counter-measure to correct the deficiencies (neck strenghth motor skills and so on are also affected by sleeping on back) of the supine (on back) sleeping arrangement
 > An ideal time to have tummy time is shortly after feeding while he is alert and happy, but not before a nap, when he is tired and may fall asleep.
-> Best blace is on Mom or Dad's chest
+> Best place is on Mom or Dad's chest
 > Must be planned for the welfare of your baby
 > Most pediatritaions recommend 30 cumulative minutes (or longer) of tummy time each day.
+
+Playpen good for when we're busy
+
+### Naptimes
+> While sleep training doesnt happen til four weeks of age... they will do so passively by establishing a good feed-wake-sleep routine.
+
+Weeks:
+- 1 - 2: 5-6 naps (17 - 19 hrs of sleep per day) 
+- 3 - 5: 5-6 naps (16 - 18 hrs of sleep per day)
+- 6 - 7: 4-6 naps (15 - 18 hrs of sleep per day)
+- 8 - 12: 4-5 naps (14 - 17 hrs of sleep per day)
+- 13 - 15: 3-4 naps (13 - 17 hrs of sleep per day)
+- 16 - 24: 3-4 naps (13 - 16 hrs of sleep per day)
+- 25 - 38: 2 - 3 naps (13 - 15 hrs of sleep per day)
+- 39 - 52: 2 naps (12 - 15 hrs of sleep per day)
+
+> Allowing a baby to cry for no reason does not make sense, but when you factor in whats best for hte baby, such as healthy sleep training, then crying at naptime has a purpose. It is not a meanignless exercise to test a parents reosl,ve but a decision to help your baby achieve the multiple benefits that come with being well rested. Think of a little crying as an investment twoward a lucrative gian. The benefit will be a baby who goes down for a nap without fussing and wakes up rested and as a result alert, ready to learn, happy and content. It is a good tradeoff for Baby, Mom and Dad.
+
+> Crying for 10, 15, or even 20 minutes will not harm your baby physically or emotionally... Who wants a fussy baby who is high-need, never satifsfied, unable to soothe himself, and living in a state of discontentment?
+
+> Healthy sleep has two primary components taht most parents are unwilling to give up: a baby who sleeps through his naps without waking andone who sleeps in his crib for those naps.
+
+When a baby wakes up in the middle of a sound nap, see page 123.
+
+> Over stimulating a baby during wakteime impacts the next set of feedings and naptimes.
+
+## When Your Baby Cries
+
+> All babies cry without any apparent cauase. NEwborns routinely cry a total of 1 to 4 hours a day. No mother can console her child every time he cries, so do not expect to be a miracle worker with your baby.
+
+> Think of crying as a signal, not a statement against your parenting.
+
+> The ability to _read_ your baby's cry will give you confidence in parenting, but waht are the keys to decoding your Baby's signal?
+
+> Babies whose parents supressed their cries could not overcome the simplest obstacles separating them from their parents.
+
+The goal isn't to stop your baby from crying, but to learn what the crying means
+
+> The key to responding to a baby's cry is understading the context not just the cry itself -- there are six cry times during the first five months:
+
+### Abnormal Times of Crying
+1. During a feeding
+- Milk okay?
+2. Immediately After a feeding
+- trapped gas, burp them
+- mom's diet -- spicy food?
+- milk quality -- lactate issue?
+3. In the middle of a sound nap
+- sleep issue? Routine okay?
+
+### Normal Times
+4. Just before feeding (he's hungry)
+5. During Early Evening
+- most baby's are just fussy during this time.
+- is he hungry?
+6. When going down for a nap
+> Most babies cannot fall asleep without crying and will go to sleep more quickly if left to cry for a while (American Acadmaey of Pediatrics or "AAP")
+> Sometimes tyou may think they're waking up when they're just in light sleep. Or they might be waking up for a second only to drift back. It's best to just let him cry for a bit, then he'll fall asleep again and you'll be fine (paraphrase, AAP)
+
+> If your baby cries more than 15 minutes, check on him. Remember, you are training your baby how to sleep, not "how to not cry"
+> Become a student of your child's cry patterns
+
+### Cries to listen for
+> A high-pitched, piercing cry may be a signal of either internal or external bodily injury. If persistent, should be brought to attention of a doctor
+> A marked change in cry patterns may indicate an illness
+
+### Responding to your Baby's Cry
+1. Think about where he is in his routine
+2. Listen for the type of cry
+3. Take action
+> Sometimes best action is no action; if he's clean, fed, and ready for naptime, let him learn to sleep without your help
+> Sometimes you just need to hold him for a second and reassure him. But blocking your childs cry al lthe time because you cannot handle the sound of the cry shouldn't be one of the reasons to pick him up
