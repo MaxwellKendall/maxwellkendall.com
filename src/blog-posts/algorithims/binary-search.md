@@ -1,6 +1,6 @@
 ---
 title: Binary Search Algorithim
-tags: public, fundamentals
+tags: fundamentals
 featuredImage: ../../images/fundamentals.png
 date: '2022-05-03'
 ---
@@ -64,3 +64,24 @@ The space complexity for this is 0(1). No matter how big the input size, the spa
 
 The time complexity for this is 0(log n). Depending on the size of the input, we use the log of n invocations of our function.
 
+```javascript
+/**
+ * @param {number[]} nums sorted by asc
+ * @param {number} target
+ * @return {number}
+ */
+var search = function(nums, target) {
+    let l = 0, r = nums.length - 1;
+    while (l <= r) {
+        // r - l = the length of the sub-array we're looking at?
+        let m = l + Math.floor((r - l) / 2);
+        if (nums[m] === target) return m;
+        if (nums[m] > target) {
+            r = m - 1;
+        } else {
+            l = m + 1;
+        }
+    }
+    return -1;
+};
+```

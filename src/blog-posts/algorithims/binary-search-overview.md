@@ -5,8 +5,7 @@ featuredImage: ../../images/fundamentals.png
 date: '2022-05-31'
 ---
 
-This algorithim can be applied to any scenario where you can "make a binary decision to shrink the search range". The main logic in this 
-problem domain can be reduced to finding the "boundary in an array". What constitutes the boundary is variable.
+This algorithm can be applied to any scenario where you can "make a binary decision to shrink the search range". The main logic in this problem domain can be reduced to finding the "boundary in an array". What constitutes the boundary is variable.
 
 For example, given an array of booleans, identify the first index with the value of true:
 
@@ -14,7 +13,6 @@ For example, given an array of booleans, identify the first index with the value
 
 fn([false, false, true])
 // => 2
-
 ```
 
 Or, given an array of sorted integers, find the index of a given target:
