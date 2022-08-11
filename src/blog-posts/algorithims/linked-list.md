@@ -46,6 +46,7 @@ Merge a linkedList:
  * @param {ListNode} list2
  * @return {ListNode}
  */
+
 const nullNode = { val: 0, next: null };
 
 var mergeTwoLists = function(list1, list2) {
@@ -65,3 +66,6 @@ var mergeTwoLists = function(list1, list2) {
     return nullNode.next;
 };
 ```
+
+## Writing/Creating a LinkedList
+To incrementally write a linkedlist, you have to 
