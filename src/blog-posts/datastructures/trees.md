@@ -5,11 +5,20 @@ featuredImage: ../../images/fundamentals.png
 date: '2022-08-09'
 ---
 
-A tree is pretty similar to a LinkedList in that each node contains references to other nodes.
+A tree is similar to a LinkedList in that each node contains references to other nodes. It is different from a LinkedList in that it may contain a reference to more than one
 
 > What is a binary tree?
 > A tree where each node has two children.
 
+## Traversal Strageties
+- In Order: left, current, right
+- Pre Order: current, left, right
+- Post Order: left, right, current
+
+## Depth First Search (DFS)
+Depth first search is an algorithim which implements `pre-order traversal` and `backtracking`. We look at the deepest node first, then we back track and look at the other paths on the ancestor nodes.
+
+## Code Examples
 Inverting a tree:
 ```javascript
 /**
