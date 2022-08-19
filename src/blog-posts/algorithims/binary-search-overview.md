@@ -1,21 +1,13 @@
 ---
-title: Binary Search Overview
+title: Binary Search
 tags: cs fundamentals
 featuredImage: ../../images/fundamentals.png
 date: '2022-05-31'
 ---
 
-This algorithm can be applied to any scenario where you can "make a binary decision to shrink the search range". The main logic in this problem domain can be reduced to finding the "boundary in an array". What constitutes the boundary is variable.
+Binary Search is a strategy to find a given "target" element within a sorted array. Binary logic is used to traverse the elements within an increasingly small range of indices until the target is discovered. On each iteration, the range is redefined and the binary logic is applied to the middle element within that range. The middle element is compared with such that based o
 
-For example, given an array of booleans, identify the first index with the value of true:
-
-```javascript
-
-fn([false, false, true])
-// => 2
-```
-
-Or, given an array of sorted integers, find the index of a given target:
+Given an array of sorted integers, find the index of a given target:
 
 ```javascript
 
@@ -23,7 +15,7 @@ fn([1,2,3,4], 4)
 // => 3
 ```
 
-The solution requires a simple while loop which executes so long as the `base condition` evaluates to true. This would be when the two pointers
+The solution requires a simple while loop which executes so long as the `base condition` evaluates to true.
 
 ```javascript
 function firstNotSmaller(arr, target) {

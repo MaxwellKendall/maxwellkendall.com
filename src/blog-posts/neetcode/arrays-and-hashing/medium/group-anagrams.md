@@ -32,8 +32,6 @@ var groupAnagrams = function(strs) {
                 return acc;
             }, new Array(26).fill(0))
 
-        console.log('hashkeyforword', hashKeyForWord)
-
         map[hashKeyForWord] = map[hashKeyForWord]
             ? map[hashKeyForWord].concat(w)
             : [w]

@@ -1,12 +1,11 @@
 ---
-title: Data Structures in JavaScript
+title: Data Structure Overview
 tags: cs fundamentals
 featuredImage: ../../images/fundamentals.png
 date: '2022-05-31'
 ---
 
-Data structures introduce performance minimums for specific actions and are often coupled to proven solutions to common programming tasks.
-Many such data structures occur natively within a given programming lanugage. In JavaScript, the array data type implements or substitues for the following.
+Data structures introduce performance minimums for specific actions and are often coupled to proven solutions to common programming tasks. Many such data structures occur natively within a given programming language. In JavaScript, the array data type implements or substitutes for the following.
 
 ## Common Data Structures
 
@@ -19,7 +18,7 @@ What is a Queue?
 -- array
 
 What is a Hashmap?
-> A Hashmap (or Hashtable) is a data structure which makes use of a hash function to map one "arbitrary data type" to another "arbitrary data type".
+> A Hashmap (or HashTable) is a data structure which makes use of a hash function to map one "arbitrary data type" to another "arbitrary data type".
 -- map
 
 What is a Hash Function?
