@@ -79,29 +79,67 @@ var groupAnagrams = function(strs) {
 ```
 
 ## Trees
-Trees are a data structure that is non-linear. They are made up of a few different components:
+Trees are a non-linear, hierarchical structure. There is a lot of vernacular associated with them which is important to know.
 
+### Tree Components:
 1. Root Node: no parent
-2. Parent Nodes: Node with one or more children
-3. Sibling Nodes: Nodes at the same depth
-4. Leaf Nodes: Nodes with a parent and no children
+2. Parent Nodes: node with one or more children
+3. Sibling Nodes: nodes at the same depth
+4. Leaf Nodes: nodes with a parent and no children
 
-Various attributes exist, like "diameter", "height", and "depth." Most of these are pretty straight forward.
+### Tree Attributes
+1. Subtree: A parent node and its descendants.
+2. Degree of a Node: Total number of children for a node.
+3. Length of a Path: The number of edges in a path.
+4. Depth of a Node: How far you are from the root node where root is 0 depth.
+5. Level of a Node: Depth + 1
+6. Height of a Node: How far you are from the nearest leaf where leaves are 0 height.
 
-There are also various classifications of trees which describe the number of children present on the trees:
-
+### Types of Trees
 1. N-ary Tree: Tree with `n` children. 
-2. Complete Tree: All levels except the last have all children. Last level has all children to the left. 
-4. Perfect Tree: All levels possess all children
+2. Binary Search Tree: Binary tree where left child is always less and right child is always greater than its parent.
+3. Complete Tree: All levels have children except the last which only has all children to the left. 
+4. Full Tree: No node has 1 child
+5. Perfect Tree: All levels possess all children.
+6. Skewed Tree: Binary trees where all nodes have only one side populated.
 
 ### Traversal Strageties
-- In Order: left, current, right
-- Pre Order: current, left, right
+- In Order: left, current, right (Depth First Search)
+- Pre Order: current, left, right (Breadth First Search)
 - Post Order: left, right, current
-
 
 ### Binary Search Tree
 This is a specific kind of tree where the left node is greater than the parent node, and the right node is less than the parent node.
 
+### Mental Model
+I like to visualize them as like a christmas tree, where the root node is where you put the star. This makes sense of the attributes of `height` and `depth`.
+
 ## Linked Lists
 A LinkedList is a data structure where each node contains a reference (typically under the `next` key) to another node. If `next` is null, the list is done. If the list contains a `previous` key the list is is considered a `doubly linked list`
+
+### Traversal
+To traverse a LinkedList we use a mutable variable and a while loop:
+```javascript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+    let ll = head;
+    let llReversed = null;
+    while(ll) {
+        let next = ll.next; // keep the actual next node
+        ll.next = llReversed; // Assigning the previous node as the next one
+        llReversed = ll; // set to mutated ll
+        ll = next; // look at the next node
+    }
+    return llReversed;
+};
+```
