@@ -94,11 +94,19 @@ There are also various classifications of trees which describe the number of chi
 2. Complete Tree: All levels except the last have all children. Last level has all children to the left. 
 4. Perfect Tree: All levels possess all children
 
-### Traversal Strageties
+### Traversal Strategies
 - In Order: left, current, right
 - Pre Order: current, left, right
 - Post Order: left, right, current
 
+#### Depth First Search (DFS)
+In DFS we go all the way down to the leaf node using a stack data structure. Once we finally get to the leaf node, we "backtrack" to look at the other children which we've skipped over on each former iteration.
+
+```javascript
+const stack = [];
+stack.push(node);
+stack.pop(); // => node
+```
 
 ### Binary Search Tree
 This is a specific kind of tree where the left node is greater than the parent node, and the right node is less than the parent node.
