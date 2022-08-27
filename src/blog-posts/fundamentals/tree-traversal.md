@@ -111,5 +111,48 @@ const postOrderIterative = (root) => {
 }
 ```
 
-## DFS: Under the Hood
-Whether we are implementing a recursive or iterative DFS, iwe are making use of the `stack` data structure. What's distinctive about the behavior of a stack is that when you read/remove a node from it, **you always read the last one that was added**. As you can observe above, when we drill down to a leaf-node, the stack is populated with only one side of the tree -- whether left or right. The trick is that before we read the next left/right node, we push to the stack the other node. This means on the next iteration, we read the node's sibling. 
+### Usage of the Stack Data Structure
+Whether we are implementing a recursive or iterative DFS, we are making use of the `stack` data structure. What's distinctive about the behavior of a stack is that when you read/remove a node from it, **you always read the last one that was added**. As you can observe above, when we drill down to a leaf-node during step one the stack is populated with only one side of the tree. The trick is that before each subsequent iteration, we push to the stack the sibling node which was ignored during step one. This means on the next iteration, we read the node's sibling.
+
+## BFS: A More Intuitive Approach
+When conceiving of the entire tree, the BFS path makes more sense to me for at least three reasons; first, because with this path we straightforwardly start from the root node and move downward toward the leaves; second, it is not recursively implemented; third, the possible order of visitation is binary -- either `right-to-left` or `left-to-right` -- rather than tertiary (pre, post, or in order). For these reasons, when looking at an entire tree, it is relatively easy to enumerate the node path that will be taken. There still exists the classifications of ordering as acknowledged above, but these are -- at least in my judgment -- easier to understand as well.
+
+### Examples
+```javascript
+let inOrderTraversal = function(root) {
+  var result = ""; 
+  const queue = [];
+  queue.push(root);
+  
+  while(queue.length) {
+    // shift, pop the first item in the array
+    const next = queue.shift();
+    result += next.val + " ";
+    if (next.left) {
+      queue.push(next.left)
+    }
+    if (next.right) {
+      queue.push(next.right)
+    }
+
+  }
+  return result;
+};
+```
+### Usage of the Queue Data Structure
+The queue data structure behaves in the opposite manner as the stack. When reading from a stack, you have to pick the last item appended. Conversely, when reading from a queue, you have to pick the first item appended. While iterating through the tree, we add the children to the queue and they are processed in the order we added them. So when we add `queue.push(node.left/node.right)` the left node is processed first, then the right node.
+
+## Trade-offs
+The intuitiveness of one approach over the other is somewhat subjective. Personally, when I invision traversing through a tree, BFS is far more intuitive. For others, the opposite is true. When it comes to objective comparison between one approach over the other, the following observations are relevant.
+
+1. BFS Efficency corresponds to the width of the tree
+2. BFS Efficency is highest at the leaves 
+3. DFS Efficency corresponds to the height of the tree
+
+To understand the above, we have to grasp the dimensions of a binary tree. First, the width of the tree is the greatest number of siblings at a given level and height is the longest path from the root. So whether to 
+use one or the other is dependent mostly upon: (a) dimensions of the tree and (b) whether the purpose of traversal is more likely to end near the root or at the leaves. If we're dealing with a very wide tree, we should likely use DFS. If we're likely to terminate on the leaves, we should likely use BFS.
+
+In either case, the worst case of traversal is O(n) where n is the number of nodes in the tree.
+
+## Conclusion
+Once again, trees are difficult to understand! Overall, the two competing strategies are very different. BFS means going through the tree each level at a time. DFS means going through the tree "subtree-by-subtree", beginning at the root, going to the leaves, and working our way backwards. To gain a sound understanding of this data structure, the first step is to visualize the traversal path for each strategy and substrategy (pre, post, or in order); second, to understand the underlying data structures used to manage state during traversal; third, and perhaps most difficult, to understand the tradeoffs between the various approaches and when to use one over the other.
