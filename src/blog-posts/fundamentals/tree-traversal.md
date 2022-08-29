@@ -1,7 +1,7 @@
 ---
 title: Tree Traversal
 tags: public, fundamentals
-featuredImage: ../../images/fundamentals.png
+featuredImage: ../../images/tree.jpeg
 date: '2022-08-19'
 ---
 
@@ -10,9 +10,9 @@ When navigating a tree, there are two general paths available: Depth First Searc
 ## DFS: A Counter Intuitive Path
 In both paths we start at the root of the tree. In DFS it is said we "start from the leaves of the tree" because once we reach the leaf level, we have only begun our journey through the nodes. There are two basic steps to this path. First, we make our way to the leaves of the tree. From there, we move onto our second step which is to "backtrack" toward the root again.
 
-When taking this path through a binary tree, there are three orders of traversal which emerge: in-order, pre-order, and post-order. A path is said to be "in order" when it looks at the left node first, root node second, and right node third. This can be shortened to `left-root-right` (LRR). With this understood, we can infer post-order as the reverse, `right-left-root` (RRL), and pre-order as `root-left-right` (RLR).
+When taking this path through a binary tree, there are three orders of traversal which emerge: in-order, pre-order, and post-order. A path is said to be "in order" when it looks at the left node first, root node second, and right node third. This can be shortened to `left-root-right` (LRR). With this understood, we can infer pre-order as `root-left-right` (RLR) and post-order as the reverse of pre-prorder, `right-left-root` (RRL).
 
-It is difficult (at least for me) to conceive of this path at the tree level. It is much easier is to reduce the complexity to a single node and apprehend the order from there. That said, when working with trees, it is very important to be able to visualize the available paths which one can take.
+It is difficult (at least for me) to conceive of this path at the tree level. When working with trees, it is very important to be able to visualize the path as a whole (DFS vs BFS) and the order within that path (LRR, RLR, RLR). Once you have this "birds eye view" and been able to visualize the traversal path and ordering, when implementing DFS (especially via recursion as seen below), we should reduce the cognitive load from the entire tree to a single subtree (perhaps with only leaves as children for further simplicity!).
 
 ### Examples
 ```javascript
@@ -112,7 +112,7 @@ const postOrderIterative = (root) => {
 ```
 
 ### Usage of the Stack Data Structure
-Whether we are implementing a recursive or iterative DFS, we are making use of the `stack` data structure. What's distinctive about the behavior of a stack is that when you read/remove a node from it, **you always read the last one that was added**. As you can observe above, when we drill down to a leaf-node during step one the stack is populated with only one side of the tree. The trick is that before each subsequent iteration, we push to the stack the sibling node which was ignored during step one. This means on the next iteration, we read the node's sibling.
+Whether we are implementing a recursive or iterative DFS, we are making use of the `stack` data structure. What's distinctive about the behavior of a stack is that when you read/remove a node from it, **you always read the last one that was added**. As you can observe above, when we drill down to a leaf-node during step one the `stack` is populated with only one side of the tree. The trick is that before each subsequent iteration, we push to the stack the sibling node which was ignored during step one. This means on the next iteration, we read the node's sibling.
 
 ## BFS: A More Intuitive Approach
 When conceiving of the entire tree, the BFS path makes more sense to me for at least three reasons; first, because with this path we straightforwardly start from the root node and move downward toward the leaves; second, it is not recursively implemented; third, the possible order of visitation is binary -- either `right-to-left` or `left-to-right` -- rather than tertiary (pre, post, or in order). For these reasons, when looking at an entire tree, it is relatively easy to enumerate the node path that will be taken. There still exists the classifications of ordering as acknowledged above, but these are -- at least in my judgment -- easier to understand as well.
