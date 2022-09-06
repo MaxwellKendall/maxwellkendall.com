@@ -119,3 +119,78 @@ var maxDepth = function(root) {
     return counter;
 };
 ```
+
+## Traversing Tree Levels
+
+Two paths:
+
+1. Iterative BFS using Reference to `queue.length` to create a for loop
+```javascript
+const levelAverages = (root) => {
+  // bfs, on last iteration, convert to an avg
+  const rtrn = []
+  if (!root) return rtrn;
+  const queue = [ root ];
+  while (queue.length) {
+    const siblingSize = queue.length;
+    const siblings = [];
+    for (let i = 1; i <= siblingSize; i++) {
+      const current = queue.shift(); 
+      siblings.push(current.val);
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+    }
+    console.log('all siblings for level', siblings);
+    rtrn.push(
+      siblings.reduce((acc, val) => acc + val, 0) / siblingSize
+    )
+  }
+  return rtrn;
+};
+```
+
+2. Recursive or Iterative DFS using accumulator array where `arr[i]` contains siblings for level `i`
+```javascript
+const levelAverages = (root) => {
+  const rtrn = [];
+  if (!root) return rtrn;
+  
+  const stack = [ [root, 0] ];
+  while (stack.length) {
+    const [node, level] = stack.pop();
+    if (rtrn[level]) rtrn[level].push(node.val);
+    else rtrn[level] = [node.val];
+    
+    if (node.right) stack.push([node.right, level + 1]);
+    if (node.left) stack.push([node.left, level + 1]);
+  }
+  
+  return rtrn
+    .map((arr) => {
+      return arr.reduce((acc, val) => acc + val, 0) / arr.length
+  })
+}
+
+recursive:
+const levelAverages = (root) => {
+  if (!root) return [];
+  const siblings = [];
+  populateSiblings(root, 0, siblings);
+  return siblings
+    .map((arr) => {
+      return arr.reduce((acc, val) => acc + val, 0) / arr.length
+  })
+}
+
+const populateSiblings = (node, level, rtrn) => {
+  if (!node) return rtrn;
+  if (rtrn[level]) rtrn[level].push(node.val);
+  else rtrn[level] = [node.val];
+  
+  if (node.right) populateSiblings(node.right, level + 1, rtrn);
+  if (node.left) populateSiblings(node.left, level + 1, rtrn);
+};
+```
+
+## Traversing all Paths in a Tree
+This is counter-intuitive to me because I am so accustomed to not mutating values.
