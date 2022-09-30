@@ -72,3 +72,9 @@ const depthFirst = (graph, startingPoint) => {
 }
 ```
 In the above example, you can see that we always use `.push()` to append the neighbors to the data structure, but the order in which they are removed is completely different. The stack uses `.pop()` for reading/removing and the queue uses `.shift()`. We can accomplish the same behavior by using `.push()` only for stacks and `.unshift()` only for queues and always using `.pop()` for removing/reading. In either implementation, we are following the proper add/remove principle.
+
+## Cycles
+An undirected graph has a potential infinite loop -- or cycle -- on every edge. To avoid this, we instantiate a `Set` to mark each node we traverse as visited. You might also have the same issue with a `directed` graph; however, in many cases a graph of this sort will be introduced as `acyclical` so in that case we are prompted to not use a `visited`  set.
+
+## Graph Components
+A "component" in a graph is going to be a single node or group of nodes where each 
