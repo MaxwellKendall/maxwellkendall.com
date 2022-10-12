@@ -1,6 +1,6 @@
 ---
 title: Speech
-tags: public
+tags: personal
 date: '2022-09-30'
 ---
 
