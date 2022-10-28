@@ -13,7 +13,7 @@ What is an edge?
 
 A graph functions to illustrate the relationship between things; for instance, a graph may contain nodes representing cities with edges representing the roads connecting them.
 
-There are various kinds of relationships between things, resulting in various kinds of graphs illustrating the variety of relationships; for instance, given the city example above, roads may or may not be one way. For cities with roads that are all one way, we would use a `directed graph` whereas for cities with bi-directional raods, we would use an `undirected graph`. In the former, we can only go from node x to one of its edges. In the latter, we can go from node x to one of its edges, but we can also go back to node x.
+There are various kinds of relationships between things, resulting in various kinds of graphs illustrating the variety of relationships; for instance, given the city example above, roads may or may not be one way. For cities with roads that are all one way, we would use a `directed graph` whereas for cities with bi-directional roads, we would use an `undirected graph`. In the former, we can only go from node x to one of its edges. In the latter, we can go from node x to one of its edges, but we can also go back to node x.
 
 ## Mental Model
 
@@ -34,7 +34,7 @@ What is a neighbor?
 
 ## Algorithms
 
-Graph traversal can be done in one of two ways; first, depth first; second, breadth first. In the former, from the starting node, we choose a neighbor and run with it. Following it all the way to its terminal node. Then, once we've gone as far "deep" as we can go, we go back to the starting node and do the same thing for its next neighbor. In the latter, breadth first traversal, we visit all the starting node's neighbors in order.
+Graph traversal can be done in one of two ways; first, depth first; second, breadth first. In the former, from the starting node, we choose a neighbor and run with it. Following it all the way to its "terminal node" or the node which has no edges. Then, once we've gone as "deep" as we can go, we go backwards to the starting node and do the same thing for its next neighbor. In the latter, breadth first traversal, we visit all the starting node's neighbors in order.
 
 The difference between these two approaches is `breadth first search explores all directions evenly whereas depth first search favors a single direction`. This means the order in which nodes are visited is vastly different. Using the depth first approach, we go in the same direction for as long as possible before switching directions. In contrast, when using the breadth first approach, we move forward in each direction available, one node at a time, looking at each neighbor, before moving forward.
 
@@ -77,4 +77,27 @@ In the above example, you can see that we always use `.push()` to append the nei
 An undirected graph has a potential infinite loop -- or cycle -- on every edge. To avoid this, we instantiate a `Set` to mark each node we traverse as visited. You might also have the same issue with a `directed` graph; however, in many cases a graph of this sort will be introduced as `acyclical` so in that case we are prompted to not use a `visited`  set.
 
 ## Graph Components
-A "component" in a graph is going to be a single node or group of nodes where each 
+A "component" in a graph is going to be a single node or group of nodes which are connected to one another. 
+
+## Common Tasks and Their Optimal Solution
+1. Finding the shortest path between two nodes
+`Breadth first`: Consider, if you used depth first, you might go a really long way before realizing the startingNode's second neighbor is the destinationNode.
+
+The implementation for this is likely to use a queue with a two dimensional array:
+
+```javascript
+// as you add to the queue, you increment the distance
+const queue = [ [node, distance] ];
+```
+The shortest path in this case will always be the first node from the queue that matches the destination node.
+
+2. Finding the longest path between two nodes
+`Depth first`: Consider, if you used breadth first
+
+3. Counting the components
+...
+
+4. Traversing a "Grid-Graph"
+In this case, you may use either depth first or breadth first. The solution depends on what you aim to do with the traversal. The main thing to keep in mind here is we treat each item's top, bottom, left, and right node as an edge.
+
+Various problems are expressed without using these prompts: "find the shortest path" or "find the longest path" but they actually reduce to one of them. 

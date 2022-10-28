@@ -65,3 +65,6 @@ public
 
 # contentful config file
 .contentful.json
+
+# random stuff
+.DS_store
