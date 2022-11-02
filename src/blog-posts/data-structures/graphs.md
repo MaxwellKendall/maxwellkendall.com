@@ -11,6 +11,12 @@ What is a graph?
 What is an edge?
 > a connection between two nodes.
 
+What is the difference between a graph and a tree?
+> a graph may not have a "root" node and there may be multiple paths between two nodes; in a tree, there is only a single unique path between two nodes.
+
+What is the difference between a directed and undirected graph?
+> In a directed graph the edges can only be traveled in a single direction.
+
 A graph functions to illustrate the relationship between things; for instance, a graph may contain nodes representing cities with edges representing the roads connecting them.
 
 There are various kinds of relationships between things, resulting in various kinds of graphs illustrating the variety of relationships; for instance, given the city example above, roads may or may not be one way. For cities with roads that are all one way, we would use a `directed graph` whereas for cities with bi-directional roads, we would use an `undirected graph`. In the former, we can only go from node x to one of its edges. In the latter, we can go from node x to one of its edges, but we can also go back to node x.
@@ -74,7 +80,11 @@ const depthFirst = (graph, startingPoint) => {
 In the above example, you can see that we always use `.push()` to append the neighbors to the data structure, but the order in which they are removed is completely different. The stack uses `.pop()` for reading/removing and the queue uses `.shift()`. We can accomplish the same behavior by using `.push()` only for stacks and `.unshift()` only for queues and always using `.pop()` for removing/reading. In either implementation, we are following the proper add/remove principle.
 
 ## Cycles
-An undirected graph has a potential infinite loop -- or cycle -- on every edge. To avoid this, we instantiate a `Set` to mark each node we traverse as visited. You might also have the same issue with a `directed` graph; however, in many cases a graph of this sort will be introduced as `acyclical` so in that case we are prompted to not use a `visited`  set.
+An undirected graph has a potential infinite loop -- or cycle -- on every edge. To avoid this, we instantiate a `Set` to mark each node we traverse as visited. You might also have the same issue with a `directed` graph; however, in many cases a graph of this sort will be introduced as `acyclical` so in that case we are prompted to not use a `visited` set.
+
+With a directed graph, a cycle is a bit more difficult to detect.
+
+> A cycle in a directed graph is when the starting node for some path ultimately leads back to itself
 
 ## Graph Components
 A "component" in a graph is going to be a single node or group of nodes which are connected to one another. 
@@ -101,3 +111,6 @@ The shortest path in this case will always be the first node from the queue that
 In this case, you may use either depth first or breadth first. The solution depends on what you aim to do with the traversal. The main thing to keep in mind here is we treat each item's top, bottom, left, and right node as an edge.
 
 Various problems are expressed without using these prompts: "find the shortest path" or "find the longest path" but they actually reduce to one of them. 
+
+5. Has Cycle
+A graph has a cycle when 
