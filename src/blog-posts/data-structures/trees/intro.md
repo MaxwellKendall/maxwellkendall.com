@@ -5,20 +5,28 @@ featuredImage: ../../images/fundamentals.png
 date: '2022-08-09'
 ---
 
-A tree is similar to a LinkedList in that each node contains references to other nodes. It is different from a LinkedList in that it may contain a reference to more than one
+A tree is similar to a LinkedList in that each node contains references to other nodes. It is different from a LinkedList in that it may contain a reference to more than one.
 
 > What is a binary tree?
 > A tree where each node has two children.
 
-## Traversal Strageties
+## Traversal Order
+A traversal order really only matters if we're on a sorted tree of some kind where each node's children are sorted relative to its parent. This is normally considered a "binary search tree" where the parent is greater than the children and the left child is always greater than the right child. (or something?)
+
 - In Order: left, current, right
 - Pre Order: current, left, right
 - Post Order: left, right, current
 
-## Depth First Search (DFS)
-Depth first search is an algorithim which implements `pre-order traversal` and `backtracking`. We look at the deepest node first, then we back track and look at the other paths on the ancestor nodes.
+## Traversal Strategies
 
-## Code Examples
+### Depth First Serach (DFS)
+DFS is an algorithim which implements `in-order or post-order traversal` and `backtracking`. We look at the deepest node first, then we back track and look at the other paths on the ancestor nodes. This approach will be suitable for a variety of canonical sorts of problems such as finding the longest path between nodes and so on. The path can be counter intuitive so it's important to be able to visualize this path. As the name suggests, we go as deep as possible from our starting point in one direction and only then do we look at the other paths from that starting point.
+
+### Breadth First Search (BFS)
+BFS is an algorithm which implements `pre-order traversal` and is a more intuitive path IMO. In this case we traverse the tree going "one level at a time." This is most suitable for certain problems such as `shortest path between nodes` where  we don't want to go down really far in the wrong direction only to find that the starting-node's immediate other neighbor was the terminal node.
+
+
+#### Code Examples
 Inverting a tree:
 ```javascript
 /**
@@ -120,9 +128,6 @@ var maxDepth = function(root) {
 };
 ```
 
-## Traversing Tree Levels
-
-Two paths:
 
 1. Iterative BFS using Reference to `queue.length` to create a for loop
 ```javascript
