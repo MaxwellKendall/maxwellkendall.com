@@ -42,6 +42,8 @@ const pairProduct = (numbers, targetProduct) => {
 
 This is a perfect example of how a hash map can help us more effeciently solve array problems.
 
-## Questions
-> What is the difference between a hashmap and a simple map?
-> Answer: the difference is in the key. In JavaScript the `new Map()` constructor allows us to make use of an object whose keys are more complex values.
+## Hash Map vs Regular Map
+The difference is in the key. In JavaScript the `new Map()` constructor allows us to make use of an object whose keys are more complex values. For a hash map there is typically a "hash function" which creates the key for the map from an element in the array.
+
+## Set vs Hashmap vs Regular Map
+A set is effectively the same thing as a hash map because it is defined as that which contains 
