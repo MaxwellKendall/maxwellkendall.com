@@ -4,9 +4,66 @@ tags: cs fundamentals
 featuredImage: ../../images/fundamentals.png
 date: '2022-05-24'
 ---
-LinkedLists aren't really a thing AFAIK in JavaScript. Implementing them is a pain. There isn't a native data structure that really conforms to its requirements. Nor have I ever seen this implemented
-in over 5 years of software engineering. That said, here are some common ways to solve the thing in j
-Reverse a linkedlist:
+
+A LinkedList (LL) is an ordered data structure. The end of the list is "the tail" and the start is "the head." How does a LL compare to an array? 
+First, some terminology differences:
+
+> Elements of an array vs Nodes of a LL
+> Indexes of an array vs Positions of a LL
+
+More substantial, arrays are stored "contiguously" in memory. This means all elements are "right next to eachother" in the computer's memory. This has consequences in the runtime. For instance, if you want to insert a value into an index, the steps needed are:
+
+1. Check the array can increase one index in size
+2. Shift all elements to the right -- or greater than -- the index for the insertion
+3. Add the value to the proper index
+
+In worst case, the insertion operation at step 2 could be O(n) because we could be inserting at position 0.
+
+## Insertion Operation Efficiency
+Nodes in a LL are not "contiguous" in memory. They can exist anywhere in the space of our computer's memory addressing. The consequence is that we do not need to do any shifting during an insertion operation. Instead, when creating a new node in a LL, we simply (a) create a new node with the "next pointer" going to the proper node and (b) update the "next pointer" of the node at the proper position going to the new node; for instance, if we want to add a node to position 2, we would create new node with a `next pointer` going to the node at position 3 and update the next pointer for the node at position 1.
+
+
+This means that insertion for LL is O(1) because we don't have to shift "every node" greater than the target position.
+
+## Traversal
+
+1. Use `current` as mutable variable
+2. Update `current` to `current.next`
+3. Once `current` is `null`, we stop the traversal as we are at the tail
+
+## Linked List Class
+
+```javascript
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+const a = new Node('A');
+const b = new Node('B');
+const c = new Node('C');
+const d = new Node('D');
+
+a.next = b;
+b.next = c;
+c.next = d;
+
+
+// A -> B -> C -> D -> NULL
+
+const printLinedList = (head) => {
+    let current = head;
+    
+    while(current) {
+        console.log(current.val);
+        current = current.next
+    }
+}
+```
+
+## Common Tasks
 ```javascript
 /**
  * Definition for singly-linked list.
