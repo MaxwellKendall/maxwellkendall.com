@@ -1,7 +1,7 @@
 ---
 title: Trees
 tags: cs fundamentals
-featuredImage: ../../images/fundamentals.png
+featuredImage: ../../../images/fundamentals.png
 date: '2022-08-09'
 ---
 

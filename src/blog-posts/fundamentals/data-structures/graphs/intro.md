@@ -1,7 +1,7 @@
 ---
 title: Graphs
 tags: cs fundamentals
-featuredImage: ../../images/fundamentals.png
+featuredImage: ../../../images/fundamentals.png
 date: '2022-09-19'
 ---
 

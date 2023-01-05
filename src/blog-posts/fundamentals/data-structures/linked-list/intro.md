@@ -1,7 +1,7 @@
 ---
 title: Linked List Data Structure
 tags: cs fundamentals
-featuredImage: ../../images/fundamentals.png
+featuredImage: ../../../images/fundamentals.png
 date: '2022-05-24'
 ---
 

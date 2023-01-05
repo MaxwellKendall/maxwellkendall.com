@@ -1,7 +1,7 @@
 ---
 title: Arrays and Hash Maps
 tags: cs fundamentals
-featuredImage: ../../images/fundamentals.png
+featuredImage: ../../../images/fundamentals.png
 date: '2022-11-04'
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Maximum Sliding Window
 tags: public, cs fundamentals
-featuredImage: ../../images/fundamentals.png
+featuredImage: ../../../images/fundamentals.png
 date: '2022-05-11'
 ---
 **Problem Statement:** Given an integer array and a window of size w, find the current maximum value in the window as it slides through the entire array.

@@ -1,7 +1,7 @@
 ---
 title: Recursion
 tags: algorithims
-featuredImage: ../../images/fundamentals.png
+featuredImage: ../../../images/fundamentals.png
 date: '2022-09-20'
 ---
 

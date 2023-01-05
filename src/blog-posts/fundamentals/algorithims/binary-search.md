@@ -1,7 +1,7 @@
 ---
 title: Binary Search Algorithim
 tags: fundamentals
-featuredImage: ../../images/fundamentals.png
+featuredImage: ../../../images/fundamentals.png
 date: '2022-05-03'
 ---
 

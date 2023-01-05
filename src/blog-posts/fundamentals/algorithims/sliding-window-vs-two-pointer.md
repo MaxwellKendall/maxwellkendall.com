@@ -1,7 +1,7 @@
 ---
 title: Sliding Window vs Two Pointer
 tags: fundamentals
-featuredImage: ../../images/fundamentals.png
+featuredImage: ../../../images/fundamentals.png
 date: '2022-08-05'
 ---
 

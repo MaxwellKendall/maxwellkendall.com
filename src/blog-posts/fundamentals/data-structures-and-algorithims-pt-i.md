@@ -1,7 +1,7 @@
 ---
 title: Data Structures and Algorithms Pt I
 tags: public, fundamentals
-featuredImage: ../../images/fundamentals.png
+featuredImage: ../../../images/fundamentals.png
 date: '2022-08-19'
 ---
 

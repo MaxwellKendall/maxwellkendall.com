@@ -57,6 +57,6 @@
     "eslint-config-airbnb": "^18.0.0",
     "gatsby-plugin-postcss": "^5.13.0",
     "postcss": "^8.4.13",
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.2.4"
   }
 }
