@@ -41,7 +41,7 @@
     "gatsby-remark-images": "^6.13.0",
     "gatsby-remark-prismjs": "^6.13.0",
     "gatsby-source-filesystem": "^4.13.0",
-    "gatsby-transformer-remark": "^5.13.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^4.13.0",
     "github-markdown-css": "^3.0.1",
     "i": "^0.3.6",
