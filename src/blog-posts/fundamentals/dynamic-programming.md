@@ -16,9 +16,9 @@ We can visualize the time complexity as a tree data structure where the initial 
 
                        init()
                       /      \
-                    2()      3()
+                    2()      5()
                    /   \     /  \
-                 4()   5() 6()  7()
+                 3()   4() 6()  7()
                    
 This tree represents exponential time complexity where the recursive call is made inside of a loop. In such a case case, the exponent will be the height of the tree and the base will be the maximum number of children for each node.
 
