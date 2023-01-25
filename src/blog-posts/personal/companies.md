@@ -1,12 +1,9 @@
 ---
-title: Synecdoche not Ontology
+title: Job Search Resources
 tags: job-search
 date: '2022-04-22'
 ---
-Requirements:
-
-- fully remote
-
+## Targeted Companies
 1. AWS
 2. Google
 3. Glassdoor
@@ -19,7 +16,7 @@ Requirements:
 10. Algolia
 11. Useful
 
-Already invited:
+## Already Invited to Apply
 1. Morning Consult
 2. IMDB (amazon)
 3. Useful
@@ -28,8 +25,7 @@ Already invited:
 6. Algolia
 7. [Autodesk](https://www.glassdoor.com/Salary/Autodesk-Senior-Software-Engineer-Salaries-E1155_D_KO9,33.htm)
 
-From linkedin:
-Mobility Companies:
+## Mobility Companies:
 - Ola
 - Uber
 - Bluesmart
@@ -37,7 +33,7 @@ Mobility Companies:
 - Zoomcar
 - Rapido
 
-E-commerce
+## E-commerce
 - Walmart
 - Flipkart
 - Myntra
@@ -54,25 +50,25 @@ E-commerce
 - Lowe's Companies, Inc.
 
 
-CRM/Workflow Management
+## CRM/Workflow Management
 - Zoho
 - Salesforce
 - EngageBay
 - ServiceNow
 
-Recruitment/ Hiring platform
+## Recruitment/ Hiring platform
 - LinkedIn
 - Indeed
 - Uplers
 - Naukri (Infoedge)
 
-Collaboration tools
+## Collaboration tools
 - Atlassian
 - Asana
 - Zoom
 - Slack
 
-Cloud services/Saas
+## Cloud services/Saas
 - Oracle Cloud Infrastructure (OCI)
 - VMware
 - Redhat
@@ -86,20 +82,19 @@ Cloud services/Saas
 - Cohesity
 - Rubrik
 
-Communication
+## Communication
 - Slack
 - Zoom
 - Twilio
 - Twitter
 - Airtel X labs
 
-
-Advertisement
+## Advertisement
 - media(dot) net
 - Adpushup
 - Kevel
 
-Payments / Fintech
+## Payments / Fintech
 - Paypal
 - Visa
 - Phonepe
@@ -113,13 +108,13 @@ Payments / Fintech
 - Rupeek
 - ClearTax
 
-Trading
+## Trading
 - Tower research capital
 - Upstox
 - Groww
 - Zerodha
 
-Investment Banks/ Hedge funds and others
+## Investment Banks/ Hedge funds and others
 - De Shaw
 - Goldman Sachs
 - World quant
@@ -130,7 +125,7 @@ Investment Banks/ Hedge funds and others
 - Wells Fargo
 - Druva
 
-Travel
+## Travel
 - Airbnb
 - OYO rooms
 - MakeMyTrip
@@ -140,7 +135,7 @@ Travel
 - Booking(dot)com
 - Agoda
 
-Network/Hardware
+## Network/Hardware
 - Directi
 - Qualcomm
 - Dell
@@ -149,7 +144,7 @@ Network/Hardware
 - Arista Networks
 - Palo Alto Networks
 
-Gaming Industry
+## Gaming Industry
 - Dream 11
 - Cricbuzz
 - MPL
@@ -158,18 +153,18 @@ Gaming Industry
 - Hike
 - Games24x7
 
-Entertainment
+## Entertainment
 - Hotstar
 - Flock
 - Inmobi
 - Sharechat
 
-Food delivery
+## Food delivery
 - Swiggy
 - Zomato
 - Dunzo
 
-Logistics
+## Logistics
 - Rivigo
 - Delhivery
 - Pickrr
@@ -177,16 +172,48 @@ Logistics
 - Porter
 - Vahak
 
-Analytics
+## Analytics
 - Fractal
 - Tredence
 - Tiger Analytics
 - Latentview
 - MuSigma
 
-Telecom
+## Telecom
 - Ericsson
 - Nokia
 - Tejas networks
 - NEC
 - Radisys
+
+# Job Boards
+- [FlexJobs](https://www.linkedin.com/company/flexjobs-com/)
+- [We Work Remotely](https://www.linkedin.com/company/we-work-remotely/)
+- [Remote.co](https://www.linkedin.com/company/remote-co/)
+- [JobTogether](https://www.linkedin.com/company/jobtogether/)
+- [Dynamite Jobs](https://www.linkedin.com/company/dynamite-jobs/)
+- [letsworkremotely](https://www.linkedin.com/company/letsworkremotely/)
+- [JustRemote](https://www.linkedin.com/company/justremote/)
+- [Growmotely](https://www.linkedin.com/company/growmotely/)
+- [Pangian](https://www.linkedin.com/company/pangian/)
+- [Working Nomads](https://www.linkedin.com/company/working-nomads/)
+- [Remotive](https://www.linkedin.com/company/remotive.io/)
+- [Flexa® Careers](https://www.linkedin.com/company/flexa-careers/)
+- [Workew](https://www.linkedin.com/company/workew/)
+- [Remoters](https://www.linkedin.com/company/we-are-remoters/)
+- [Skip The Drive LLC](https://www.linkedin.com/company/skip-the-drive-llc/)
+- [GoRemotely](https://www.linkedin.com/company/goremotelyjobs/)
+- [RemoteHub](https://www.linkedin.com/company/remotehubcom/)
+- [Remote Tribe](https://www.linkedin.com/company/remote-tribelife/)
+- [Citizen Remote](https://www.linkedin.com/company/citizen-remote/)
+- [FindAsync](https://www.linkedin.com/company/findasync/)
+- [Nodesk](https://www.linkedin.com/company/nodesk-oy/)
+- [NoCommute](https://www.linkedin.com/company/nocommute/)
+- [Remote Work Junkie](https://www.linkedin.com/company/remote-work-junkie/)
+- [PowerToFly](https://www.linkedin.com/company/powertofly/)
+- [AngelList](https://www.linkedin.com/company/angellist/)
+- [Dribble](https://www.linkedin.com/company/dribble-limited/)
+- [Built In](https://www.linkedin.com/company/built-in/)
+- [Tech Junction](https://www.linkedin.com/company/tech-junction/)
+- [Tech Jobs for Good](https://www.linkedin.com/company/tech-jobs-for-good/)
+- [JobsFactor](https://www.linkedin.com/company/jobsfactor/)
