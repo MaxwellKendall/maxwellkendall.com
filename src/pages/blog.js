@@ -50,24 +50,6 @@ const Blog = ({ data, location }) => {
     <SEO siteMetadata={siteMetadata}>
       <Header izOffHrs={izOffHrs} />
       <input type="text" value={parseUrlSearchTerm(searchTerm)} placeholder="Search Blog Posts" className="border border-gray-400 rounded-full p-5 border-4 flex mx-auto my-10 w-64 outline-none" onChange={handleSearch} onKeyDown={handleKeyChange} />
-      <ul className="flex mx-auto max-w-5xl flex-wrap justify-center">
-        {posts
-          .reduce((acc, { node: post }) => {
-            const tags = post.frontmatter.tags.split(", ").map((str) => str.toLowerCase());
-            if (!tags.map((s) => s.toLowerCase()).includes('public')) return acc;
-            return acc.concat(
-              tags.filter((tag) => tag !== 'public' && !acc.includes(tag))
-            )
-          }, [])
-          .map((tag) => {
-            return (
-              <li className="p-2">
-                <Link to={`?q=${URLifySearchTerm(tag)}`} state={{ searchTerm: URLifySearchTerm(tag) }}>{tag.toUpperCase()}</Link>
-              </li>
-            )
-        })}
-      </ul>
-      <div className="blog bg-gray-200">
         <ul className="blog-list flex flex-wrap mx-auto justify-center">
           {posts
             .filter(({ node: post }) => post.frontmatter.tags.split(", ").includes("public"))
@@ -92,10 +74,11 @@ const Blog = ({ data, location }) => {
             })
             .map(({ node: post }) => {
               const img = post.frontmatter.featuredImage;
+              console.log(post.frontmatter.tags);
               return (
-                <li className="blog-post__preview flex w-full md:w-1/4 my-10 p-10 bg-white mx-8" key={post.id}>
+                <li className="blog-post__preview flex w-full my-10 p-10 bg-white mx-8 w-1/2" key={post.id}>
                   <Link to={post.fields.slug} className="flex flex-column flex-wrap">
-                    <h2 className="pb-10 tracking-wider uppercase w-full font-bold text-4xl text-center">
+                    <h2 className="tracking-wider uppercase w-full font-bold text-4xl text-center">
                       {post.frontmatter.title}
                     </h2>
                     {img && (
@@ -104,17 +87,15 @@ const Blog = ({ data, location }) => {
                         alt=""
                         image={post.frontmatter.featuredImage.childImageSharp.gatsbyImageData} />
                     )}
-                    <p className="text-xl pt-10">
+                    <p className="text-xl py-4">
                       {post.excerpt}
                     </p>
-                    <p className="text-xl w-full pt-10 text-center mt-auto">{`Published ${format(new Date(post.frontmatter.date), 'MM/dd/yyyy')}`}</p>
-                    <p className="text-xl w-full pt-10 text-center mt-auto">{`${post.timeToRead} minute read`}</p>
+                    {post.frontmatter.tags && post.frontmatter.tags.split(',').map((tag) => (<span>{tag}</span>))}
                   </Link>
                 </li>
               );
             })}
         </ul>
-      </div>
       <Footer izOffHrs={izOffHrs} />
     </SEO>
   );
@@ -144,12 +125,6 @@ export const pageQuery = graphql`
             title
             tags
             date
-            featuredImage {
-              id
-              childImageSharp {
-                gatsbyImageData(layout: CONSTRAINED)
-              }
-            }
           }
         }
       }
