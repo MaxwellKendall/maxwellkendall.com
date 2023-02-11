@@ -9,6 +9,8 @@ import { Footer } from "../components/blog/Footer";
 import { isOffHrs} from "../utils";
 import "../styles/index.css";
 import { SEO } from "../components/shared/SEO";
+import { startCase } from "lodash";
+import { trim } from "lodash";
 
 const acceptableChars = "abcdefghijklmnopqrstuvwxyz123456789";
 export const URLifySearchTerm = (str) => str
@@ -18,51 +20,56 @@ export const URLifySearchTerm = (str) => str
 
 const parseUrlSearchTerm = (str) => str.split('-').join(' ').toLowerCase();
 
-const Blog = ({ data, location }) => {
-  const url = useLocation();
+const PRIVATE_TAGS = ['public'];
+
+const setQueryParam = (value) => {
+  console.log('value', value)
+  return `?${new URLSearchParams({ q: URLifySearchTerm(value) }).toString().toLowerCase()}`;
+}
+
+const Blog = ({ data }) => {
   const query = new URLSearchParams(useLocation().search)
-  const urlSearch = query.get('q') || '';
+  const searchTerm = query.get('q') || '';
   const { edges: posts } = data.allMdx;
   const { siteMetadata } = data.site;
   const izOffHrs = isOffHrs();
-  const [searchTerm, setSearch] = useState(urlSearch);
 
   const handleSearch = (e) => {
-    setSearch(e.target.value);
     if (!e.target.value) {
-      navigate('/')
+      navigate('/blog')
+    } else {
+      navigate(setQueryParam(e.target.value))
     }
   }
 
   const handleKeyChange = (e) => {
     if (e.keyCode === 13) {
-      navigate(`?${new URLSearchParams({ q: URLifySearchTerm(searchTerm) }).toString().toLowerCase()}`)
+      navigate(setQueryParam(e.target.value));
     }
   }
 
-  useEffect(() => {
-    if (location?.state?.searchTerm) {
-      setSearch(location.state.searchTerm)
-    }
-  }, [location.state])
+  const handleTagClick = (e, tag) => {
+    e.stopPropagation();
+    e.preventDefault();
+    navigate(setQueryParam(tag))
+  }
 
   return (
     <SEO siteMetadata={siteMetadata}>
       <Header izOffHrs={izOffHrs} />
-      <input type="text" value={parseUrlSearchTerm(searchTerm)} placeholder="Search Blog Posts" className="border border-gray-400 rounded-full p-5 border-4 flex mx-auto my-10 w-64 outline-none" onChange={handleSearch} onKeyDown={handleKeyChange} />
+      <input type="text" value={searchTerm} placeholder="Search Blog Posts" className="border border-gray-400 rounded-full p-5 border-4 flex mx-auto my-10 w-64 outline-none" onChange={handleSearch} onKeyDown={handleKeyChange} />
         <ul className="blog-list flex flex-wrap mx-auto justify-center">
           {posts
             .filter(({ node: post }) => post.frontmatter.tags.split(", ").includes("public"))
             .filter(({ node: post }) => {
-              if (urlSearch?.length < 3 || !urlSearch) return true;
-              const search = parseUrlSearchTerm(urlSearch);
+              if (searchTerm?.length < 3 || !searchTerm) return true;
               const tags = post.frontmatter.tags.split(", ").map((str) => str.toLowerCase());
               const headers = post.headings.map(({ value }) => value.toLowerCase());
               return (
-                tags.some((tag) => tag.includes(parseUrlSearchTerm(urlSearch))) ||
-                headers.some((header) => header.includes(search)) ||
-                post.excerpt.toLowerCase().includes(search) ||
-                post.frontmatter.title.toLowerCase().includes(search)
+                tags.some((tag) => tag.includes(parseUrlSearchTerm(searchTerm))) ||
+                headers.some((header) => header.includes(searchTerm)) ||
+                post.excerpt.toLowerCase().includes(searchTerm) ||
+                post.frontmatter.title.toLowerCase().includes(searchTerm)
               );
             })
             .sort((a, b) => {
@@ -74,12 +81,11 @@ const Blog = ({ data, location }) => {
             })
             .map(({ node: post }) => {
               const img = post.frontmatter.featuredImage;
-              console.log(post.frontmatter.tags);
               return (
-                <li className="blog-post__preview flex w-full my-10 p-10 bg-white mx-8 w-1/2" key={post.id}>
-                  <Link to={post.fields.slug} className="flex flex-column flex-wrap">
-                    <h2 className="tracking-wider uppercase w-full font-bold text-4xl text-center">
-                      {post.frontmatter.title}
+                <li className="blog-post__preview flex w-full p-10 bg-white mx-8 w-1/2" key={post.id}>
+                  <Link to={post.fields.slug} className="flex flex-col">
+                    <h2 className="tracking-wider w-full font-bold text-4xl text-center">
+                      {startCase(post.frontmatter.title)}
                     </h2>
                     {img && (
                       <Img
@@ -87,10 +93,22 @@ const Blog = ({ data, location }) => {
                         alt=""
                         image={post.frontmatter.featuredImage.childImageSharp.gatsbyImageData} />
                     )}
-                    <p className="text-xl py-4">
+                    <p className="text-xl py-4 w-full">
                       {post.excerpt}
                     </p>
-                    {post.frontmatter.tags && post.frontmatter.tags.split(',').map((tag) => (<span>{tag}</span>))}
+                    <ul className="flex">
+                      {post.frontmatter.tags && post.frontmatter.tags
+                        .split(',')
+                        .filter((t) => !PRIVATE_TAGS.includes(t))
+                        .map((t) => {
+                          const tag = trim(t);
+                          return (
+                            <li className="px-4 py-2 border-2 rounded mx-2" onClick={(e) => handleTagClick(e, tag)} value={tag}>
+                              {tag}
+                              </li>
+                          )
+                        })}
+                    </ul>
                   </Link>
                 </li>
               );
