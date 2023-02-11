@@ -297,12 +297,11 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
   }
 
   if (activeMap) {
-    console.log('active', activeMap)
     return (
       <div className="experience__explorer w-full flex flex-col items-center justify-center">
         <div className="experience__explorer__header flex items-center">
-          {selectedNodeTitle !== rootNode && <FontAwesomeIcon icon={faChevronLeft} onClick={goBack} className="cursor-pointer mr-2 text-2xl" />}
-          <h2 className="text-3xl uppercase tracking-wider">{activeMap.data.title}</h2>
+          {selectedNodeTitle !== rootNode && <FontAwesomeIcon icon={faChevronLeft} onClick={goBack} className="cursor-pointer px-2 mb-4 text-xl" />}
+          <h2 className="text-xl mb-4 uppercase tracking-wider">{activeMap.data.title}</h2>
         </div>
         <svg
           width={activeMap.x1}
