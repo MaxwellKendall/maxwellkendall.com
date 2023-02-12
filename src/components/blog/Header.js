@@ -17,8 +17,8 @@ export const Header = ({ izOffHrs }) => {
             </div>
         </Link>
         <div className="pl-4 flex flex-col my-auto">
-          <Link to="/" className='flex self-end'>
-            <h1 className="text-3xl text-center uppercase">Maxwell Kendall</h1>
+          <Link to="/" className='flex justify-center w-full self-end'>
+            <h1 className="text-3xl text-center">Maxwell Kendall</h1>
           </Link>
           <ul className="flex">
             <li>
