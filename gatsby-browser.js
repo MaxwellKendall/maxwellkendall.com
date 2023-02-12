@@ -2,6 +2,7 @@ import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import vsDark from 'prism-react-renderer/themes/vsDark';
 import Highlight, { defaultProps } from "prism-react-renderer";
+import { Helmet } from 'react-helmet';
 
 require("github-markdown-css");
 

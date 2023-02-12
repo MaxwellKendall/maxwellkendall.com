@@ -57,7 +57,7 @@ const Blog = ({ data }) => {
   return (
     <SEO siteMetadata={siteMetadata}>
       <Header izOffHrs={izOffHrs} />
-      <input type="text" value={searchTerm} placeholder="Search Blog Posts" className="border border-gray-400 rounded-full p-5 border-4 flex mx-auto my-10 w-64 outline-none" onChange={handleSearch} onKeyDown={handleKeyChange} />
+      <input type="text" value={searchTerm} placeholder="Search Blog Posts" className="border border-gray-400 rounded p-5 border-2 flex mx-auto my-10 w-64 outline-none" onChange={handleSearch} onKeyDown={handleKeyChange} />
         <ul className="blog-list flex flex-wrap mx-auto justify-center">
           {posts
             .filter(({ node: post }) => post.frontmatter.tags.split(", ").includes("public"))
@@ -82,7 +82,7 @@ const Blog = ({ data }) => {
             .map(({ node: post }) => {
               const img = post.frontmatter.featuredImage;
               return (
-                <li className="blog-post__preview flex w-full p-10 bg-white mx-8 w-1/2" key={post.id}>
+                <li className="blog-post__preview flex p-10 bg-white mx-8 w-full md:w-1/2" key={post.id}>
                   <Link to={post.fields.slug} className="flex flex-col">
                     <h2 className="tracking-wider w-full font-bold text-4xl text-center">
                       {startCase(post.frontmatter.title)}
