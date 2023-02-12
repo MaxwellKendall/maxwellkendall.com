@@ -1,15 +1,28 @@
+import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import Helmet from 'react-helmet';
 
-export const SEO = ({ siteMetadata, children }) => {
+export const SEO = ({ siteMetadata, children, image }) => {
+    const { imageSharp: favicon} = useStaticQuery(
+        graphql`{
+        imageSharp(original: {src: {regex: "/favicon/"}}) {
+          original {
+            src
+          }
+        }
+      }`);
+
+      console.log('yooo', favicon)
     return (
         <React.Fragment>
             <Helmet>
                 {/* General tags */}
                 <title>{siteMetadata.title}</title>
                 <meta name="description" content={siteMetadata.description} />
-                {/* <meta name="image" content={image.file.url} />
-                <link rel="canonical" href={image.file.url} /> */}
+                {favicon && (
+                  <link rel="icon" type="image/x-icon" href={favicon.original.src} />
+                )}
+
 
                 {/* OpenGraph tags */}
                 {/* <meta property="og:url" content={url} />

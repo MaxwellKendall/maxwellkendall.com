@@ -1,9 +1,6 @@
 import { useStaticQuery, graphql } from "gatsby";
 
-export const getImage = (izOffHrs) => {
-  const str = izOffHrs
-    ? "dancing"
-    : "Headshot";
+export const getImage = (izOffHrs, str = izOffHrs ? 'dancing' : 'Headshot') => {
     const { allImageSharp } = useStaticQuery(
         graphql`{
             allImageSharp {
@@ -25,3 +22,4 @@ export const getImage = (izOffHrs) => {
       })
       .node.gatsbyImageData;
 };
+
