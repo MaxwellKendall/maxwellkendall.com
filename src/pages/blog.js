@@ -82,7 +82,7 @@ const Blog = ({ data }) => {
             .map(({ node: post }) => {
               const img = post.frontmatter.featuredImage;
               return (
-                <li className="blog-post__preview flex w-full p-10 bg-white mx-8 w-1/2" key={post.id}>
+                <li className="blog-post__preview flex w-full p-10 bg-white mx-8 md:w-1/2" key={post.id}>
                   <Link to={post.fields.slug} className="flex flex-col">
                     <h2 className="tracking-wider w-full font-bold text-4xl text-center">
                       {startCase(post.frontmatter.title)}
