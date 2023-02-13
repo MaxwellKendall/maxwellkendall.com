@@ -57,7 +57,7 @@ const Blog = ({ data }) => {
   return (
     <SEO siteMetadata={siteMetadata}>
       <Header izOffHrs={izOffHrs} />
-      <input type="text" value={searchTerm} placeholder="Search Blog Posts" className="border border-gray-400 rounded-full p-5 border-4 flex mx-auto my-10 w-64 outline-none" onChange={handleSearch} onKeyDown={handleKeyChange} />
+      <input type="text" value={searchTerm} placeholder="Search Blog Posts" className="border border-2 text-xl border-gray-400 rounded-full p-5 flex mx-auto my-10 w-64 outline-none" onChange={handleSearch} onKeyDown={handleKeyChange} />
         <ul className="blog-list flex flex-wrap mx-auto justify-center">
           {posts
             .filter(({ node: post }) => post.frontmatter.tags.split(", ").includes("public"))
@@ -131,7 +131,7 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          excerpt
+          excerpt(pruneLength: 350)
           fields {
             slug
           }
