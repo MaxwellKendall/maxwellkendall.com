@@ -2,56 +2,58 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
 /* variables */
 * {
-    --font-size: .75em;
-    /* 12px */
-    --font-size: .75em;
-    --blog-font: 16px;
-    --blog-font-small: 14px;
-    --paragraph: var(--font-size);
-    /* 32px */
-    --h1: var(--font-size) * 2.75;
-    --h2: var(--font-size) * 2.5;
-    --h3: var(--font-size) * 2.25;
-    --h4: var(--font-size) * 2;
-    --h5: var(--font-size) * 1.75;
-    --h6: var(--font-size) * 1.5;
+  --font-size: 0.75em;
+  /* 12px */
+  --font-size: 0.75em;
+  --blog-font: 16px;
+  --blog-font-small: 14px;
+  --paragraph: var(--font-size);
+  /* 32px */
+  --h1: var(--font-size) * 2.75;
+  --h2: var(--font-size) * 2.5;
+  --h3: var(--font-size) * 2.25;
+  --h4: var(--font-size) * 2;
+  --h5: var(--font-size) * 1.75;
+  --h6: var(--font-size) * 1.5;
 
-    /* device widths */
-    --tablet: 780px;
-    --desktop: 1024px;
-    --monitor: 1400px;
+  /* device widths */
+  --tablet: 780px;
+  --desktop: 1024px;
+  --monitor: 1400px;
 
-    /* Margins & Padding */
-    --global-spacer: .5em;
-    --global-padding: 50px;
+  /* Margins & Padding */
+  --global-spacer: 0.5em;
+  --global-padding: 50px;
 
-    /* page specific */
-    --home-header-width: 25%;
-    --home-header-padding: var(--global-spacer) * 4;
+  /* page specific */
+  --home-header-width: 25%;
+  --home-header-padding: var(--global-spacer) * 4;
 
-    /* blog home page */
-    --blog-container-width-mobile: 300px;
-    --blog-container-width-tablet: 770px;
-    --blog-container-width-desktop: 1000px;
-    --blog-container-width-monitor: 1200px;
+  /* blog home page */
+  --blog-container-width-mobile: 300px;
+  --blog-container-width-tablet: 770px;
+  --blog-container-width-desktop: 1000px;
+  --blog-container-width-monitor: 1200px;
 }
-
+.blog-post-page .markdown-body.blog-post {
+  font-family: "Nunito", sans-serif;
+}
 .blog-post-page .blog-post.markdown-body pre {
-    background-color: black;
+  background-color: black;
 }
 
 #___gatsby {
-    min-height: 100vh;
-    width: 100%;
+  min-height: 100vh;
+  width: 100%;
 }
 
 html {
   font-size: var(--font-size);
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .blog-list {
@@ -66,8 +68,8 @@ html {
   } */
 }
 .header a {
-    @apply no-underline;
-    color: #373F49;
+  @apply no-underline;
+  color: #373f49;
 }
 .header .gatsby-image-wrapper {
   width: 60px;
@@ -113,7 +115,6 @@ html {
   } */
 }
 
-
 .markdown-body {
   width: 100%;
   box-sizing: border-box;
@@ -122,12 +123,12 @@ html {
   padding: 15px;
 }
 .markdown-body .line-number {
-    display: inline-block;
-    width: 0.5rem;
-    color: rgba(156, 163, 175, 0.5);
-    padding-right: 1.5rem;
-    margin-right: 0.5rem;
-    border-right: 1px solid rgba(156, 163, 175, 0.3);
+  display: inline-block;
+  width: 0.5rem;
+  color: rgba(156, 163, 175, 0.5);
+  padding-right: 1.5rem;
+  margin-right: 0.5rem;
+  border-right: 1px solid rgba(156, 163, 175, 0.3);
 }
 
 .markdown-body ul {
