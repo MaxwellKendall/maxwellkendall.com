@@ -44,14 +44,14 @@ const useMapDimensions = () => {
   return mapDimensions;
 }
 
-const RootIndex = ({ data: { site: { siteMetadata: seoInfo }, mdx }}) => {
+const RootIndex = ({ data: { site: { siteMetadata: seoInfo }, }, location }) => {
   const izOffHrs = isOffHrs();
   const mapDimensions = useMapDimensions()
   return (
       <SEO siteMetadata={seoInfo}>
         <Header izOffHrs={izOffHrs} />
         <div className="w-full about flex flex-wrap mx-auto items-center">
-          <ExperienceMap {...mapDimensions} />
+          <ExperienceMap {...mapDimensions} location={location} />
         </div>
         <div className="blog-post markdown-body max-w-6xl home-pg">
           {/* <MDXRenderer>

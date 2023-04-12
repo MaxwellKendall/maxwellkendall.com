@@ -5,142 +5,96 @@ import moment from "moment";
 import { hierarchy, treemap, treemapBinary } from "d3-hierarchy";
 import { interpolateGreens } from "d3-scale-chromatic";
 import { scaleLinear } from "d3-scale";
+import { navigate } from "gatsby";
+import queryString from 'query-string'
+
+const calculateDurations = (arr) => arr.reduce((dur, [start, end]) => {
+  const endDate = end === null ? moment() : moment(end);
+  const duration = Math.round(moment.duration(moment(endDate).diff(moment(start))).asHours());
+  return dur.add(duration, 'hours');
+}, moment.duration()).asHours();
 
 const rootNode = "All Experience";
+
 const test_data = {
   title: "All Experience",
   notes: "Click on a category to learn more about my experience.",
   children: [
     {
       title: "Front End Engineering",
-      notes: "Full stack developer for Recreation.gov and USAspending.gov and app.mural.co.",
+      notes: "From 2017 until 2020, my experience was heavily focused on the front end. I've contributed code on multiple websites with millions of users including rec.gov, usaspending.gov, and app.mural.co",
       children: [
         {
-          title: "Sass/CSS",
-          start: moment("2017-03-01"),
-          end: moment()
-        },
-        {
-          title: "WebPack 2+",
-          start: moment("2017-07-01"),
-          end: moment()
-        },
-        {
-          title: "React",
-          start: moment("2017-07-01"),
-          end: moment()
-        },
-        {
-          title: "Redux",
-          start: moment("2017-07-01"),
-          end: moment()
-        },
-        {
-          title: "ES6",
-          start: moment("2017-07-01"),
-          end: moment()
-        },
-        {
-          title: "Type Script",
-          start: moment("2021-06-07"),
-          end: moment()
+          title: "React, Redux, Webpack, ES6 and so on",
+          totalHours: calculateDurations([['2017-07-01', null]]),
+          notes: "Thus far I've worked on three production, enterprise scale code bases, all of which had been using React. Two using redux for state management and one using alternatives."
         }
       ]
     },
     {
-      title: "Back End Engineering",
-      notes: "I have been focused mostly on the back end since 2021.",
+      title: "Backend Engineering",
+      notes: "Prior to 2021, my experience on the back end was very light but I did have local environments and contributions in production code.",
       children: [
         {
           title: "Golang",
-          start: moment("2018-03-01"),
-          end: moment("2019-03-01"),
+          totalHours: calculateDurations([["2018-03-01", "2019-03-01"]]),
           notes: "Professional experience includes building very simple endpoints as well as data migrations.",
         },
         {
           title: "Python",
           start: moment("2019-03-01"),
           end: moment("2021-05-31"),
+          totalHours: calculateDurations([["2019-03-01", "2021-05-31"]]),
           notes: "Professional experience includes building very simple endpoints using Django.",
         },
         {
-          title: "NodeJS",
-          start: moment("2017-07-01"),
-          end: moment(),
-          notes: "Professional experience includes engineering APIs, auto-generated sitemaps, serverless functions, architecting the SPA build process with WebPack, and various scripts for debugging.",
+          title: "NodeJS and TypeScript",
+          totalHours: calculateDurations([["2021-06-01", null]]),
+          notes: "Lots of experience ranging from: serverless APIs, asynchronous bulk processes, external/customer facing APIs, internal APIs, various scripts and so on.",
         }
       ]
     },
     {
-      title: "Cloud Engineering",
-      children: [
-        {
-          title: "AWS",
-          notes: "Professional experience includes S3, CloudFront, Lambda, and API Gateway.",
-          children: [
-            {
-              title: "Certified Solutions Architect, Associate",
-              start: moment("2019-12-01"),
-              end: moment()
-            },
-          ]
-        },
-        {
-          title: "Docker",
-          start: moment("2018-03-01"),
-          end: moment(),
-          notes: "Professional experience includes setting up deployable containers using DockerFile, Docker Compose, and maintaining local back ends.",
-        },
-        {
-          title: "Jenkins",
-          start: moment("2018-03-01"),
-          end: moment(),
-          notes: "Professional experience kicking off jobs regularly as well as defining a job to decouple our sitemap generation from our deploy process."
-        }
-      ]
+      title: "Cloud Engineering: AWS",
+      totalHours: calculateDurations([['2019-12-01', '2022-12-22']]),
+      notes: "Certified as Solutions Architect at the Associate Level. December 2019 through December 2022"
     },
     {
-      title: "Production Operations & Support",
-      start: moment("2014-06-01"),
-      end: moment(),
+      title: "Operations and Support",
+      notes: "My experience here has been exceedingly valuable in trouble shooting and communication with non technical audiences.",
       children: [
         {
           title: "SaaS Help Desk",
-          start: moment("2014-06-01"),
-          end: moment("2015-05-31")
+          totalHours: calculateDurations([["2014-06-01", '2015-06-01']]),
+          notes: "Tier I & II help desk for a software company called Benefitfocus which had millions of users."
         },
         {
-          title: "Operations Support",
-          start: moment("2015-06-01"),
-          end:  moment("2017-02-28"),
+          title: "Enterprise Application Production Operations",
+          totalHours: calculateDurations([["2015-06-01", '2017-02-28']]),
+          notes: "Assisting in deployment operations and real time troubleshooting of Enterprise scale web application."
         },
-        {
-          title: "Software Engineering",
-          start:  moment("2017-03-01"),
-          end: moment()
-        }
       ]
     },
     {
       title: "Miscellaneous",
+      notes: "My experience outside of the tech world has taught me a lot.",
       children: [
         {
           title: "Janitorial Work",
-          start: moment("2010-07-01"),
-          end: moment("2013-01-01"),
-          notes: "Worked as a janitor at my church during college.",
+          totalHours: calculateDurations([['2010-05-05', '2010-08-15'], ['2011-05-05', '2011-08-15']]),
+          notes: "For two summers in college, I worked as a janitor at my church.",
         },
         {
           title: "Construction",
-          start: moment("2012-06-01"),
-          end: moment("2013-01-01"),
+          totalHours: calculateDurations([['2012-06-01', '2013-01-01']]),
           notes: "Landscaping, electrical, and plumbing for a Christian Summer Camp.",
         },
         {
           title: "Restaurant",
           start: moment("2013-01-01"),
           end: moment("2014-06-01"),
-          notes: "Not sure I loved food until I worked at Mozzo Deli.",
+          totalHours: calculateDurations([['2013-01-01', '2014-06-01']]),
+          notes: "Working in the restaurant industry really brought a ton of perspective into my life. I recommend everyone should do it.",
         }
       ]
     }
@@ -159,10 +113,16 @@ const findChild = (node, referenceString) => {
   return { data: { title: "" } };
 }
 
-const ExperienceMap = ({ mapWidth, mapHeight }) => {
+const ExperienceMap = ({ mapWidth, mapHeight, location }) => {
   const [activeMap, setActiveMap] = useState(null); // this will have to be rebuilt every time it changes
   const [referenceObject, setReferenceObject] = useState(null); // this will have to be preserved and used as a reference for traversal.
-  const [selectedNodeTitle, setSelectedNodeTitle] = useState(rootNode);
+  const selectedNodeTitle = queryString.parse(location.search)?.node || rootNode;
+  console.log('selectedNodeTitle', selectedNodeTitle)
+
+  const setSelectedNodeTitle = (title) => {
+    console.log('title', title);
+    navigate(`/?node=${title}`);
+  }
 
   const getSelectedReferenceNode = () => {
     if (!referenceObject) {
@@ -182,17 +142,8 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
     const activeNode = getSelectedReferenceNode().data;
     const newMap = hierarchy(activeNode, d => d.children)
       .sum(skill => {
-        const { start, end } = skill;
-        if (moment.isMoment(start) && moment.isMoment(end)) {
-          const lengthOfExperience = moment.duration(end.diff(start));
-          return lengthOfExperience.as("hours");
-        }
-        return 0;
+        return skill.totalHours ? skill.totalHours : 0;
       })
-      .sort((a, b) => {
-        if (a.height > b.height) return -1;
-        return 1;
-      });
 
     const tree = treemap()
       .round(true)
@@ -220,22 +171,18 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
         lowest,
         highest
       ])
-      .range([interpolateGreens(0.45), interpolateGreens(0.5)]);
+      .range([interpolateGreens(0.65), interpolateGreens(.95)]);
   };
 
-  const getDisplayMessage = (totalProfessionalHours, skill) => {
-    const hoursForSkill = Math.round(skill.value);
-    if (selectedNodeTitle === rootNode) {
-      // show a percentage of total professional hours
-      const percentOfTotalSkillset =
-        (hoursForSkill / totalProfessionalHours) * 100;
-      return `${Math.round(percentOfTotalSkillset)}%`;
-    }
-    const skillDuration = moment.duration(hoursForSkill, "hours");
+  const getDisplayMessage = (skill) => {
+    const skillDuration = moment.duration(skill.value, 'hours');
     if (skillDuration.years() === 0) {
       return `${skillDuration.months()} ${skillDuration.months() === 1 ? 'month' : 'months'}`;
     }
-    return `${skillDuration.years()} ${skillDuration.years() === 1 ? 'year' : 'years'}, ${skillDuration.months()} ${skillDuration.months() === 1 ? 'month' : 'months'}`;
+    if (skillDuration.years() && skillDuration.months()) {
+      return `${skillDuration.years()} ${skillDuration.years() === 1 ? 'year' : 'years'}, ${skillDuration.months()} ${skillDuration.months() === 1 ? 'month' : 'months'}`;
+    }
+    return `${skillDuration.years()} ${skillDuration.years() === 1 ? 'year' : 'years'}`;
   };
 
   const goBack = () => {
@@ -247,9 +194,6 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
     setSelectedNodeTitle(node.data.title);
   };
 
-  const totalProfessionalHours = referenceObject
-    ? Math.round(referenceObject.value)
-    : 0;
   
   const getTruncatedTitle = (title, width) => {
     if (width < 50) {
@@ -262,7 +206,7 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
   }
 
   const renderTreemapCell = (skill) => {
-    let displayMessage = getDisplayMessage(totalProfessionalHours, skill);
+    let displayMessage = getDisplayMessage(skill);
     const width = skill.x1 - skill.x0;
     const height = skill.y1 - skill.y0;
     const handleClick = goDeeper.bind(null, skill);
@@ -314,9 +258,7 @@ const ExperienceMap = ({ mapWidth, mapHeight }) => {
           }
         </svg>
         {activeMap.data?.notes && (
-          <p className="pt-10 text-xl text-center">
-            {activeMap.data.notes}
-          </p>
+          <p className="pt-10 text-xl text-center experience-notes" dangerouslySetInnerHTML={{ __html: activeMap.data.notes }} />
         )}
       </div>
     );

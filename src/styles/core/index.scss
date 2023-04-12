@@ -1,3 +1,7 @@
 @import "variables";
 @import "mixins";
 @import "base";
+
+.experience-notes a {
+    text-decoration: underline;
+}
