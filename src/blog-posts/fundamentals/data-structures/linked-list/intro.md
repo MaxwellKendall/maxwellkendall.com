@@ -1,6 +1,6 @@
 ---
 title: Linked List Data Structure
-tags: cs fundamentals
+tags: public, cs, fundamentals
 featuredImage: ../../../images/fundamentals.png
 date: '2022-05-24'
 ---
@@ -63,7 +63,7 @@ const printLinedList = (head) => {
 }
 ```
 
-## Common Tasks
+## Reverse a Linked List
 ```javascript
 /**
  * Definition for singly-linked list.
@@ -89,7 +89,11 @@ var reverseList = function(head) {
 };
 ```
 
-Merge a linkedList:
+The key to understanding this implementation is line 17 and 18. Here, we mutate `ll` in order that we can use that value to mutatle `llReversed`. Then, on line 19, we mutate `ll` again to what we need in order to traverse `head`.
+
+The reason this works is because on line 17 and 18, JavaScript is mutating the variable `by value` rather than `by reference`. 
+
+## Merge a linkedList:
 ```javascript
 /**
  * Definition for singly-linked list.
