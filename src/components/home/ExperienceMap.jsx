@@ -196,11 +196,11 @@ const ExperienceMap = ({ mapWidth, mapHeight, location }) => {
 
   
   const getTruncatedTitle = (title, width) => {
-    if (width < 50) {
+    if (width < 40) {
       return `${title.slice(0,2)}`;
     }
-    if (width < 100) {
-      return `${title.slice(0,4)}...`;
+    if (width < 125) {
+      return `${title.slice(0, 10)}...`;
     }
     return title;
   }
