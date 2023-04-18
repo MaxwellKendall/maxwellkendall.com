@@ -25,7 +25,7 @@ const test_data = {
       notes: "From 2017 until 2020, my experience was heavily focused on the front end. I've contributed code on multiple websites with millions of users including rec.gov, usaspending.gov, and app.mural.co",
       children: [
         {
-          title: "React, Redux, Webpack, ES6 and so on",
+          title: "React, Redux and ES6+",
           totalHours: calculateDurations([['2017-07-01', null]]),
           notes: "Thus far I've worked on three production, enterprise scale code bases, all of which had been using React. Two using redux for state management and one using alternatives."
         }
@@ -36,7 +36,7 @@ const test_data = {
       notes: "Prior to 2021, my experience on the back end was very light but I did have local environments and contributions in production code.",
       children: [
         {
-          title: "Golang",
+          title: "Go",
           totalHours: calculateDurations([["2018-03-01", "2019-03-01"]]),
           notes: "Professional experience includes building very simple endpoints as well as data migrations.",
         },
@@ -55,7 +55,7 @@ const test_data = {
       ]
     },
     {
-      title: "Cloud Engineering: AWS",
+      title: "AWS",
       totalHours: calculateDurations([['2019-12-01', '2022-12-22']]),
       notes: "Certified as Solutions Architect at the Associate Level. December 2019 through December 2022"
     },
@@ -196,11 +196,20 @@ const ExperienceMap = ({ mapWidth, mapHeight, location }) => {
 
   
   const getTruncatedTitle = (title, width) => {
-    if (width < 40) {
-      return `${title.slice(0,2)}`;
-    }
-    if (width < 125) {
-      return `${title.slice(0, 10)}...`;
+    const spaces = title.split(' ').length
+    const chars = title.split('').length;
+    const multiplier = 7;
+    const charsAsPx = (spaces * (multiplier / 2)) + (chars * multiplier);
+    const diff = width - charsAsPx;
+    console.log({ title, width, charsAsPx, chars, diff })
+    const shouldTruncate = diff < 20;
+  
+    if (shouldTruncate) {
+      const max = Math.ceil(
+        (chars - 1)
+      );
+      const last = max - (Math.ceil((diff * -1)/ 5) - 1);
+      return `${title.slice(0, last)}...`;
     }
     return title;
   }
