@@ -1,7 +1,7 @@
 ---
 title: TypeScript Tips and Tricks
-tags: public, type-script
-featuredImage: ../../images/type-script.png
+tags: public, typescript
+featuredImage: ../../images/typescript.png
 date: '2021-06-15'
 ---
 

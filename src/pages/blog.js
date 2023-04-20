@@ -16,15 +16,18 @@ const acceptableChars = "abcdefghijklmnopqrstuvwxyz123456789";
 export const URLifySearchTerm = (str) => str
     .split(' ')
     .map((s) => s.split('').filter((s2) => acceptableChars.includes(s2.toLowerCase())).join('').toLowerCase())
-    .join('-');
 
-const parseUrlSearchTerm = (str) => str.split('-').join(' ').toLowerCase();
+const parseUrlSearchTerm = (str) => {
+  debugger;
+  const decoded = decodeURIComponent(str);
+  // return str.split('-').join(' ').toLowerCase();
+  return decoded;
+}
 
 const PRIVATE_TAGS = ['public'];
 
 const setQueryParam = (value) => {
-  console.log('value', value)
-  return `?${new URLSearchParams({ q: URLifySearchTerm(value) }).toString().toLowerCase()}`;
+  return `?${new URLSearchParams({ q: value }).toString().toLowerCase()}`;
 }
 
 const Blog = ({ data }) => {
@@ -57,7 +60,7 @@ const Blog = ({ data }) => {
   return (
     <SEO siteMetadata={siteMetadata}>
       <Header izOffHrs={izOffHrs} />
-      <input type="text" value={searchTerm} placeholder="Search Blog Posts" className="border border-2 text-xl border-gray-400 rounded-full p-5 flex mx-auto my-10 w-64 outline-none" onChange={handleSearch} onKeyDown={handleKeyChange} />
+      <input type="text" value={parseUrlSearchTerm(searchTerm)} placeholder="Search Blog Posts" className="border border-2 text-xl border-gray-400 rounded-full p-5 flex mx-auto my-10 w-64 outline-none" onChange={handleSearch} onKeyDown={handleKeyChange} />
         <ul className="blog-list flex flex-wrap mx-auto justify-center">
           {posts
             .filter(({ node: post }) => post.frontmatter.tags.split(", ").includes("public"))
