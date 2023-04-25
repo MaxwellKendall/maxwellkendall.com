@@ -25,6 +25,12 @@ Proverbs 16:1
 > The LORD has made everything for its purpose,
 >  even the wicked for the day of trouble.
 
+Psalm 127:2
+> It is in vain that you rise up early
+>  and go late to rest,
+> eating the bread of anxious toil;
+>  for he gives to his beloved sleep.
+
 ## Worship
 Nehemiah 9:5:
 > Stand up and bless the LORD your God from everlasting to everlasting. Blessed be your glorious name, which is exalted above all blessing and praise.
