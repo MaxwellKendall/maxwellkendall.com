@@ -26,7 +26,7 @@ const test_data = {
       children: [
         {
           title: "React, Redux and ES6+",
-          totalHours: calculateDurations([['2017-07-01', null]]),
+          totalHours: calculateDurations([['2017-03-01', null]]),
           notes: "Thus far I've worked on three production, enterprise scale code bases, all of which had been using React. Two using redux for state management and one using alternatives."
         }
       ]
