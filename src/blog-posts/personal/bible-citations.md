@@ -13,7 +13,7 @@ Proverbs 24:12:
 > If you say `Behold, we did not know this`, does not he who weighs the heart perceive it? Does not he who keeps watch over your soul know it, and will he not repay man according to his work?
 
 Psalm 33:18-19:
-> Behold, the eye of the LORD is on those who fear him, on those who hope in his steadfast love, taht he may deliver their soul from death and keep them alive in famine.
+> Behold, the eye of the LORD is on those who fear him, on those who hope in his steadfast love, that he may deliver their soul from death and keep them alive in famine.
 
 Proverbs 16:1
 > The plans of the heart belong to man,
