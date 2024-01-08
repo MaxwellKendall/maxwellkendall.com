@@ -15,6 +15,9 @@ date: '2022-04-22'
 9. Adobe
 10. Algolia
 11. Useful
+12. Yahoo Finance
+13. Notability
+
 
 ## Already Invited to Apply
 1. Morning Consult

@@ -29,4 +29,30 @@ const sortDesc = (arr) => {
         }
     }
 }
+
+
+sortDesc([1,2,3,4])
+// ==> [4, 3, 2, 1]
 ```
+
+## Find Target in Sorted Array (Binary Search)
+```javascript
+function firstNotSmaller(arr, target) {
+    let left = 0;
+    let right = arr.length - 1;
+    let rtrn = -1;
+    while (left <= right) {
+      let mid = Math.trunc((right + left) / 2);
+      if (arr[mid] >= target) {
+          rtrn = mid;
+          right = mid - 1;
+      } else {
+          left = mid + 1;
+      }
+    }
+    return rtrn;
+}
+
+firstNotSmaller([1,2,3,4], 4)
+// => 3
+````
