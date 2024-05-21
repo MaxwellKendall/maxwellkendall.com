@@ -66,7 +66,7 @@ const Blog = ({ data }) => {
             .filter(({ node: post }) => post.frontmatter.tags.split(", ").includes("public"))
             .filter(({ node: post }) => {
               if (searchTerm?.length < 3 || !searchTerm) return true;
-              const tags = post.frontmatter.tags.split(", ").map((str) => str.toLowerCase());
+              const tags = post.frontmatter?.tags.split(", ").map((str) => str.toLowerCase()) || [];
               const headers = post.headings.map(({ value }) => value.toLowerCase());
               return (
                 tags.some((tag) => tag.includes(parseUrlSearchTerm(searchTerm))) ||
