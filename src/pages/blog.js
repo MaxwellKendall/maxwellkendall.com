@@ -63,13 +63,13 @@ const Blog = ({ data }) => {
       <input type="text" value={parseUrlSearchTerm(searchTerm)} placeholder="Search Blog Posts" className="border border-2 text-xl border-gray-400 rounded-full p-5 flex mx-auto my-10 w-64 outline-none" onChange={handleSearch} onKeyDown={handleKeyChange} />
         <ul className="blog-list flex flex-wrap mx-auto justify-center">
           {posts
-            .filter(({ node: post }) => post.frontmatter.tags.split(", ").includes("public"))
+            .filter(({ node: post }) => post.frontmatter.tags?.split(", ").includes("public"))
             .filter(({ node: post }) => {
               if (searchTerm?.length < 3 || !searchTerm) return true;
-              const tags = post.frontmatter?.tags.split(", ").map((str) => str.toLowerCase()) || [];
+              const tags = post.frontmatter.tags?.split(", ").map((str) => str.toLowerCase()) || [];
               const headers = post.headings.map(({ value }) => value.toLowerCase());
               return (
-                tags.some((tag) => tag.includes(parseUrlSearchTerm(searchTerm))) ||
+                tags?.some((tag) => tag.includes(parseUrlSearchTerm(searchTerm))) ||
                 headers.some((header) => header.includes(searchTerm)) ||
                 post.excerpt.toLowerCase().includes(searchTerm) ||
                 post.frontmatter.title.toLowerCase().includes(searchTerm)
