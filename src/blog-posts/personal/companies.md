@@ -3,6 +3,9 @@ title: Job Search Resources
 tags: job-search
 date: '2022-04-22'
 ---
+
+List of [Remote Companies](https://www.levels.fyi/remote/)
+
 ## Targeted Companies
 1. AWS
 2. Google
@@ -15,9 +18,7 @@ date: '2022-04-22'
 9. Adobe
 10. Algolia
 11. Useful
-12. Yahoo Finance
-13. Notability
-
+14. Webflow
 
 ## Already Invited to Apply
 1. Morning Consult
