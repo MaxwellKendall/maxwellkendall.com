@@ -137,11 +137,11 @@ export const pageQuery = graphql`
           excerpt(pruneLength: 350)
           fields {
             slug
+            timeToRead
           }
           headings {
             value
           }
-          timeToRead
           frontmatter {
             title
             tags

@@ -1,8 +1,10 @@
-const path = require('path');
+import path from 'path';
+import { createFilePath } from 'gatsby-source-filesystem';
+import slugify from '@sindresorhus/slugify';
+import { compileMDXWithCustomOptions } from 'gatsby-plugin-mdx';
+import remarkHeadingsPlugin from './remark-headings-plugin.js';
 
-const { createFilePath } = require('gatsby-source-filesystem');
-
-exports.onCreateNode = ({ node, getNode, actions }) => {
+export const onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
   // Ensures we are processing only markdown files
   if (node.internal.type === 'Mdx') {
@@ -16,16 +18,21 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     // Creates new query'able field with name of 'slug'
     createNodeField({
       node,
-      name: 'slug',
-      value: `/blog${relativeFilePath}`,
+      name: `slug`,
+      value: `/${slugify(node.frontmatter.title)}`,
+    });
+
+    createNodeField({
+      node,
+      name: `timeToRead`,
+      value: readingTime(node.body),
     });
   }
 };
 
-
-exports.createPages = async ({ graphql, actions, reporter }) => {
+export const createPages = async ({ graphql, actions, reporter }) => {
   // Destructure the createPage function from the actions object
-  const { createPage } = actions
+  const { createPage } = actions;
 
   const result = await graphql(`
     query {
@@ -40,14 +47,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
     }
-  `)
+  `);
 
   if (result.errors) {
     reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
   }
 
   // Create blog post pages.
-  const posts = result.data.allMdx.edges
+  const posts = result.data.allMdx.edges;
 
   // you'll call `createPage` for each result
   posts.forEach(({ node }, index) => {
@@ -60,6 +67,73 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // You can use the values in this context in
       // our page layout component
       context: { id: node.id },
-    })
-  })
-}
+    });
+  });
+};
+
+// copy and pasted from https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/
+export const createSchemaCustomization = async ({
+  getNode,
+  getNodesByType,
+  pathPrefix,
+  reporter,
+  cache,
+  actions,
+  schema,
+  store,
+}) => {
+  const { createTypes } = actions;
+
+  const headingsResolver = schema.buildObjectType({
+    name: `Mdx`,
+    fields: {
+      headings: {
+        type: `[MdxHeading]`,
+        async resolve(mdxNode) {
+          const fileNode = getNode(mdxNode.parent);
+
+          if (!fileNode) {
+            return null;
+          }
+
+          const result = await compileMDXWithCustomOptions(
+            {
+              source: mdxNode.body,
+              absolutePath: fileNode.absolutePath,
+            },
+            {
+              pluginOptions: {},
+              customOptions: {
+                mdxOptions: {
+                  remarkPlugins: [remarkHeadingsPlugin],
+                },
+              },
+              getNode,
+              getNodesByType,
+              pathPrefix,
+              reporter,
+              cache,
+              store,
+            }
+          );
+
+          if (!result) {
+            return null;
+          }
+
+          return result.metadata.headings;
+        },
+      },
+    },
+  });
+
+  createTypes([
+    `
+      type MdxHeading {
+        value: String
+        depth: Int
+      }
+    `,
+    headingsResolver,
+  ]);
+};

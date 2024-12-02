@@ -1,4 +1,10 @@
-module.exports = {
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import remarkGfm from 'remark-gfm';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const config = {
   pathPrefix: '/gatsby-contentful-starter',
   siteMetadata: {
     menuLinks: [
@@ -21,8 +27,9 @@ module.exports = {
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
-      plugins: [{
-        resolve: `gatsby-remark-prismjs`,
+      plugins: [
+        {
+          resolve: `gatsby-remark-prismjs`,
           options: {
             // Class prefix for <pre> tags containing syntax highlighting;
             // defaults to 'language-' (e.g. <pre class="language-js">).
@@ -31,7 +38,7 @@ module.exports = {
             // you may use this to prevent Prism from re-processing syntax.
             // This is an uncommon use-case though;
             // If you're unsure, it's best to use the default value.
-            classPrefix: "language-",
+            classPrefix: 'language-',
             // This is used to allow setting a language for inline code
             // (i.e. single backticks) by creating a separator.
             // This separator is a string and will do no white-space
@@ -61,8 +68,8 @@ module.exports = {
             // existing language" below.
             languageExtensions: [
               {
-                language: "superscript",
-                extend: "javascript",
+                language: 'superscript',
+                extend: 'javascript',
                 definition: {
                   superscript_types: /(SuperType)/,
                 },
@@ -76,24 +83,26 @@ module.exports = {
             // Customize the prompt used in shell output
             // Values below are default
             prompt: {
-              user: "root",
-              host: "localhost",
+              user: 'root',
+              host: 'localhost',
               global: false,
             },
-          }
-      }]
+          },
+        },
+      ],
     },
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: ['.mdx', '.md'],
-        plugins: ['gatsby-remark-images'],
         gatsbyRemarkPlugins: [
+          // Add GitHub Flavored Markdown (GFM) support
+          remarkGfm,
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1035,
-              sizeByPixelDensity: true
+              sizeByPixelDensity: true,
             },
           },
         ],
@@ -120,6 +129,8 @@ module.exports = {
         path: `${__dirname}/src/images/`,
       },
     },
-    'gatsby-plugin-image'
+    'gatsby-plugin-image',
   ],
 };
+
+export default config;
