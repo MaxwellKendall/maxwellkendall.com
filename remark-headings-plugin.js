@@ -1,5 +1,10 @@
 const { toString } = require('mdast-util-to-string');
 
+(async () => {
+  const { visit } = await import('unist-util-visit');
+  // Use slugify as needed
+})();
+
 const transformer = (tree, file) => {
   let headings = [];
 

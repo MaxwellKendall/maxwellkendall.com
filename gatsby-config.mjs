@@ -1,11 +1,4 @@
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import remarkGfm from 'remark-gfm';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
 const config = {
-  pathPrefix: '/gatsby-contentful-starter',
   siteMetadata: {
     menuLinks: [
       {
@@ -23,8 +16,11 @@ const config = {
   plugins: [
     `gatsby-plugin-postcss`,
     'gatsby-plugin-react-helmet',
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
+    'gatsby-plugin-mdx',
+    'gatsby-plugin-image',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: `gatsby-transformer-remark`,
       plugins: [
@@ -92,23 +88,6 @@ const config = {
       ],
     },
     {
-      resolve: 'gatsby-plugin-mdx',
-      options: {
-        extensions: ['.mdx', '.md'],
-        gatsbyRemarkPlugins: [
-          // Add GitHub Flavored Markdown (GFM) support
-          remarkGfm,
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 1035,
-              sizeByPixelDensity: true,
-            },
-          },
-        ],
-      },
-    },
-    {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
         trackingId: 'UA-131464926-1',
@@ -118,19 +97,20 @@ const config = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'blog',
-        path: `${__dirname}/src/blog-posts/`,
+        name: 'images',
+        path: './src/images/',
       },
+      __key: 'images',
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'images',
-        path: `${__dirname}/src/images/`,
+        name: 'blog',
+        path: './src/blog-posts/',
       },
+      __key: 'blog-posts',
     },
-    'gatsby-plugin-image',
   ],
 };
 
-export default config;
+module.exports = config;

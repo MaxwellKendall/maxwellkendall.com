@@ -1,17 +1,13 @@
 module.exports = {
+  plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]],
   presets: [
     [
       'babel-preset-gatsby',
       {
         targets: {
-          browsers: ['>0.25%', 'not dead']
-        }
-      }
-    ]
+          browsers: ['>0.25%', 'not dead'],
+        },
+      },
+    ],
   ],
-  plugins: [
-    ['@babel/plugin-transform-runtime', {
-      corejs: 3
-    }]
-  ]
-} 
+};

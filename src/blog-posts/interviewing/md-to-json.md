@@ -1,3 +1,10 @@
+---
+title: Interviewing Question
+tags: cs fundamentals
+featuredImage: ../../../images/fundamentals.png
+date: '2024-01-08'
+---
+
 ```javascript
 // #: H1
 // ##: H2
@@ -6,25 +13,25 @@
 // \n: <br>
 
 // split on \n delmitter --> '# this is a sentence'[]
-  // prepend special tag based on the first word
-  // append special tag based on the first word
-  // If it is a <li> --> prepend two special tags: <ul><li>{word}</li>
+// prepend special tag based on the first word
+// append special tag based on the first word
+// If it is a <li> --> prepend two special tags: <ul><li>{word}</li>
 const specialChars = ['#', '##', '*'];
 const htmlBySpecialChar = {
   '#': (str, lastTag = null) => {
     // insert possibly </ul>
     if (lastTag === '*') {
-      return `</ul><h1>${str}</h1>`;  
+      return `</ul><h1>${str}</h1>`;
     }
     return `<h1>${str}</h1>`;
   },
   '##': (str, lastTag = null) => {
     // insert possibly </ul>
     if (lastTag === '*') {
-      return `</ul><h2>${str}</h2>`;  
+      return `</ul><h2>${str}</h2>`;
     }
     if (lastTag === 'p') {
-      return `</p><h2>${str}</h2>`;  
+      return `</p><h2>${str}</h2>`;
     }
     return `<h2>${str}</h2>`;
   },
@@ -35,13 +42,13 @@ const htmlBySpecialChar = {
       return `<ul><li>${str}</li>`;
     }
   },
-  'p': (str, lastTag = null) => {
+  p: (str, lastTag = null) => {
     if (lastTag === 'p') {
-      return `<>${str}`;  
+      return `<>${str}`;
     }
     return `<p>${str}`;
-  }
-}
+  },
+};
 // "# This is a header\nThis is a paragraph\n* This is a list item\n* Another list item
 const convertToHtml = (md) => {
   const lines = md.split('\n');
@@ -60,13 +67,15 @@ const convertToHtml = (md) => {
     htmlString.push(html);
     lastTag = currentTag;
   }
-  return htmlString.join('')
-}
+  return htmlString.join('');
+};
 
 // default
 // "# This is a header\nThis is a paragraph\n* This is a list item\n* Another list item"
 // "# This is a header\nThis is a paragraph\n* This is a list item\n* Another list item"
-const result = convertToHtml("# This is a header\nThis is a paragraph\n* This is a list item\n* Another list item")
+const result = convertToHtml(
+  '# This is a header\nThis is a paragraph\n* This is a list item\n* Another list item'
+);
 
 console.log({ result });
 

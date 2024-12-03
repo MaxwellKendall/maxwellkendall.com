@@ -3,16 +3,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 export const SEO = ({ siteMetadata, children, image }) => {
-    const { imageSharp: favicon} = useStaticQuery(
-        graphql`{
-        imageSharp(original: {src: {regex: "/favicon/"}}) {
-          original {
-            src
-          }
-        }
-      }`);
-
-      console.log('yooo', favicon)
     return (
         <React.Fragment>
             <Helmet>
