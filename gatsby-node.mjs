@@ -1,16 +1,13 @@
-const path = require('path');
-const { createFilePath } = require('gatsby-source-filesystem');
-const { compileMDXWithCustomOptions } = require('gatsby-plugin-mdx');
-const remarkHeadingsPlugin = require('./remark-headings-plugin.js');
-const readingTime = require('reading-time');
-let slugify;
-const getSlugify = async () => {
-  if (!slugify) {
-    slugify = (await import('@sindresorhus/slugify')).default;
-  }
-  return slugify;
-};
-exports.onCreateNode = async ({ node, getNode, actions }) => {
+import path from 'path';
+import { createFilePath } from 'gatsby-source-filesystem';
+import { compileMDXWithCustomOptions } from 'gatsby-plugin-mdx';
+import remarkHeadingsPlugin from './remark-headings-plugin.js';
+import readingTime from 'reading-time';
+import slugifyOriginal from '@sindresorhus/slugify';
+
+const getSlugify = () => slugifyOriginal;
+
+export const onCreateNode = async ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
   if (node.internal.type === 'Mdx') {
     const relativeFilePath = createFilePath({
@@ -41,40 +38,40 @@ exports.onCreateNode = async ({ node, getNode, actions }) => {
   }
 };
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions;
+// export const createPages = async ({ graphql, actions, reporter }) => {
+//   const { createPage } = actions;
 
-  const result = await graphql(`
-    query {
-      allMdx {
-        edges {
-          node {
-            id
-            fields {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `);
+//   const result = await graphql(`
+//     query {
+//       allMdx {
+//         edges {
+//           node {
+//             id
+//             fields {
+//               slug
+//             }
+//           }
+//         }
+//       }
+//     }
+//   `);
 
-  if (result.errors) {
-    reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
-  }
+//   if (result.errors) {
+//     reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
+//   }
 
-  const posts = result.data.allMdx.edges;
+//   const posts = result.data.allMdx.edges;
 
-  posts.forEach(({ node }, index) => {
-    createPage({
-      path: node.fields.slug,
-      component: path.resolve(`./src/templates/blog-post.js`),
-      context: { id: node.id },
-    });
-  });
-};
+//   posts.forEach(({ node }, index) => {
+//     createPage({
+//       path: node.fields.slug,
+//       component: path.resolve(`./src/templates/blog-post.js`),
+//       context: { id: node.id },
+//     });
+//   });
+// };
 
-exports.createSchemaCustomization = async ({
+export const createSchemaCustomization = async ({
   getNode,
   getNodesByType,
   pathPrefix,

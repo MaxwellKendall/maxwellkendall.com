@@ -10,6 +10,7 @@ const config = {
         link: '/blog',
       },
     ],
+    siteUrl: 'https://maxwellkendall.com',
     title: 'maxwellkendall.com 🙌💯',
     description: 'Blog about software engineering',
   },
@@ -113,4 +114,4 @@ const config = {
   ],
 };
 
-module.exports = config;
+export default config;

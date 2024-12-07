@@ -17,9 +17,6 @@ const PortfolioPage = ({
   return (
     <SEO siteMetadata={seoInfo}>
       <Header izOffHrs={izOffHrs} />
-      <div className="markdown-body max-w-6xl mx-auto px-5 pt-10 portfolio">
-        <MDXRenderer>{mdx.body}</MDXRenderer>
-      </div>
       <Footer izOffHrs={izOffHrs} />
     </SEO>
   );
@@ -33,13 +30,6 @@ export const query = graphql`
       siteMetadata {
         title
         description
-      }
-    }
-    mdx(frontmatter: { title: { eq: "Portfolio Page" } }) {
-      id
-      body
-      frontmatter {
-        title
       }
     }
   }
