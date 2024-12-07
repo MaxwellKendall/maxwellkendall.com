@@ -3,9 +3,10 @@ import { createFilePath } from 'gatsby-source-filesystem';
 import { compileMDXWithCustomOptions } from 'gatsby-plugin-mdx';
 import remarkHeadingsPlugin from './remark-headings-plugin.js';
 import readingTime from 'reading-time';
-import slugifyOriginal from '@sindresorhus/slugify';
+import slugify from '@sindresorhus/slugify';
+import { fileURLToPath } from 'url';
 
-const getSlugify = () => slugifyOriginal;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const onCreateNode = async ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
@@ -22,7 +23,6 @@ export const onCreateNode = async ({ node, getNode, actions }) => {
       console.error('No title found for this blog post', relativeFilePath);
       return;
     }
-    const slugify = await getSlugify();
 
     createNodeField({
       node,
@@ -38,38 +38,47 @@ export const onCreateNode = async ({ node, getNode, actions }) => {
   }
 };
 
-// export const createPages = async ({ graphql, actions, reporter }) => {
-//   const { createPage } = actions;
+export const createPages = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions;
 
-//   const result = await graphql(`
-//     query {
-//       allMdx {
-//         edges {
-//           node {
-//             id
-//             fields {
-//               slug
-//             }
-//           }
-//         }
-//       }
-//     }
-//   `);
+  // Query for MDX nodes to use in creating pages
+  const result = await graphql(`
+    query {
+      allMdx {
+        nodes {
+          id
+          frontmatter {
+            title
+          }
+          internal {
+            contentFilePath
+          }
+        }
+      }
+    }
+  `);
 
-//   if (result.errors) {
-//     reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
-//   }
+  if (result.errors) {
+    reporter.panicOnBuild('Error loading MDX result', result.errors);
+  }
 
-//   const posts = result.data.allMdx.edges;
+  // Create blog post pages
+  const posts = result.data.allMdx.nodes;
 
-//   posts.forEach(({ node }, index) => {
-//     createPage({
-//       path: node.fields.slug,
-//       component: path.resolve(`./src/templates/blog-post.js`),
-//       context: { id: node.id },
-//     });
-//   });
-// };
+  // Create pages for each MDX file
+  posts.forEach((node) => {
+    const slug = slugify(node.frontmatter.title);
+    createPage({
+      path: `/blog/${slug}`,
+      component: `${path.resolve(
+        './src/templates/blog-post.js'
+      )}?__contentFilePath=${node.internal.contentFilePath}`,
+      context: {
+        id: node.id,
+      },
+    });
+  });
+};
 
 export const createSchemaCustomization = async ({
   getNode,
