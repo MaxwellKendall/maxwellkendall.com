@@ -1,7 +1,7 @@
 ---
 title: Interviewing Question
 tags: cs fundamentals
-featuredImage: ../../../images/fundamentals.png
+
 date: '2024-01-08'
 ---
 

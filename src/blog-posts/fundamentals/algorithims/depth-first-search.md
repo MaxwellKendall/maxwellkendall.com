@@ -1,7 +1,7 @@
 ---
 title: Depth First Search
 tags: algorithims
-featuredImage: ../../../images/fundamentals.png
+
 date: '2022-08-12'
 ---
 
@@ -20,25 +20,25 @@ DFS to get the "diamater" of a binary tree where "diameter" refers to the longes
  * @param {TreeNode} root
  * @return {number}
  */
-var diameterOfBinaryTree = function(root) {
-    let diameter = 0;
-    if (!root) return diameter;
+var diameterOfBinaryTree = function (root) {
+  let diameter = 0;
+  if (!root) return diameter;
 
-    const longestPath = (treeNode) => {
-        if (!treeNode) return 0;
-        
-        const leftPath = longestPath(treeNode.left);
-        const rightPath = longestPath(treeNode.right);
-        
-        // update diameter if greater than current longest
-        diameter = Math.max(diameter, leftPath + rightPath);
-        
-        // + 1 to increment each non-null return
-        return Math.max(leftPath, rightPath) + 1;
-    }
-    
-    longestPath(root);
-    return diameter;
+  const longestPath = (treeNode) => {
+    if (!treeNode) return 0;
+
+    const leftPath = longestPath(treeNode.left);
+    const rightPath = longestPath(treeNode.right);
+
+    // update diameter if greater than current longest
+    diameter = Math.max(diameter, leftPath + rightPath);
+
+    // + 1 to increment each non-null return
+    return Math.max(leftPath, rightPath) + 1;
+  };
+
+  longestPath(root);
+  return diameter;
 };
 ```
 

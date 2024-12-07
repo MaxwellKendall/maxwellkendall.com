@@ -22,6 +22,14 @@ const config = {
       options: {
         extensions: ['.mdx', '.md'],
       },
+      gatsbyRemarkPlugins: [
+        {
+          resolve: `gatsby-remark-images`,
+          options: {
+            maxWidth: 590,
+          },
+        },
+      ],
     },
     {
       resolve: 'gatsby-plugin-google-analytics',

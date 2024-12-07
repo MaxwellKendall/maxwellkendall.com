@@ -1,7 +1,7 @@
 ---
 title: Arrays and Hash Maps
 tags: cs fundamentals
-featuredImage: ../../../images/fundamentals.png
+
 date: '2022-11-04'
 ---
 
@@ -14,6 +14,7 @@ A great example of this is the classic problem `pair product`:
 > Write a function, pairProduct, that takes in an array and a target product as arguments. The function should return an array containing a pair of indices whose elements multiply to the given target. The indices returned must be unique.
 
 The simple array implementation is O(n^2):
+
 ```javascript
 const pairProduct = (numbers, targetProduct) => {
   for (var i = numbers.length - 1; i > 0; i--) {
@@ -26,6 +27,7 @@ const pairProduct = (numbers, targetProduct) => {
 ```
 
 The optimized solution uses a clever map which allows us to go down to linear time O(n):
+
 ```javascript
 const pairProduct = (numbers, targetProduct) => {
   const indexByNumbers = {};
@@ -43,7 +45,9 @@ const pairProduct = (numbers, targetProduct) => {
 This is a perfect example of how a hash map can help us more effeciently solve array problems.
 
 ## Hash Map vs Regular Map
+
 The difference is in the key. In JavaScript the `new Map()` constructor allows us to make use of an object whose keys are more complex values. For a hash map there is typically a "hash function" which creates the key for the map from an element in the array.
 
 ## Set vs Hashmap vs Regular Map
-A set is effectively the same thing as a hash map because it is defined as that which contains 
+
+A set is effectively the same thing as a hash map because it is defined as that which contains

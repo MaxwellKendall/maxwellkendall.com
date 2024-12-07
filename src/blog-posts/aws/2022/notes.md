@@ -1,7 +1,7 @@
 ---
 title: Notes
 tags: aws
-featuredImage: ../../images/aws_logo.png
+
 date: '2022-09-20'
 ---
 
@@ -27,4 +27,4 @@ Each service is offered in multiple regions. These services can be organized und
 
 ## Shared Responsibility Model
 
-Who owns what in the cloud? 
+Who owns what in the cloud?

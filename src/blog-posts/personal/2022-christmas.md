@@ -2,7 +2,7 @@
 title: Christmas List
 # tags: public, cs fundamentals
 tags: personal
-featuredImage: ../../images/fundamentals.png
+
 date: '2022-06-08'
 ---
 

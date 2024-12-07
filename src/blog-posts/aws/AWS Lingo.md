@@ -1,7 +1,7 @@
 ---
 title: AWS Lingo
 tags: public, aws
-featuredImage: ../../images/aws_logo.png
+
 date: '2019-12-09'
 ---
 
@@ -17,4 +17,4 @@ date: '2019-12-09'
 
 **Redundancy**: Horizontal scaling.
 
-**Fault Tolerance**, refers to the feature of resilience. 
+**Fault Tolerance**, refers to the feature of resilience.

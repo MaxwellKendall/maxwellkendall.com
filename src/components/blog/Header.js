@@ -4,12 +4,22 @@ import { GatsbyImage as Img } from 'gatsby-plugin-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
+import { getImage } from '../../graphql/index';
+
 export const Header = ({ izOffHrs }) => {
+  const image = getImage(izOffHrs);
   return (
     <div className="header flex justify-center py-10">
       {/* <div className="flex w-full justify-center"> */}
       <Link to="/" className="flex">
-        Home
+        <div className="header__bio">
+          <Img
+            alt="headshot"
+            image={image}
+            className="w-full rounded-xl p-10"
+            imgStyle={{ borderRadius: '50%' }}
+          />
+        </div>
       </Link>
       <div className="pl-4 flex flex-col my-auto">
         <Link to="/" className="flex justify-center w-full self-end">

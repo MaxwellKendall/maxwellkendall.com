@@ -1,7 +1,7 @@
 ---
 title: Salary Negotiation
 tags: cs fundamentals
-featuredImage: ../../images/fundamentals.png
+
 date: '2022-09-19'
 ---
 

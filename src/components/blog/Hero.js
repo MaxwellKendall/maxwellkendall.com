@@ -1,14 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { GatsbyImage as Img } from 'gatsby-plugin-image';
 
 const Hero = ({ data }) => (
   <div className="hero">
     {data.heroImage && (
-      <Img
-        className="heroImage"
-        alt={data.name}
-        sizes={data.heroImage.sizes}
-      />
+      <Img className="heroImage" alt={data.name} sizes={data.heroImage.sizes} />
     )}
     <div className="heroDetails">
       <h3 className="heroHeadline">{data.name}</h3>

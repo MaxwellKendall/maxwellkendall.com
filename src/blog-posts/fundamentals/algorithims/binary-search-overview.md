@@ -1,7 +1,7 @@
 ---
 title: Binary Search
 tags: cs fundamentals
-featuredImage: ../../../images/fundamentals.png
+
 date: '2022-05-31'
 ---
 
@@ -10,8 +10,7 @@ Binary Search is a strategy to find a given "target" element within a sorted arr
 Given an array of sorted integers, find the index of a given target:
 
 ```javascript
-
-fn([1,2,3,4], 4)
+fn([1, 2, 3, 4], 4);
 // => 3
 ```
 
@@ -19,19 +18,18 @@ The solution requires a simple while loop which executes so long as the `base co
 
 ```javascript
 function firstNotSmaller(arr, target) {
-    let left = 0;
-    let right = arr.length - 1;
-    let rtrn = -1;
-    while (left <= right) {
-      let mid = Math.trunc((right + left) / 2);
-      if (arr[mid] >= target) {
-          rtrn = mid;
-          right = mid - 1;
-      } else {
-          left = mid + 1;
-      }
+  let left = 0;
+  let right = arr.length - 1;
+  let rtrn = -1;
+  while (left <= right) {
+    let mid = Math.trunc((right + left) / 2);
+    if (arr[mid] >= target) {
+      rtrn = mid;
+      right = mid - 1;
+    } else {
+      left = mid + 1;
     }
-    return rtrn;
+  }
+  return rtrn;
 }
-````
-
+```
